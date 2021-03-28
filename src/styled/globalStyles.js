@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
   *,
-  *::before
+  *::before,
   *::after {
     margin: 0;
     padding: 0;
@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Open Sans", sans-serif;
     font-family: "Varela Round", sans-serif;
     font-weight: 400;
+    background: linear-gradient(211deg, rgba(110,36,107,1) 0%, rgba(14,60,123,1) 100%);
   }
 `;
 

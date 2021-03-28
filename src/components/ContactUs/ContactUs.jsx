@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  Footers
+  Footer
 } from './style';
 
-const Footer = () => {
+const ContactUs = () => {
   return (
-    <Footers>
+    <Footer>
       blabal footer
-    </Footers>
+    </Footer>
   )
 };
 
-export default Footer;
+export default ContactUs;

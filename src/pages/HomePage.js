@@ -1,60 +1,64 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useRouteMatch
+} from "react-router-dom";
+
+import { openDrawer, closeDrawer } from '../actions/sideDrawer';
 
 import NavBar from "../components/NavBar/NavBar";
-import Footer from '../components/Footer/Footer';
+import SideDrawer from '../components/SideDrawer/SideDrawer';
+import BackDrop from '../components/BackDrop/BackDrop';
+import Footer from '../components/ContactUs/ContactUs';
 
 const HomePage = () => {
-  const [prevScroll, setPrevScroll] = useState(0);
-  const [navSlide, setNavSlide] = useState(0);
+  let { path } = useRouteMatch();
 
-  // const handleScroll = useCallback(
-  //   e => {
-  //     //research getBoundingClientRect vs window.scrollY
-  //     const currentScroll = window.scrollY;
+  const isDrawerOpen = useSelector(state => state.sideDrawer);
 
-  //     //2 more cases
-  //     if (currentScroll > prevScroll) {
-  //       setNavSlide(-10);
-  //     } else {
-  //       setNavSlide(0);
-  //     }
+  const dispatch = useDispatch();
 
-  //     setPrevScroll(currentScroll);
-  //     console.log('again');
-  //   }, [navSlide]
-  // );
-  const handleScroll = e => {
-    //research getBoundingClientRect vs window.scrollY
-    const currentScroll = window.scrollY;
 
-    //2 more cases
-    if (currentScroll > prevScroll) {
-      setNavSlide(-10);
-    } else {
-      setNavSlide(0);
-    }
+  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-    setPrevScroll(currentScroll);
-    console.log('again');
-  };
+  // const onNavToggleClick = () => {
+  //   setIsDrawerOpen(true);
+  // }
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll]);
-
-  
+  // const onBackDropClick = () => {
+  //   setIsDrawerOpen(false);
+  // }
 
   return (
-    <div>
-      <NavBar navPos={navSlide} />
-      <div style={{height: "1000px", marginTop: "20rem"}}>dsada
-        <span style={{color: "white"}}>sdasssssssssssss</span>
+    <Router>
+      <div>
+        <NavBar />
+        <SideDrawer />
+        {isDrawerOpen && <BackDrop />}
+
+        <Switch>
+          <Route path={path} exact>
+            {/* get started */}
+          </Route>
+          <Route path={`${path}/how-it-works`}>
+            {/* how it works */}
+          </Route>
+          <Route path={`${path}/features`}>
+            {/* features */}
+          </Route>
+          <Route path={`${path}/contact-us`}>
+            {/* contact us */}
+          </Route>
+        </Switch>
+        <div style={{height: "1000px", marginTop: "20rem"}}>dsada
+          <span style={{color: "white"}}>sdasssssssssssss</span>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </Router>
   )
 };
 

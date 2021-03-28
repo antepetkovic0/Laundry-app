@@ -1,9 +1,7 @@
 import React from 'react';
 import * as S from './style';
 
-const Button = (props) => {
-  const { buttonText, buttonType, handleButtonClick } = props;
-
+const Button = ({ buttonText, buttonType, handleButtonClick }) => {
   return (
     <S.Button>
       {buttonText}

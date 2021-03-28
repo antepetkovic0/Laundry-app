@@ -4,14 +4,12 @@ import {
 	Switch,
 	Route
 }	from 'react-router-dom';
-import GlobalStyle from "./styled/globalStyles";
+
 import HomePage from "./pages/HomePage";
 
 const App = () => {
 	return (
 		<Router>
-			<GlobalStyle />
-
 			<Switch>
 				<Route exact path="/">
 					<HomePage />

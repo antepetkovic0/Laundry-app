@@ -2,13 +2,22 @@ import styled, { css } from 'styled-components';
 
 export const Button = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
-  width: 2.5rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   background: transparent;
+  border-radius: 100px;
+
+  /* border: 1px solid grey; */
   border: none;
   padding: 0;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, .1);
+  /* background-color: transparent; */
+  /* background: radial-gradient(circle, rgba(210,210,210,0.5) 0%, rgba(255,255,255,0.7) 100%); */
+  box-shadow: inset 0px 0px 1.8rem 1.2rem rgba(255,255,255,0.1);
+  /* box-shadow: inset 0px 0px 1.8rem 1.2rem rgba(0, 0, 0, 0.1); */
 
   &:focus {
     outline: none;
@@ -38,10 +47,11 @@ export const Line = styled.span`
   &::after {
     display: inline-block;
     position: relative;
-    width: inherit;
-    height: 4px;
+    width: 2rem;
+    height: 3px;
     background-color: white;
     border-radius: .5rem;
+    /* margin: 0 .3rem; */
   };
 
   &::before,
@@ -53,9 +63,9 @@ export const Line = styled.span`
   };
 
   &::before {
-    top: -.8rem;
+    top: -.6rem;
   }
   &::after {
-    top: .8rem;
+    top: .6rem;
   }
 `;

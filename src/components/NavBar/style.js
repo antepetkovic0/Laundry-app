@@ -8,53 +8,21 @@ export const Nav = styled.nav`
   width: fill-available;
   height: 4.5rem;
   padding: 1rem;
-  background-color: #2f4d75;
+  /* background-color: #2f4d75; */
+  /* background-color: #804c86; */
+  /* background-color: transparent; */
+  background: linear-gradient(211deg, rgba(110,36,107,1) 0%, rgba(14,60,123,1) 100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row-reverse;
 
   /* @media ${breakpoint.tablet} {
     flex-direction: row-reverse;
   } */
 
-  transition: all .3s;
+  /* transition: all .3s;
   transform: ${({ position }) =>
     `translateY(${position}rem)`
-  };
-`;
-
-export const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
-`;
-
-export const IconContainer = styled.div`
-  width: 4rem;
-`;
-
-export const Icon = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-`;
-
-export const LogoText = styled.p`
-  font-size: 2rem;
-  font-weight: 700;
-  margin-left: .5rem;
-  /* font-style: italic; */
-`;
-
-export const Ul = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 1.6rem;
-  display: none;
-
-
-  /* @media ${breakpoint.tablet} {
-    display: flex;
-  } */
+  }; */
 `;
