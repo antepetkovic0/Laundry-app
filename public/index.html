@@ -33,7 +33,19 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker.register("./serviceWorker.js")
-            .then((reg) => console.log("Success registering sw", reg.scope))
+            .then(async (reg) => {
+              // return reg.pushManager.getSubscription()
+              //   .then((subscription) => {
+              //     return reg.pushManager.subscribe({
+              //       userVisibleOnly: true,
+              //       applicationServerKey: 12345
+              //     })
+              //   })
+              console.log("Success registering sw", reg.scope);
+              const permission = await window.Notification.requestPermission();
+              console.log(permission);
+
+            })
             .catch((err) => console.log("Failure registering sw", err));
         })
       }

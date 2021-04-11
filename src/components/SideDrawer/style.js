@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Div = styled.div`
   display: flex;
@@ -16,9 +16,7 @@ export const Div = styled.div`
   box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
   z-index: 200;
   transform: ${({ isOpened }) =>
-    isOpened && "translateX(0)" ||
-    "translateX(-100%)"
-  };
+    (isOpened && "translateX(0)") || "translateX(-100%)"};
   transition: transform 0.4s ease-out;
 `;
 
@@ -26,8 +24,8 @@ export const Ul = styled.ul`
   list-style: none;
 
   a {
-    text-decoration: none;    
-  }  
+    text-decoration: none;
+  }
 `;
 
 export const Li = styled.li`

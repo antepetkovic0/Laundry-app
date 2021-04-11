@@ -1,21 +1,16 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { closeDrawer } from '../../actions/sideDrawer';
+import { closeDrawer } from "../../actions/sideDrawer";
 
-import Button from '../Button/Button';
-import Logo from '../Logo/Logo';
+import Button from "../Button/Button";
+import Logo from "../Logo/Logo";
 
-import {
-  Div,
-  Nav,
-  Ul,
-  Li
-} from './style';
+import { Div, Ul, Li } from "./style";
 
 const SideDrawer = () => {
-  const isDrawerOpen = useSelector(state => state.sideDrawer);
+  const isDrawerOpen = useSelector((state) => state.sideDrawer);
   const dispatch = useDispatch();
 
   const handleLinkClicked = () => {
@@ -27,7 +22,7 @@ const SideDrawer = () => {
       <Logo />
       <nav style={{ marginTop: "1.5rem" }}>
         <Ul>
-          <Link to="/" >
+          <Link to="/">
             <Li onClick={handleLinkClicked}>Get Started</Li>
           </Link>
           <Link to="/how-it-works">
@@ -41,10 +36,7 @@ const SideDrawer = () => {
           </Link>
           <Link to="/sign-in" onClick={handleLinkClicked}>
             <Li>
-              <Button 
-                buttonText="Sign In"
-                buttonType="primary"
-              />
+              <Button buttonText="Sign In" buttonType="primary" />
             </Li>
           </Link>
         </Ul>

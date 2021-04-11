@@ -1,10 +1,9 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from "react";
+import { useDispatch } from "react-redux";
 
-import { closeDrawer } from '../../actions/sideDrawer';
+import { closeDrawer } from "../../actions/sideDrawer";
 
-import { Wrapper } from './style';
+import { Wrapper } from "./style";
 
 const BackDrop = () => {
   const dispatch = useDispatch();
@@ -13,13 +12,7 @@ const BackDrop = () => {
     dispatch(closeDrawer());
   };
 
-  return (
-    <Wrapper onClick={handleBackDropClick} />
-  )
+  return <Wrapper onClick={handleBackDropClick} />;
 };
-
-// Wrapper.propTypes = {
-//   handleBackDropClick: PropTypes.func.isRequired
-// };
 
 export default BackDrop;

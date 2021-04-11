@@ -1,14 +1,6 @@
-import React from 'react';
-import {
-  Footer
-} from './style';
+import React from "react";
+import { Footer } from "./style";
 
-const ContactUs = () => {
-  return (
-    <Footer>
-      blabal footer
-    </Footer>
-  )
-};
+const ContactUs = () => <Footer>blabal footer</Footer>;
 
 export default ContactUs;

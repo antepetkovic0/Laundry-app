@@ -1,36 +1,23 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useRouteMatch
+  useRouteMatch,
 } from "react-router-dom";
 
-import { openDrawer, closeDrawer } from '../actions/sideDrawer';
-
 import NavBar from "../components/NavBar/NavBar";
-import SideDrawer from '../components/SideDrawer/SideDrawer';
-import BackDrop from '../components/BackDrop/BackDrop';
-import Footer from '../components/ContactUs/ContactUs';
+import SideDrawer from "../components/SideDrawer/SideDrawer";
+import BackDrop from "../components/BackDrop/BackDrop";
+import Footer from "../components/ContactUs/ContactUs";
+
+import GetStarted from "../components/GetStarted/GetStarted";
 
 const HomePage = () => {
   let { path } = useRouteMatch();
 
-  const isDrawerOpen = useSelector(state => state.sideDrawer);
-
-  const dispatch = useDispatch();
-
-
-  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  // const onNavToggleClick = () => {
-  //   setIsDrawerOpen(true);
-  // }
-
-  // const onBackDropClick = () => {
-  //   setIsDrawerOpen(false);
-  // }
+  const isDrawerOpen = useSelector((state) => state.sideDrawer);
 
   return (
     <Router>
@@ -40,26 +27,21 @@ const HomePage = () => {
         {isDrawerOpen && <BackDrop />}
 
         <Switch>
-          <Route path={path} exact>
+          <Route path={path} component={GetStarted} exact>
             {/* get started */}
           </Route>
-          <Route path={`${path}/how-it-works`}>
-            {/* how it works */}
-          </Route>
-          <Route path={`${path}/features`}>
-            {/* features */}
-          </Route>
-          <Route path={`${path}/contact-us`}>
-            {/* contact us */}
-          </Route>
+          <Route path={`${path}/how-it-works`}>{/* how it works */}</Route>
+          <Route path={`${path}/features`}>{/* features */}</Route>
+          <Route path={`${path}/contact-us`}>{/* contact us */}</Route>
         </Switch>
-        <div style={{height: "1000px", marginTop: "20rem"}}>dsada
-          <span style={{color: "white"}}>sdasssssssssssss</span>
+        <div style={{ height: "1000px", marginTop: "20rem" }}>
+          dsada
+          <span style={{ color: "white" }}>sdasssssssssssss</span>
         </div>
         <Footer />
       </div>
     </Router>
-  )
+  );
 };
 
 export default HomePage;

@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
+import React from "react";
 
-import NavToggle from '../NavToggle/NavToggle';
-import Button from '../Button/Button';
-import Logo from '../Logo/Logo';
+import NavToggle from "../NavToggle/NavToggle";
+import Logo from "../Logo/Logo";
 
-import {
-  Nav,
-  Ul
-} from './style';
+import { Nav } from "./style";
 
-const NavBar = () => {
-  return (
-    <Nav>
-      <NavToggle />    
-      <Logo />
-    </Nav>
-  )
-};
+const NavBar = () => (
+  <Nav>
+    <NavToggle />
+    <Logo />
+  </Nav>
+);
 
 export default NavBar;

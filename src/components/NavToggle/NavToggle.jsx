@@ -1,13 +1,11 @@
-import React from 'react';
-import PropTypes from "prop-types";
-import { useSelector, useDispatch } from 'react-redux'
-// import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { openDrawer, closeDrawer } from '../../actions/sideDrawer';
-import { Button, Line } from './style';
+import { openDrawer } from "../../actions/sideDrawer";
+import { Button, Line } from "./style";
 
 const NavToggle = () => {
-  const isDrawerOpen = useSelector(state => state.sideDrawer);
+  const isDrawerOpen = useSelector((state) => state.sideDrawer);
 
   const dispatch = useDispatch();
 
@@ -16,10 +14,10 @@ const NavToggle = () => {
   };
 
   return (
-    <Button onClick={handleToggleClick} isOpened={isDrawerOpen} >
+    <Button onClick={handleToggleClick} isOpened={isDrawerOpen}>
       <Line />
     </Button>
-  )
+  );
 };
 
 // NavToggle.propTypes = {

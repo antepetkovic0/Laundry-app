@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Button = styled.button`
+export const BtnContainer = styled.button`
   background-color: #ffba39;
   color: #100b04;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding: 1rem 2rem;
   cursor: pointer;
   outline: none;

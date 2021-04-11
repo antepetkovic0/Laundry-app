@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Ul = styled.ul`
   list-style: none;
@@ -6,9 +6,4 @@ export const Ul = styled.ul`
   padding: 0;
   font-size: 1.6rem;
   display: none;
-
-
-  /* @media ${breakpoint.tablet} {
-    display: flex;
-  } */
 `;

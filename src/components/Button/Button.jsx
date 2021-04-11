@@ -1,12 +1,19 @@
-import React from 'react';
-import * as S from './style';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Button = ({ buttonText, buttonType, handleButtonClick }) => {
-  return (
-    <S.Button>
-      {buttonText}
-    </S.Button>
-  )
+import { BtnContainer } from "./style";
+
+const Button = ({ buttonText }) => {
+  const handleButtonClick = () => {
+    navigator.serviceWorker.controller.postMessage({
+      value: "hello world notify",
+    });
+  };
+  return <BtnContainer onClick={handleButtonClick}>{buttonText}</BtnContainer>;
+};
+
+Button.propTypes = {
+  buttonText: PropTypes.string.isRequired,
 };
 
 export default Button;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Div = styled.div`
   display: flex;
@@ -20,6 +20,6 @@ export const Icon = styled.img`
 export const LogoTitle = styled.h1`
   font-size: 1.8rem;
   font-weight: 700;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   /* font-style: italic; */
 `;
