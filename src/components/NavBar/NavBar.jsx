@@ -3,7 +3,7 @@ import React from "react";
 import NavToggle from "../NavToggle/NavToggle";
 import Logo from "../Logo/Logo";
 
-import { Nav } from "./style";
+import { Nav } from "./styled";
 
 const NavBar = () => (
   <Nav>

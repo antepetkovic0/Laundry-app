@@ -7,7 +7,7 @@ import { closeDrawer } from "../../actions/sideDrawer";
 import Button from "../Button/Button";
 import Logo from "../Logo/Logo";
 
-import { Div, Ul, Li } from "./style";
+import { Div, Li } from "./styled";
 
 const SideDrawer = () => {
   const isDrawerOpen = useSelector((state) => state.sideDrawer);
@@ -21,7 +21,7 @@ const SideDrawer = () => {
     <Div isOpened={isDrawerOpen}>
       <Logo />
       <nav style={{ marginTop: "1.5rem" }}>
-        <Ul>
+        <ul>
           <Link to="/">
             <Li onClick={handleLinkClicked}>Get Started</Li>
           </Link>
@@ -36,10 +36,10 @@ const SideDrawer = () => {
           </Link>
           <Link to="/sign-in" onClick={handleLinkClicked}>
             <Li>
-              <Button buttonText="Sign In" buttonType="primary" />
+              <Button text="Sign In" buttonType="primary" />
             </Li>
           </Link>
-        </Ul>
+        </ul>
       </nav>
     </Div>
   );

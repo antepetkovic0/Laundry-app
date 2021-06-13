@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { openDrawer } from "../../actions/sideDrawer";
-import { Button, Line } from "./style";
+import { Button, Line } from "./styled";
 
 const NavToggle = () => {
   const isDrawerOpen = useSelector((state) => state.sideDrawer);

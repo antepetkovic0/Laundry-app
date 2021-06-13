@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoint } from "../../styled/breakpoints";
+import { breakpoint } from "../../styled/breakpoint";
 
 export const Nav = styled.nav`
   position: fixed;
@@ -7,11 +7,6 @@ export const Nav = styled.nav`
   left: 0;
   width: fill-available;
   padding: 1rem;
-  /* background-color: #2f4d75; */
-  /* background-color: #804c86; */
-  /* background-color: transparent; */
-  /* background: linear-gradient(211deg, rgba(110,36,107,1) 0%, rgba(14,60,123,1) 100%); */
-  background-color: rgb(254, 254, 254);
   display: flex;
   justify-content: space-between;
   align-items: center;

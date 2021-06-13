@@ -1,20 +1,17 @@
 import React from "react";
-
+import { Section, Intro, H1, H2 } from "./styled";
 import Button from "../Button/Button";
-
-import { Section, HeadingContainer } from "./style";
 
 const GetStarted = () => (
   <Section>
-    <HeadingContainer>
-      <h1>Yo niggas, cleaning has never been easier</h1>
-      <h2>
-        Wheter you are clean service owner or client, we ll handle your dirty
-        laundry
-      </h2>
-      <Button buttonText="Get Started" />
-    </HeadingContainer>
-    <div>some image</div>
+    <Intro>
+      <H1>All laundry services in one place</H1>
+      <H2>
+        Whether you are the laundry cleaning owner or just wanna clean your
+        laundry we have something for you
+      </H2>
+      <Button text="Get Started" />
+    </Intro>
   </Section>
 );
 

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createStore, compose, applyMiddleware } from "redux";
 // import thunk from 'redux-thunk';
 
@@ -8,5 +9,6 @@ import sideDrawerReducer from "./reducers/sideDrawer";
 
 export const store = createStore(
   sideDrawerReducer,
+  // eslint-disable-next-line no-underscore-dangle
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { BtnContainer } from "./style";
+import { BtnContainer } from "./styled";
 
-const Button = ({ buttonText }) => {
+const Button = ({ text }) => {
   const handleButtonClick = () => {
     navigator.serviceWorker.controller.postMessage({
       value: "hello world notify",
     });
   };
-  return <BtnContainer onClick={handleButtonClick}>{buttonText}</BtnContainer>;
+  return <BtnContainer onClick={handleButtonClick}>{text}</BtnContainer>;
 };
 
 Button.propTypes = {
-  buttonText: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default Button;

@@ -1,14 +1,17 @@
 import React from "react";
-import logoIcon from "../../assets/images/icon.svg";
+import LogoIcon from "../../assets/images/icon.svg";
 
-import { Div, IconContainer, Icon, LogoTitle } from "./style";
+import { Div, IconWrapper, Icon, LogoText, Title, Domain } from "./styled";
 
 const Logo = () => (
   <Div>
-    <IconContainer>
-      <Icon src={logoIcon} alt="CleanItUp" />
-    </IconContainer>
-    <LogoTitle>CleanUps</LogoTitle>
+    <IconWrapper>
+      <Icon src={LogoIcon} alt="Logo" />
+    </IconWrapper>
+    <LogoText>
+      <Title>CleanZee</Title>
+      <Domain>cleanzee.io</Domain>
+    </LogoText>
   </Div>
 );
 
