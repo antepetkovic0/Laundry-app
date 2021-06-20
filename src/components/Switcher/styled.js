@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import { colors } from "../../styled/theme";
+import { theme } from "../../styled/theme";
 
 export const Wrapper = styled.div`
-  padding: 0.3rem;
-  border-radius: 0.5rem;
-  /* display: flex; */
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
   user-select: none;
   position: relative;
-  height: 3rem;
-  background-color: ${colors.bluePrimary};
+  height: 35px;
+  background-color: ${theme.neutral.two};
   width: fit-content;
 `;
 
@@ -18,9 +19,8 @@ export const Slider = styled.div`
   border-radius: 0.3rem;
   background-color: white;
   left: ${(props) => `${props.position}px`};
-  /* width: 10rem; */
   width: ${(props) => `${props.width}px`};
-  height: 20px;
+  height: 25px;
   transition: all 0.2s;
 `;
 
@@ -28,7 +28,10 @@ export const Button = styled.button`
   outline: none;
   border-radius: 0.5rem;
   border: none;
-  width: 10rem;
-  height: 2.4rem;
+  width: 80px;
+  font-size: 1.4rem;
+  font-weight: 500;
   z-index: 2;
+  color: ${theme.text.alt};
+  background-color: transparent;
 `;

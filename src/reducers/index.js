@@ -1,9 +1,11 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { combineReducers } from "redux";
-import sideDrawerReducer from "./sideDrawer";
+import { createTypedDrawers } from "./drawer";
+import { createTypedSwitchers } from "./switcher";
 
 const rootReducer = combineReducers({
-  sideDrawerReducer,
+  drawerHome: createTypedDrawers("HOME"),
+  switchHomeRole: createTypedSwitchers("HOME_ROLE"),
 });
 
 export default rootReducer;

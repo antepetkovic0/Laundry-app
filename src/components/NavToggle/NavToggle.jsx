@@ -1,20 +1,21 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { openDrawer } from "../../actions/sideDrawer";
+import { openDrawer } from "../../actions/drawer";
 import { Button, Line } from "./styled";
 
 const NavToggle = () => {
-  const isDrawerOpen = useSelector((state) => state.sideDrawer);
+  // eslint-disable-next-line dot-notation
+  const drawerHome = useSelector((state) => state["drawerHome"]);
 
   const dispatch = useDispatch();
 
   const handleToggleClick = () => {
-    dispatch(openDrawer());
+    dispatch(openDrawer("HOME"));
   };
 
   return (
-    <Button onClick={handleToggleClick} isOpened={isDrawerOpen}>
+    <Button onClick={handleToggleClick} isOpened={drawerHome}>
       <Line />
     </Button>
   );

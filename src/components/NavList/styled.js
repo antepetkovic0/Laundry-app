@@ -1,9 +1,16 @@
 import styled from "styled-components";
+import { breakpoint } from "../../styled/breakpoint";
 
 export const Ul = styled.ul`
   list-style: none;
-  /* margin: 0;
-  padding: 0; */
-  /* font-size: 1.6rem; */
+  align-items: center;
   display: none;
+
+  li {
+    margin-right: 2rem;
+  }
+
+  @media ${breakpoint.laptop} {
+    display: flex;
+  }
 `;

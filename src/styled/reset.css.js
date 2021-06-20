@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-size: 1.6rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 400;
     background-color: ${theme.bg.def};
   }
@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     font-family: inherit;
     font-size: inherit;
+    cursor: pointer;
   }
   button:focus {
     outline: none;

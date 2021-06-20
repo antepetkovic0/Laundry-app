@@ -16,7 +16,8 @@ export const colors = {
 export const theme = {
   bg: {
     def: "#fff",
-    alt: "#e6f0ff",
+    alt: "#fbfcff",
+    // alt: "#e6f0ff",
   },
   text: {
     def: "#000",

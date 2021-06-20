@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoint } from "../../styled/breakpoint";
 import { theme } from "../../styled/theme";
 
 export const Line = styled.span`
@@ -38,6 +39,10 @@ export const Button = styled.button`
   background: transparent;
   border-radius: 100px;
   cursor: pointer;
+
+  /* @media ${breakpoint.laptop} {
+    display: none;
+  } */
 
   /* this could also goes inside Line (referring to other components) */
   ${({ isOpened }) =>
