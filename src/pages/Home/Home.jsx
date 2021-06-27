@@ -2,6 +2,7 @@ import React from "react";
 import { useRouteMatch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+
 import { theme } from "../../styled/theme";
 
 import NavBar from "./components/NavBar/NavBar";
@@ -27,8 +28,9 @@ const Home = () => {
   const { path } = useRouteMatch();
   const drawerHome = useSelector((state) => state.drawerHome);
   console.log("route path =>", path);
+
   return (
-    <Wrapper>
+    <div>
       <Route path={path}>
         <NavBar />
         <SideDrawer />
@@ -37,7 +39,7 @@ const Home = () => {
         <HowItWorks />
         <Features />
       </Route>
-    </Wrapper>
+    </div>
   );
 };
 

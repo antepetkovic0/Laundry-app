@@ -8,11 +8,11 @@ import {
   SectionTitle,
   SectionDescription,
 } from "../../style";
+import { SWITCH_TYPE } from "../../../../utils/constants";
+import { CARD_DATA } from "../../cardData";
 
 import Switcher from "../../../../components/Switcher/Switcher";
 import Card from "../Card/Card";
-
-import { CARD_DATA } from "../../cardData";
 
 const Section = styled.section`
   padding: 10rem 3rem;
@@ -30,8 +30,13 @@ const CardsWrapper = styled.div`
   justify-content: center;
 `;
 
+const switchOptions = {
+  option_one: "Service",
+  option_two: "User",
+};
+
 const HowItWorks = () => {
-  const switchHomeRole = useSelector((state) => state.switchHomeRole);
+  const switchRoleFeatures = useSelector((state) => state.switchRoleFeatures);
 
   return (
     <Section id="how-it-works">
@@ -44,10 +49,10 @@ const HowItWorks = () => {
         </SectionDescription>
       </SectionHeader>
 
-      <Switcher />
+      <Switcher type={SWITCH_TYPE.ROLE_FEATURES} options={switchOptions} />
 
       <CardsWrapper>
-        {CARD_DATA(!switchHomeRole ? "SERVICE" : "USER").map((c) => (
+        {CARD_DATA(!switchRoleFeatures ? "SERVICE" : "USER").map((c) => (
           <Card
             key={c.title}
             image={c.image}

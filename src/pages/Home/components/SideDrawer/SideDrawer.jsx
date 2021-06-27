@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { theme } from "../../../../styled/theme";
 
-import { closeDrawer } from "../../../../actions/drawer";
+import { theme } from "../../../../styled/theme";
+import { closeDrawer } from "../../../../store/actions/drawer";
+import { DRAWER_TYPE } from "../../../../utils/constants";
 
 import Button from "../../../../components/Button/Button";
 import Logo from "../../../../components/Logo/Logo";
@@ -47,9 +48,8 @@ const SideDrawer = () => {
   const drawerHome = useSelector((state) => state.drawerHome);
   const dispatch = useDispatch();
 
-  const handleLinkClicked = () => {
-    console.log("dsada");
-    dispatch(closeDrawer("HOME"));
+  const handleLinkClick = () => {
+    dispatch(closeDrawer(DRAWER_TYPE.HOME));
   };
 
   return (
@@ -57,16 +57,16 @@ const SideDrawer = () => {
       <Logo />
       <nav style={{ marginTop: "1.5rem" }}>
         <ul>
-          <Li onClick={handleLinkClicked}>
+          <Li onClick={handleLinkClick}>
             <a href="#get-started">Get Started</a>
           </Li>
-          <Li onClick={handleLinkClicked}>
+          <Li onClick={handleLinkClick}>
             <a href="#how-it-works">How it Works</a>
           </Li>
-          <Li onClick={handleLinkClicked}>
+          <Li onClick={handleLinkClick}>
             <a href="#features">Features</a>
           </Li>
-          <Li onClick={handleLinkClicked}>Contact</Li>
+          <Li onClick={handleLinkClick}>Contact</Li>
           <Li>
             <Button text="Sign In" buttonType="primary" />
           </Li>

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+
 import { theme } from "../../../../styled/theme";
+import Banner from "../../../../assets/images/banner.jpg";
 
 import Button from "../../../../components/Button/Button";
-import Banner from "../../../../assets/images/banner.jpg";
 
 const Section = styled.section`
   height: 100vh;

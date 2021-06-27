@@ -1,25 +1,17 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
+
+import { toggleSwitcher } from "../../store/actions/switcher";
 import { Slider, Wrapper, Button } from "./styled";
 
-const Item = ({ children, onItemClick }) => {
-  console.log(children);
-  return (
-    <Button type="button" onClick={onItemClick}>
-      {children}
-    </Button>
-  );
-};
+const Item = ({ children, onItemClick }) => (
+  <Button type="button" onClick={onItemClick}>
+    {children}
+  </Button>
+);
 
-const myObject = {
-  opt1: "Service",
-  opt2: "User",
-};
-
-const Switcher = () => {
+const Switcher = ({ type, options }) => {
   const [sliderPos, setSliderPos] = useState(5);
 
   const dispatch = useDispatch();
@@ -33,10 +25,10 @@ const Switcher = () => {
       setSliderPos(e.target.offsetLeft);
     }
 
-    dispatch({ type: "TOGGLE_SWITCH_HOME_ROLE" });
+    dispatch(toggleSwitcher(type));
   };
 
-  const reactionItems = Object.entries(myObject).map(([key, value]) => (
+  const reactionItems = Object.entries(options).map(([key, value]) => (
     <Item key={key} onItemClick={handleItemClick}>
       {value}
     </Item>
@@ -48,6 +40,19 @@ const Switcher = () => {
       {reactionItems}
     </Wrapper>
   );
+};
+
+Item.propTypes = {
+  children: PropTypes.node.isRequired,
+  onItemClick: PropTypes.func.isRequired,
+};
+
+Switcher.propTypes = {
+  type: PropTypes.string.isRequired,
+  options: PropTypes.exact({
+    option_one: PropTypes.string,
+    option_two: PropTypes.string,
+  }).isRequired,
 };
 
 export default Switcher;

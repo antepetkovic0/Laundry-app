@@ -18,7 +18,7 @@ const Nav = styled.nav`
 const NavBar = () => (
   <Nav>
     <Logo />
-    <NavToggle />
+    <NavToggle forDrawerType="drawerHome" />
   </Nav>
 );
 
