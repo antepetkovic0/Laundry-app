@@ -13,7 +13,7 @@ const Line = styled.span`
     display: inline-block;
     position: relative;
     width: 2rem;
-    height: 3px;
+    height: 0.3rem;
     background-color: ${theme.neutral.four};
     border-radius: 0.5rem;
   }
@@ -66,8 +66,6 @@ const Button = styled.button`
 
 const NavToggle = ({ forDrawerType }) => {
   const isDrawerOpen = useSelector((state) => state[forDrawerType]);
-  console.log("isDrawerOpe", isDrawerOpen);
-  console.log("dtype", forDrawerType);
 
   const dispatch = useDispatch();
 

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { breakpoint } from "./breakpoint";
 // eslint-disable-next-line import/named
 import { theme } from "./theme";
 
@@ -13,13 +14,22 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 62.5%;
+
+    @media ${breakpoint.tablet} {
+      font-size: 71%;
+    }
+
+    @media ${breakpoint.laptopL} {
+      font-size: 80%;
+    }
+
   }
 
   body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 400;
     background-color: ${theme.bg.def};

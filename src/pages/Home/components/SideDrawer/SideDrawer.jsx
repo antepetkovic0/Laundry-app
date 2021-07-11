@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -67,9 +68,16 @@ const SideDrawer = () => {
             <a href="#features">Features</a>
           </Li>
           <Li onClick={handleLinkClick}>Contact</Li>
-          <Li>
-            <Button text="Sign In" buttonType="primary" />
-          </Li>
+          <Link
+            to={{
+              pathname: "/auth",
+              state: { isSignup: false },
+            }}
+          >
+            <Li onClick={handleLinkClick}>
+              <Button text="Sign In" buttonType="primary" />
+            </Li>
+          </Link>
         </ul>
       </nav>
     </Div>

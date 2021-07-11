@@ -1,22 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
-
 import { theme } from "../../../../styled/theme";
-import Banner from "../../../../assets/images/banner.jpg";
 
+import Banner from "../../../../assets/images/banner.jpg";
 import Button from "../../../../components/Button/Button";
 
 const Section = styled.section`
   height: 100vh;
   display: flex;
   align-items: center;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
       to right bottom,
       rgba(251, 252, 255, 0.8),
       rgba(251, 252, 255, 0.8)
     ),
     url(${Banner});
-  background-size: cover;
+  background-size: cover; */
 `;
 
 const Intro = styled.div`
@@ -33,8 +34,9 @@ const H1 = styled.h1`
 `;
 
 const H2 = styled.h2`
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
+  color: ${theme.text.alt};
 `;
 
 const GetStarted = () => (
@@ -45,7 +47,14 @@ const GetStarted = () => (
         Whether you are the laundry cleaning owner or just wanna clean your
         laundry we have something for you
       </H2>
-      <Button text="Get Started" />
+      <Link
+        to={{
+          pathname: "/auth",
+          state: { isSignup: true },
+        }}
+      >
+        <Button text="Get Started" />
+      </Link>
     </Intro>
   </Section>
 );

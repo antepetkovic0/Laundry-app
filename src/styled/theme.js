@@ -17,7 +17,6 @@ export const theme = {
   bg: {
     def: "#fff",
     alt: "#fbfcff",
-    // alt: "#e6f0ff",
   },
   text: {
     def: "#000",
@@ -29,6 +28,11 @@ export const theme = {
   success: "#16c784",
   error: "#ea3943",
   white: "#fff",
+  gray: {
+    dark: "hsl(0, 0%, 80%)",
+    medium: "hsl(0, 0%, 90%)",
+    light: "hsl(0, 0%, 95%)",
+  },
   neutral: {
     one: "#f8fafd",
     two: "#eff2f5",

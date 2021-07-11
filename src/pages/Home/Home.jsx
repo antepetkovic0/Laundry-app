@@ -16,14 +16,6 @@ const Wrapper = styled.div`
   background-color: ${theme.bg.alt};
 `;
 
-// import Icons from "../assets/sprite.svg";
-//           <svg
-//             className="user-nav__icon"
-//             style={{ fill: "rebeccapurple", height: "24px" }}
-//           >
-//             <use href={`${Icons}#icon-home`} />
-//           </svg>
-
 const Home = () => {
   const { path } = useRouteMatch();
   const drawerHome = useSelector((state) => state.drawerHome);

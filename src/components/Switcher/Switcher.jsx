@@ -17,9 +17,9 @@ const Switcher = ({ type, options }) => {
   const dispatch = useDispatch();
 
   const handleItemClick = (e) => {
-    if (e.target.offsetLeft === sliderPos && sliderPos < 80) {
+    if (e.target.offsetLeft === sliderPos && sliderPos < 85) {
       setSliderPos(e.target.nextElementSibling.offsetLeft);
-    } else if (e.target.offsetLeft === sliderPos && sliderPos > 80) {
+    } else if (e.target.offsetLeft === sliderPos && sliderPos > 85) {
       setSliderPos(e.target.previousElementSibling.offsetLeft);
     } else {
       setSliderPos(e.target.offsetLeft);
@@ -36,7 +36,7 @@ const Switcher = ({ type, options }) => {
 
   return (
     <Wrapper>
-      <Slider width={80} position={sliderPos} />
+      <Slider width={85} position={sliderPos} />
       {reactionItems}
     </Wrapper>
   );

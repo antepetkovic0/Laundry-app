@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   padding: 5px;
   user-select: none;
   position: relative;
-  height: 35px;
+  height: 3.5rem;
   background-color: ${theme.neutral.two};
   width: fit-content;
 `;
@@ -20,16 +20,17 @@ export const Slider = styled.div`
   background-color: white;
   left: ${(props) => `${props.position}px`};
   width: ${(props) => `${props.width}px`};
-  height: 25px;
+  height: 2.5rem;
   transition: all 0.2s;
 `;
 
 export const Button = styled.button`
+  display: flex;
+  justify-content: center;
   outline: none;
   border-radius: 0.5rem;
   border: none;
-  width: 80px;
-  font-size: 1.4rem;
+  width: 85px;
   font-weight: 500;
   z-index: 2;
   color: ${theme.text.alt};

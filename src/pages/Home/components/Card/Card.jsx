@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { theme } from "../../../../styled/theme";
@@ -22,18 +23,25 @@ const Img = styled.img`
   max-width: 100%;
 `;
 
-const Card = ({ image, title, description }) => (
-  <Wrapper>
-    <Img src={image} />
-    <h3>{title}</h3>
-    <p>{description}</p>
-  </Wrapper>
-);
-
-Card.propTypes = {
-  image: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+const Card = ({ data }) => {
+  const { title, description, imageS, imageL } = data;
+  return (
+    <Wrapper>
+      <Img
+        src={imageS}
+        srcSet={`${imageS} 500w, ${imageL} 1000w`}
+        alt={title}
+      />
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </Wrapper>
+  );
 };
+
+// Card.propTypes = {
+//   image: PropTypes.node.isRequired,
+//   title: PropTypes.string.isRequired,
+//   description: PropTypes.string.isRequired,
+// };
 
 export default Card;

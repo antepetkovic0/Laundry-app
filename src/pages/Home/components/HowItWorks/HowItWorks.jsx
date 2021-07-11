@@ -53,12 +53,7 @@ const HowItWorks = () => {
 
       <CardsWrapper>
         {CARD_DATA(!switchRoleFeatures ? "SERVICE" : "USER").map((c) => (
-          <Card
-            key={c.title}
-            image={c.image}
-            title={c.title}
-            description={c.description}
-          />
+          <Card key={c.title} data={c} />
         ))}
       </CardsWrapper>
     </Section>

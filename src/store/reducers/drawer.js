@@ -12,5 +12,3 @@ export function createTypedDrawers(drawerType) {
     }
   };
 }
-
-export default createTypedDrawers;
