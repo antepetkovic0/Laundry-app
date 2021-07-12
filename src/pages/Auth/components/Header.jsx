@@ -8,8 +8,8 @@ import { theme } from "../../../styled/theme";
 
 const Wrapper = styled.div`
   width: -webkit-fill-available;
+  height: 38px;
   display: flex;
-  margin-bottom: 3rem;
   padding: 0.5rem 1rem;
   font-size: 1.6rem;
   font-weight: 500;

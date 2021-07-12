@@ -7,7 +7,7 @@ export const ContentWrapper = styled.div`
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 3rem;
+  margin: 3rem 0;
 
   @media ${breakpoint.tablet} {
     flex-direction: row;

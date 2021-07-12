@@ -91,8 +91,8 @@ const initialState = (isSignup) => {
 const Form = () => {
   const { state } = useLocation();
 
-  const [form, setForm] = useState(initialState(state?.isSignup || true));
-  const [isSignup, setIsSignup] = useState(state?.isSignup || true);
+  const [form, setForm] = useState(initialState(state?.isSignup || false));
+  const [isSignup, setIsSignup] = useState(state?.isSignup || false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
