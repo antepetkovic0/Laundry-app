@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import styled from "styled-components";
-import { theme } from "../../../../styled/theme";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { theme } from "../../../../styled/theme";
 import Banner from "../../../../assets/images/banner.jpg";
 import Button from "../../../../components/Button/Button";
 
@@ -39,24 +41,42 @@ const H2 = styled.h2`
   color: ${theme.text.alt};
 `;
 
-const GetStarted = () => (
-  <Section id="get-started">
-    <Intro>
-      <H1>All laundry services in one place</H1>
-      <H2>
-        Whether you are the laundry cleaning owner or just wanna clean your
-        laundry we have something for you
-      </H2>
-      <Link
-        to={{
-          pathname: "/auth",
-          state: { isSignup: true },
-        }}
-      >
-        <Button text="Get Started" />
-      </Link>
-    </Intro>
-  </Section>
-);
+const GetStarted = () => {
+  const notify = () => {
+    // toast("🦄 Wow so easy!", {
+    //   position: "top-right",
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    // });
+    toast.warning("⚠ salasl");
+  };
+  return (
+    <Section id="get-started">
+      <Intro>
+        <H1>All laundry services in one place</H1>
+        <H2>
+          Whether you are the laundry cleaning owner or just wanna clean your
+          laundry we have something for you
+        </H2>
+        <button type="button" onClick={notify}>
+          toast me
+        </button>
+        <ToastContainer />
+        <Link
+          to={{
+            pathname: "/auth",
+            state: { isSignup: true },
+          }}
+        >
+          <Button text="Get Started" />
+        </Link>
+      </Intro>
+    </Section>
+  );
+};
 
 export default GetStarted;

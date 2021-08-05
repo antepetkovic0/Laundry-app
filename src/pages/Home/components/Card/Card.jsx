@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 // import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useImageOnLoad } from "../../../../hooks/useImageOnLoad";
 
 import { theme } from "../../../../styled/theme";
 
@@ -19,21 +20,52 @@ const Wrapper = styled.div`
   }
 `;
 
+const ImgCont = styled.div`
+  position: relative;
+  width: 100%;
+  height: 23rem;
+`;
+
 const Img = styled.img`
   max-width: 100%;
+  left: 0;
 `;
 
 const Card = ({ data }) => {
   const { title, description, imageS, imageL } = data;
+
+  const { handleImageOnLoad, css } = useImageOnLoad();
+
+  const image = {
+    position: "absolute",
+    width: `100%`,
+    height: `100%`,
+  };
+
   return (
     <Wrapper>
-      <Img
-        src={imageS}
-        srcSet={`${imageS} 500w, ${imageL} 1000w`}
-        alt={title}
-      />
-      <h3>{title}</h3>
-      <p>{description}</p>
+      <ImgCont>
+        <div
+          style={{
+            ...image,
+            ...css.thumbnail,
+          }}
+        />
+        <Img
+          src={imageS}
+          srcSet={`${imageS} 500w, ${imageL} 1000w`}
+          alt={title}
+          onLoad={handleImageOnLoad}
+          style={{
+            ...image,
+            ...css.fullSize,
+          }}
+        />
+      </ImgCont>
+      <div>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
     </Wrapper>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -13,24 +14,26 @@ const Svg = styled.svg`
   fill: inherit;
   cursor: pointer;
 
-  /* &:hover {
+  ${({ additional }) => additional}/* &:hover {
     fill: ${theme.primary.def};
   } */
 `;
 
-const Icon = ({ name, size }) => (
-  <Svg size={size}>
+const Icon = ({ name, size, additionalStyle }) => (
+  <Svg size={size} additional={additionalStyle}>
     <use href={`${Icons}#icon-${name}`} />
   </Svg>
 );
 
 Icon.defaultProps = {
   size: 24,
+  additionalStyle: undefined,
 };
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.number,
+  additionalStyle: PropTypes.func,
 };
 
 export default Icon;

@@ -41,7 +41,8 @@ const Message = styled.div`
 `;
 
 const NotFound = ({ isAuthRelated }) => {
-  const { path } = useRouteMatch();
+  const { path, url } = useRouteMatch();
+  console.log("not found path", path, url);
 
   const generateText = (currPath) => {
     if (currPath === "/" || currPath === "/auth") {
