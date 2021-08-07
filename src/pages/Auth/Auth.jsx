@@ -2,6 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
+import { ToastContainer } from "react-toastify";
+
 import Header from "./components/Header";
 import Form from "./components/Form";
 import ForgetPass from "./components/ForgetPass";
@@ -23,6 +25,7 @@ const Auth = () => (
         <NotFound isAuthRelated />
       </Route>
     </Switch>
+    <ToastContainer />
   </Wrapper>
 );
 

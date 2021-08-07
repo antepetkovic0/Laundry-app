@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import Select from "react-select";
@@ -17,6 +17,10 @@ import Google from "../../../assets/images/google_small.png";
 import { ContentWrapper, Submit } from "../style";
 import { theme } from "../../../styled/theme";
 import { authLabel } from "../../../utils/selectLabel";
+
+import { login } from "../../../api/auth";
+import { toastMessage } from "../../../utils/toast";
+import { TOAST_TYPE, ROLE_ID } from "../../../utils/constants";
 
 const ForgotPass = styled.div`
   display: flex;
@@ -90,6 +94,7 @@ const initialState = (isSignup) => {
 
 const Form = () => {
   const { state } = useLocation();
+  const history = useHistory();
 
   const [form, setForm] = useState(initialState(state?.isSignup || false));
   const [isSignup, setIsSignup] = useState(state?.isSignup || false);
@@ -105,10 +110,18 @@ const Form = () => {
     setShowConfirmedPassword(!showConfirmedPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(form);
+    const { data, error } = await login(form);
+    if (data) {
+      const { roleId } = data.user;
+      history.push(`/dashboard/${ROLE_ID[roleId]}`);
+    }
+
+    if (error) {
+      toastMessage(error.data.error.message, TOAST_TYPE.ERROR);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -185,12 +198,13 @@ const Form = () => {
             onIconClick={() => toggleShowPassword(true)}
           />
         )}
+
         <Submit type="submit">{!isSignup ? "Sign in" : "Sign up"}</Submit>
 
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Divider {...dividerProps} />
+        {/* <Divider {...dividerProps} /> */}
 
-        <ServiceAuth>
+        {/* <ServiceAuth>
           <GoogleLogin
             clientId="18898452442-tg7rbb8f1tj8o7vvciqhmikj68sc2qbg.apps.googleusercontent.com"
             render={(renderProps) => (
@@ -220,7 +234,7 @@ const Form = () => {
               </AuthBtn>
             )}
           />
-        </ServiceAuth>
+        </ServiceAuth> */}
 
         <AuthSwap>
           <span style={{ marginRight: "5px" }}>
