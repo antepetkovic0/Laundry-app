@@ -114,14 +114,12 @@ const Form = () => {
     e.preventDefault();
 
     const { data, error } = await login(form);
-    if (data) {
-      const { roleId } = data.user;
-      history.push(`/dashboard/${ROLE_ID[roleId]}`);
-    }
-
     if (error) {
       toastMessage(error.data.error.message, TOAST_TYPE.ERROR);
+      return;
     }
+    const { roleId } = data.user;
+    history.push(`/dashboard/${ROLE_ID[roleId]}`);
   };
 
   const handleInputChange = (e) => {
@@ -235,7 +233,6 @@ const Form = () => {
             )}
           />
         </ServiceAuth> */}
-
         <AuthSwap>
           <span style={{ marginRight: "5px" }}>
             {!isSignup ? "Don't have account?" : "Already a member?"}
@@ -243,7 +240,10 @@ const Form = () => {
           <Button
             text={!isSignup ? "Sign Up" : "Sign In"}
             type="link"
-            onClick={() => setIsSignup(!isSignup)}
+            onClick={(e) => {
+              e.preventDefault();
+              setIsSignup(!isSignup);
+            }}
           />
         </AuthSwap>
       </form>
