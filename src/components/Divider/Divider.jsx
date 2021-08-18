@@ -16,7 +16,7 @@ const StyledDivider = styled.div`
     flex: 1;
   `}
   border-bottom: ${(props) => `${props.weight}px solid ${props.color}`};
-  margin: 0 auto;
+  margin: 10px auto;
 `;
 
 const DividerWithTextContainer = styled.div`

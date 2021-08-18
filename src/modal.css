@@ -1,0 +1,24 @@
+.ReactModal__Content {
+  left: 50% !important;
+  top: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%);
+  border: 0;
+  box-shadow: rgba(9, 30, 66, 0.08) 0px 0px 0px 1px,
+    rgba(9, 30, 66, 0.08) 0px 2px 1px, rgba(9, 30, 66, 0.31) 0px 0px 20px -6px;
+
+  width: 300px;
+}
+
+@media only screen and (min-width: 768px) {
+  .ReactModal__Content {
+    width: 500px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .ReactModal__Content {
+    width: 800px;
+  }
+}

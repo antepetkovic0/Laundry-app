@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -34,7 +35,7 @@ const LinkStyled = styled(Link)`
   }
 `;
 
-const Header = () => {
+const Header = ({ css, title }) => {
   const location = useLocation();
 
   const getPath = (isAuthLocation) => {
@@ -49,11 +50,11 @@ const Header = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper style={{ ...css }}>
       <LinkStyled to={getPath(location.pathname)}>
         <Back>
           <Icon name="back" />
-          <span>Back</span>
+          <span>{title}</span>
         </Back>
       </LinkStyled>
     </Wrapper>

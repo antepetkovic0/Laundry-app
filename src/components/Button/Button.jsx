@@ -9,7 +9,7 @@ const BtnDefault = styled.button`
   border-radius: 0.3rem;
   padding: 1rem 2rem;
   cursor: pointer;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   transition: all 0.2s;
   font-weight: 600;
 
@@ -17,6 +17,11 @@ const BtnDefault = styled.button`
   &:focus {
     opacity: 0.85;
   }
+`;
+
+const BtnSubtle = styled(BtnDefault)`
+  background-color: ${theme.neutral.one};
+  color: ${theme.text.alt};
 `;
 
 const BtnLink = styled.button`
@@ -35,6 +40,9 @@ const BtnLink = styled.button`
 const Button = ({ text, type, onClick }) => {
   if (type === "link") {
     return <BtnLink onClick={onClick}>{text}</BtnLink>;
+  }
+  if (type === "subtle") {
+    return <BtnSubtle onClick={onClick}>{text}</BtnSubtle>;
   }
   return <BtnDefault onClick={onClick}>{text}</BtnDefault>;
 };

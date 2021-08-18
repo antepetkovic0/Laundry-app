@@ -10,6 +10,8 @@ import Icons from "../../assets/sprite.svg";
 const Svg = styled.svg`
   width: ${(props) => `${props.size}px`};
   height: ${(props) => `${props.size}px`};
+  /* width: 2.4rem;
+  height: 2.4rem; */
   /* fill: ${theme.text.alt}; */
   fill: inherit;
   cursor: pointer;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -18,9 +19,10 @@ import { ContentWrapper, Submit } from "../style";
 import { theme } from "../../../styled/theme";
 import { authLabel } from "../../../utils/selectLabel";
 
-import { login } from "../../../api/auth";
+import { auth } from "../../../api/auth";
 import { toastMessage } from "../../../utils/toast";
 import { TOAST_TYPE, ROLE_ID } from "../../../utils/constants";
+import { setUserProfile } from "../../../store/actions/profile";
 
 const ForgotPass = styled.div`
   display: flex;
@@ -66,8 +68,8 @@ const AuthSwap = styled.div`
 `;
 
 const options = [
-  { value: "1", label: authLabel("user") },
-  { value: "2", label: authLabel("bussines service") },
+  { value: 2, label: authLabel("bussines service") },
+  { value: 3, label: authLabel("user") },
 ];
 
 const dividerProps = {
@@ -83,12 +85,13 @@ const initialState = (isSignup) => {
   if (!isSignup) {
     return { email: "", password: "" };
   }
+
   return {
     roleId: "",
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    phone: "",
   };
 };
 
@@ -96,11 +99,18 @@ const Form = () => {
   const { state } = useLocation();
   const history = useHistory();
 
+  const dispatch = useDispatch();
+
   const [form, setForm] = useState(initialState(state?.isSignup || false));
   const [isSignup, setIsSignup] = useState(state?.isSignup || false);
+
   const [selectedOption, setSelectedOption] = useState(null);
+
   const [showPassword, setShowPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
+
+  console.log("form", form);
 
   const toggleShowPassword = (isRepeatedPass) => {
     if (!isRepeatedPass) {
@@ -110,15 +120,37 @@ const Form = () => {
     setShowConfirmedPassword(!showConfirmedPassword);
   };
 
+  const toggleFormAuth = (e) => {
+    e.preventDefault();
+    setForm(initialState(!isSignup));
+    setIsSignup(!isSignup);
+  };
+
+  const isValidForm = () => {
+    if (isSignup) {
+      if (form.password !== confirmPassword) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const isValid = isValidForm();
+    if (!isValid) {
+      alert("invalid form");
+      return;
+    }
 
-    const { data, error } = await login(form);
+    const { data, error } = await auth(form);
     if (error) {
       toastMessage(error.data.error.message, TOAST_TYPE.ERROR);
       return;
     }
-    const { roleId } = data.user;
+    console.log("data", data);
+    dispatch(setUserProfile(data));
+    const { roleId } = data;
     history.push(`/dashboard/${ROLE_ID[roleId]}`);
   };
 
@@ -163,6 +195,12 @@ const Form = () => {
               label="Name"
               onChange={handleInputChange}
             />
+            <Input
+              type="text"
+              name="phone"
+              label="Phone"
+              onChange={handleInputChange}
+            />
           </>
         )}
         <Input
@@ -191,7 +229,7 @@ const Form = () => {
             type={!showConfirmedPassword ? "password" : "text"}
             name="confirmPassword"
             label="Confirm Password"
-            onChange={handleInputChange}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             iconName={!showConfirmedPassword ? "visibility" : "visibility_off"}
             onIconClick={() => toggleShowPassword(true)}
           />
@@ -240,10 +278,7 @@ const Form = () => {
           <Button
             text={!isSignup ? "Sign Up" : "Sign In"}
             type="link"
-            onClick={(e) => {
-              e.preventDefault();
-              setIsSignup(!isSignup);
-            }}
+            onClick={toggleFormAuth}
           />
         </AuthSwap>
       </form>

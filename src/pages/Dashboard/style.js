@@ -22,3 +22,47 @@ export const Content = styled.div`
     padding: 0 0 1rem 1rem;
   }
 `;
+
+export const TableActionsGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const TableAction = styled.div`
+  display: flex;
+  padding: 0.5rem;
+  background-color: ${theme.neutral.two};
+  fill: ${theme.text.alt};
+  border-radius: 0.4rem;
+
+  &:hover {
+    background-color: ${theme.neutral.three};
+  }
+
+  transition: all 0.2s;
+`;
+
+export const DialogContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DialogHeader = styled.h3`
+  /* margin-bottom: 2rem; */
+`;
+
+export const DialogBody = styled.div`
+  padding: 20px 0;
+  max-height: 500px;
+  overflow: auto;
+`;
+
+export const DialogFooter = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid ${theme.neutral.two};
+`;

@@ -5,7 +5,6 @@ import { breakpoint } from "../../../../styled/breakpoint";
 import { Users, Services, Pending, Stats, Orders } from "./OverviewBlocks";
 
 const Wrapper = styled.div`
-  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;

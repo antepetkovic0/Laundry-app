@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { theme } from "../../styled/theme";
 
@@ -9,6 +10,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 1.5rem;
 `;
 
 const Welcome = styled.div`
@@ -38,19 +40,22 @@ const Notification = styled.div`
   }
 `;
 
-const DashHead = () => (
-  <Wrapper>
-    <Welcome>
-      <Avatar />
-      <div>
-        <h4>Hi, Ante Petkovic</h4>
-        <p>Welcome back</p>
-      </div>
-    </Welcome>
-    <Notification>
-      <Icon name="notifications" />
-    </Notification>
-  </Wrapper>
-);
+const DashHead = () => {
+  const profile = useSelector((state) => state.profile);
+  return (
+    <Wrapper>
+      <Welcome>
+        <Avatar />
+        <div>
+          <h4>{profile.name}</h4>
+          <p>Welcome back</p>
+        </div>
+      </Welcome>
+      <Notification>
+        <Icon name="notifications" />
+      </Notification>
+    </Wrapper>
+  );
+};
 
 export default DashHead;

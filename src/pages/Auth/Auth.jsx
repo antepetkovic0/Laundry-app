@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 
 const Auth = () => (
   <Wrapper>
-    <Header />
+    <Header title="Auth" />
     <Switch>
       <Route path="/auth" component={Form} exact />
       <Route path="/auth/forget" component={ForgetPass} exact />

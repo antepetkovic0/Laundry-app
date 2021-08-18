@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../styled/theme";
 
-import CaretLink from "../../CaretLink";
+import CaretLink from "../../components/CaretLink";
 
 const Wrapper = styled.div`
   display: flex;

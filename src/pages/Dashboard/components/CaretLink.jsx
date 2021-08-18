@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { theme } from "../../styled/theme";
-import Icon from "../../components/Icon/Icon";
+import { theme } from "../../../styled/theme";
+import Icon from "../../../components/Icon/Icon";
 
 const Anchor = styled(Link)`
   display: flex;

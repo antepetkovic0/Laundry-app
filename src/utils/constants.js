@@ -11,6 +11,11 @@ export const dialogType = {
   FORGOT_PASS: "FORGOT_PASS",
 };
 
+export const DIALOG_TYPE = {
+  ADMIN_USER_EDIT: "ADMIN_USER_EDIT",
+  ADMIN_USER_DELETE: "ADMIN_USER_DELETE",
+};
+
 export const TOAST_TYPE = {
   SUCCESS: "success",
   ERROR: "error",

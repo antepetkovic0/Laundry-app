@@ -9,13 +9,14 @@ import DashAdmin from "./pages/Dashboard/Admin/DashAdmin";
 import NotFound from "./pages/NotFound/NotFound";
 import Users from "./pages/Dashboard/Admin/Users/Users";
 
+import "./modal.css";
+
 const App = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/auth" component={Auth} />
-      <Route path="/dashboard/admin" component={DashAdmin} />
-      {/* <RouteAuth exact path="/dashboard/admin" Component={DashAdmin} /> */}
+      <Route path="/auth" component={Auth} />
+      <RouteAuth path="/dashboard/admin" Component={DashAdmin} roles={[1]} />
       <Route component={NotFound} />
     </Switch>
   </Router>
