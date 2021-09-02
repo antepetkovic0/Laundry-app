@@ -143,15 +143,38 @@ const Form = () => {
       return;
     }
 
-    const { data, error } = await auth(form);
-    if (error) {
-      toastMessage(error.data.error.message, TOAST_TYPE.ERROR);
-      return;
+    try {
+      const { data } = await auth(form);
+      if (data.requestMessage) {
+        toastMessage(data.requestMessage, TOAST_TYPE.SUCCESS);
+      } else {
+        dispatch(setUserProfile(data));
+        const { roleId } = data;
+        history.push(`/dashboard/${ROLE_ID[roleId]}`);
+      }
+    } catch (err) {
+      console.log(err);
+      toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
     }
-    console.log("data", data);
-    dispatch(setUserProfile(data));
-    const { roleId } = data;
-    history.push(`/dashboard/${ROLE_ID[roleId]}`);
+
+    // auth(form)
+    //   .then((res) => {
+    //     console.log(res);
+    //     if (res.data.requestMessage) {
+    //       toastMessage(res.data.requestMessage, TOAST_TYPE.SUCCESS);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response.data.error.message);
+    //     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+    //   });
+
+    // const { data, error } = await auth(form);
+    // if (error) {
+    //   toastMessage(error.data.error.message, TOAST_TYPE.ERROR);
+    //   return;
+    // }
+    // console.log("data", data);
   };
 
   const handleInputChange = (e) => {

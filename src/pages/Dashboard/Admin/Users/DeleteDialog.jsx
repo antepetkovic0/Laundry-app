@@ -2,24 +2,40 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
+import { deleteUser } from "../../../../store/actions/dashboard";
 import { hideDialog } from "../../../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../../../utils/constants";
+
+import Button from "../../../../components/Button/Button";
+import SectionMessage from "../../../Auth/components/SectionMessage";
+
 import {
   DialogBody,
   DialogContent,
   DialogFooter,
   DialogHeader,
 } from "../../style";
-import Button from "../../../../components/Button/Button";
 
 const DeleteDialog = () => {
-  const { dialog } = useSelector((state) => state);
+  const {
+    dialog,
+    dashboard: { users },
+  } = useSelector((state) => state);
+  const { userId } = dialog.dialogProps;
+  const targetUser = users.find((user) => user.id === userId);
 
   const dispatch = useDispatch();
 
   const close = () => {
     dispatch(hideDialog());
   };
+
+  const handleDelete = () => {
+    dispatch(deleteUser(userId));
+    close();
+  };
+
+  if (!targetUser) return null;
 
   return (
     <ReactModal
@@ -29,10 +45,18 @@ const DeleteDialog = () => {
     >
       <DialogContent>
         <DialogHeader>Delete user</DialogHeader>
-        <DialogBody>dlslds</DialogBody>
+        <DialogBody>
+          <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+            <div>
+              Are you sure you want to delete <b>{targetUser.name}</b>?
+            </div>
+            <div>This action is irreversible.</div>
+          </div>
+          <SectionMessage />
+        </DialogBody>
         <DialogFooter>
           <Button text="Cancel" type="subtle" onClick={close} />
-          <Button text="Delete" />
+          <Button text="Delete" onClick={handleDelete} />
         </DialogFooter>
       </DialogContent>
     </ReactModal>

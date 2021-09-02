@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, useRouteMatch, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../styled/theme";
@@ -39,6 +40,7 @@ const Li = styled(Link)`
     `
       color: ${theme.primary.def};
       fill: ${theme.primary.def};
+      background-color: ${theme.neutral.one};
 
       &::after {
       content: "";
@@ -89,9 +91,21 @@ const Li = styled(Link)`
   }
 `;
 
+const Signal = styled.div`
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: ${theme.error};
+  top: 0.4rem;
+  right: 0.4rem;
+  border-radius: 100px;
+`;
+
 const DashNav = () => {
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
+
+  const { pending } = useSelector((state) => state.dashboard);
   console.log("path in nav", path);
   console.log("pathname in nav", pathname);
   return (
@@ -116,6 +130,7 @@ const DashNav = () => {
         isActive={pathname === "/dashboard/admin/pending"}
       >
         <Icon name="pending_actions" />
+        {pending.length > 0 && <Signal />}
         {/* <span>Pending registrations</span> */}
       </Li>
       <Li

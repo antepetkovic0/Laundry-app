@@ -1,11 +1,15 @@
-export const GET_USERS = "GET_USERS";
+export const SET_DATA = "SET_DATA";
 // export const ADD_TODO = "ADD_TODO";
 // export const TOGGLE_TODO = "TOGGLE_TODO";
 export const DELETE_USER = "DELETE_USER";
+export const DELETE_DASHBOARD_DATA = "DELETE_DASHBOARD_DATA";
 
-export const getUsers = (todos) => ({
-  type: GET_USERS,
-  payload: todos,
+export const setDashboardData = (data, type) => ({
+  type: SET_DATA,
+  payload: {
+    type,
+    data,
+  },
 });
 
 // export const addTodo = (todo) => ({
@@ -22,4 +26,12 @@ export const getUsers = (todos) => ({
 export const deleteUser = (id) => ({
   type: DELETE_USER,
   payload: id,
+});
+
+export const deleteDashboardData = (id, type) => ({
+  type: DELETE_DASHBOARD_DATA,
+  payload: {
+    type,
+    id,
+  },
 });

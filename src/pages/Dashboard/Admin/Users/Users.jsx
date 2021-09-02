@@ -1,15 +1,12 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 
-import { getUsers } from "../../../../api/user";
 import Table, { TableWrapper } from "../../../../components/Table/Table";
 import DeleteDialog from "./DeleteDialog";
+import Actions from "./Actions";
 
-import UserTableActions from "./UserTableActions";
-
-const Users = (props) => {
-  const history = useHistory();
-  const [users, setUsers] = useState();
+const Users = () => {
+  const users = useSelector((state) => state.dashboard.users);
 
   const columns = useMemo(
     () => [
@@ -33,32 +30,23 @@ const Users = (props) => {
     []
   );
 
-  useEffect(() => {
-    (async () => {
-      const response = await getUsers();
-      if (response.data.authenticationErr) {
-        history.push("/auth");
-      }
-      if (response.data.authorizationErr) {
-        history.push("/error/401");
-      }
+  const userRows = useMemo(
+    () =>
+      users.map(({ name, phone, email, id }) => ({
+        name,
+        phone,
+        email,
+        actions: <Actions userId={id} />,
+      })),
+    [users]
+  );
 
-      setUsers(
-        response.data.map(({ name, phone, email }, i) => ({
-          name,
-          phone,
-          email,
-          actions: <UserTableActions rowIdx={i} />,
-        }))
-      );
-    })();
-  }, []);
+  if (!users.length) return <div>No users</div>;
 
-  if (!users) return <div>dsadla</div>;
   return (
     <>
       <TableWrapper>
-        <Table columns={columns} data={users} />
+        <Table columns={columns} data={userRows} />
       </TableWrapper>
       <DeleteDialog />
     </>

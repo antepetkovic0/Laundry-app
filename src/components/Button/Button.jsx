@@ -20,7 +20,7 @@ const BtnDefault = styled.button`
 `;
 
 const BtnSubtle = styled(BtnDefault)`
-  background-color: ${theme.neutral.one};
+  background-color: ${theme.neutral.two};
   color: ${theme.text.alt};
 `;
 

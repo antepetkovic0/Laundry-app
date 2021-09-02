@@ -5,14 +5,14 @@ import { DRAWER_TYPE, SWITCH_TYPE } from "../../utils/constants";
 
 import profile from "./profile";
 import dialog from "./dialog";
-import users from "./users";
+import dashboard from "./dashboard";
 import { createTypedDrawers } from "./drawer";
 import { createTypedSwitchers } from "./switcher";
 
 const rootReducer = combineReducers({
   profile,
+  dashboard,
   dialog,
-  users,
   drawerHome: createTypedDrawers(DRAWER_TYPE.HOME),
   switchRoleFeatures: createTypedSwitchers(SWITCH_TYPE.ROLE_FEATURES),
 });

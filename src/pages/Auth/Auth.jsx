@@ -25,7 +25,6 @@ const Auth = () => (
         <NotFound isAuthRelated />
       </Route>
     </Switch>
-    <ToastContainer />
   </Wrapper>
 );
 

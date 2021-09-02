@@ -2,20 +2,22 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-import { TableAction, TableActionsGroup } from "../../style";
-
-import Icon from "../../../../components/Icon/Icon";
 import { showDialog } from "../../../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../../../utils/constants";
 
-const UserTableActions = ({ rowIdx }) => {
+import Icon from "../../../../components/Icon/Icon";
+
+import { TableAction, TableActionsGroup } from "../../style";
+
+const Actions = ({ userId }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(showDialog(DIALOG_TYPE.ADMIN_USER_DELETE));
+    dispatch(showDialog(DIALOG_TYPE.ADMIN_USER_DELETE, { userId }));
   };
+
   return (
-    <TableActionsGroup onClick={(e) => console.log(rowIdx)}>
+    <TableActionsGroup>
       <TableAction>
         <Icon name="edit" />
       </TableAction>
@@ -26,8 +28,8 @@ const UserTableActions = ({ rowIdx }) => {
   );
 };
 
-UserTableActions.propTypes = {
-  rowIdx: PropTypes.number.isRequired,
+Actions.propTypes = {
+  userId: PropTypes.number.isRequired,
 };
 
-export default UserTableActions;
+export default Actions;

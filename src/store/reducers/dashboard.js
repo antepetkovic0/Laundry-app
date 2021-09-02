@@ -1,18 +1,28 @@
 import {
-  GET_USERS,
+  SET_DATA,
   // ADD_TODO,
   // TOGGLE_TODO,
   DELETE_USER,
-} from "../actions/users";
+  DELETE_DASHBOARD_DATA,
+} from "../actions/dashboard";
 
 const INITIAL_STATE = {
   users: [],
+  shops: [],
+  pending: [],
+  orders: [],
 };
 
-const users = (state = INITIAL_STATE, action) => {
+const dashboard = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_USERS:
-      return { ...state, users: [...state.users, ...action.payload] };
+    case SET_DATA:
+      return {
+        ...state,
+        [action.payload.type]: [
+          ...action.payload.data,
+          ...state[action.payload.type],
+        ],
+      };
     // case ADD_TODO:
     //   return { ...state, users: [...state.users, action.payload] };
     // case TOGGLE_TODO:
@@ -24,14 +34,16 @@ const users = (state = INITIAL_STATE, action) => {
     //         : { ...todo, completed: !todo.completed }
     //     ),
     //   };
-    case DELETE_USER:
+    case DELETE_DASHBOARD_DATA:
       return {
         ...state,
-        users: state.users.filter((todo) => todo.id !== action.payload),
+        [action.payload.type]: state[action.payload.type].filter(
+          (item) => item.id !== action.payload.id
+        ),
       };
     default:
       return state;
   }
 };
 
-export default users;
+export default dashboard;
