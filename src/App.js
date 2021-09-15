@@ -22,7 +22,7 @@ const App = () => (
       <Route
         path="/dashboard"
         component={Dashboard}
-        // rule={rules.MANAGE_DASHBOARD}
+        rule={rules.MANAGE_DASHBOARD}
       />
       <Route path="/unauthorized" component={NotAuthorized} />
       <Route component={NotFound} />

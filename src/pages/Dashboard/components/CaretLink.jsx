@@ -26,14 +26,19 @@ const iconStyle = () => `
   transition: all 0.2s;
 `;
 
-const CaretLink = ({ linkTo }) => (
+const CaretLink = ({ linkTo, iconName }) => (
   <Anchor to={linkTo}>
-    <Icon name="next" additionalStyle={iconStyle} />
+    <Icon name={iconName} additionalStyle={iconStyle} />
   </Anchor>
 );
 
+CaretLink.defaultProps = {
+  iconName: "next",
+};
+
 CaretLink.propTypes = {
   linkTo: PropTypes.string.isRequired,
+  iconName: PropTypes.string,
 };
 
 export default CaretLink;

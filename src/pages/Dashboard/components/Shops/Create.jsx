@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { createShop } from "../../../../api/shop";
 import Button from "../../../../components/Button/Button";
+import Back from "../../../../components/Link/Back";
 import Input from "../../../Auth/components/Input";
 
 const initialState = () => ({
@@ -34,7 +37,7 @@ export const ImgHolder = styled.div`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: inherit;
   }
 `;
@@ -46,10 +49,13 @@ const FormUpper = styled.div`
 
 const Create = () => {
   const [form, setForm] = useState(() => initialState());
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("blaba");
     console.log(form);
+    dispatch(createShop(form));
   };
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -79,58 +85,66 @@ const Create = () => {
   };
 
   return (
-    <form style={{ padding: "1rem" }} onSubmit={handleSubmit}>
-      <FormUpper>
-        <div>
-          <Input
-            type="text"
-            name="name"
-            label="Shop Name"
-            onChange={handleInputChange}
-          />
-          <Input
-            type="text"
-            name="slug"
-            label="Slug"
-            onChange={handleInputChange}
-          />
-          <Input
-            type="text"
-            name="address"
-            label="Address"
-            onChange={handleInputChange}
-          />
-          <Input
-            type="text"
-            name="address"
-            label="Address"
-            onChange={handleInputChange}
-          />
-          <Input
-            type="text"
-            name="address"
-            label="Address"
-            onChange={handleInputChange}
-          />
-          <Input
-            type="text"
-            name="image"
-            label="Image URL"
-            onChange={handleInputChange}
-          />
+    <div>
+      <Back to="/dashboard/shops" title="Create new shop" />
+      <form style={{ padding: "1rem 0" }} onSubmit={handleSubmit}>
+        <FormUpper>
+          <div>
+            <Input
+              type="text"
+              name="name"
+              label="Shop Name"
+              onChange={handleInputChange}
+            />
+            <Input
+              type="text"
+              name="slug"
+              label="Slug"
+              onChange={handleInputChange}
+            />
+            <Input
+              type="text"
+              name="address"
+              label="Address"
+              onChange={handleInputChange}
+            />
+            <Input
+              type="text"
+              name="image"
+              label="Image URL"
+              onChange={handleInputChange}
+            />
+          </div>
+          <ImgHolder>
+            <img
+              src={form.image}
+              // onLoad={handleImageLoaded}
+              alt="upload"
+              onError={(e) => {
+                // handleImageErr();
+                e.target.onerror = null;
+                e.target.src =
+                  "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png";
+                setForm({
+                  ...form,
+                  image:
+                    "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png",
+                });
+              }}
+            />
+          </ImgHolder>
+        </FormUpper>
+        <Textarea
+          name="about"
+          rows="5"
+          placeholder="Enter about shop..."
+          onChange={handleInputChange}
+        />
+        <div style={{ textAlign: "right" }}>
+          <Button type="submit" text="Create shop" />
         </div>
-        <ImgHolder>dsa</ImgHolder>
-      </FormUpper>
-      <Textarea
-        name="about"
-        rows="5"
-        placeholder="Enter about shop..."
-        onChange={handleInputChange}
-      />
-      <div style={{ textAlign: "right" }}>
-        <Button type="submit" text="Create shop" />
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

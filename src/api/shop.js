@@ -15,3 +15,13 @@ export const getShops = () => async (dispatch) => {
     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
   }
 };
+
+export const createShop = (shop) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`${URL}`, shop);
+    console.log("shop", data);
+    dispatch(setDashboardData([data], "shops"));
+  } catch (err) {
+    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+  }
+};

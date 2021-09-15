@@ -50,13 +50,7 @@ const IconWrapper = styled.div`
 const Input = ({ name, type, onChange, label, iconName, onIconClick }) => (
   <Group>
     <Label htmlFor={name}>{label}</Label>
-    <Field
-      type={type}
-      name={name}
-      onChange={onChange}
-      id={name}
-      maxLength={30}
-    />
+    <Field type={type} name={name} onChange={onChange} id={name} />
     {iconName && (
       <IconWrapper onClick={onIconClick}>
         <Icon name={iconName} />
