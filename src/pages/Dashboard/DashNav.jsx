@@ -6,6 +6,7 @@ import { theme } from "../../styled/theme";
 
 import Icon from "../../components/Icon/Icon";
 import { breakpoint } from "../../styled/breakpoint";
+import { dashboardMenu, dashboardRoutes } from "./dashRoutes";
 
 const Nav = styled.div`
   display: flex;
@@ -105,64 +106,27 @@ const DashNav = () => {
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
 
+  const { permissions } = useSelector((state) => state.profile.Role);
   const { pending } = useSelector((state) => state.dashboard);
-  console.log("path in nav", path);
-  console.log("pathname in nav", pathname);
+  if (!permissions) return null;
   return (
     <Nav>
-      <Li to={path} isActive={pathname === "/dashboard/admin"}>
-        <Icon name="dashboard" />
-        {/* <span>Dashboard</span> */}
-      </Li>
-      <Li to={`${path}/users`} isActive={pathname === "/dashboard/admin/users"}>
-        <Icon name="groups" />
-        {/* <span>Users</span> */}
-      </Li>
-      <Li
-        to="/dashboard/admin/services"
-        isActive={pathname === "/dashboard/admin/services"}
-      >
-        <Icon name="business" />
-        {/* <span>Services</span> */}
-      </Li>
-      <Li
-        to="/dashboard/admin/pending"
-        isActive={pathname === "/dashboard/admin/pending"}
-      >
-        <Icon name="pending_actions" />
-        {pending.length > 0 && <Signal />}
-        {/* <span>Pending registrations</span> */}
-      </Li>
-      <Li
-        to="/dashboard/admin/orders"
-        isActive={pathname === "/dashboard/admin/orders"}
-      >
-        <Icon name="shopping_cart" />
-        {/* <span>Orders</span> */}
-      </Li>
-      <Li
-        to="/dashboard/admin/stats"
-        isActive={pathname === "/dashboard/admin/stats"}
-      >
-        <Icon name="leaderboard" />
-        {/* <span>Stats</span> */}
-      </Li>
-      <Li
-        to="/dashboard/admin/settings"
-        isActive={pathname === "/dashboard/admin/settings"}
-      >
-        <Icon name="settings" />
-        {/* <span>Settings</span> */}
-      </Li>
-      <Li
-        to="/dashboard/admin/logout"
-        isActive={pathname === "/dashboard/admin/logout"}
-      >
-        <Icon name="logout" />
-        {/* <span>Logout</span> */}
-      </Li>
+      {dashboardMenu(permissions).map((item) => (
+        <Li key={item.path} to={item.path} isActive={pathname === item.path}>
+          <Icon name={item.iconName} />
+          {/* <span>{item.name}</span> */}
+          <>
+            {item.path === "/dashboard/pending" && pending.length > 0 && (
+              <Signal />
+            )}
+          </>
+        </Li>
+      ))}
     </Nav>
   );
+
+  // <Icon name="pending_actions" />
+  //       {pending.length > 0 && <Signal />}
 };
 
 export default DashNav;

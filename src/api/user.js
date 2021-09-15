@@ -1,32 +1,50 @@
 import axios from "axios";
-import { resolve } from "../utils/resolver";
+import {
+  deleteDashboardData,
+  setDashboardData,
+} from "../store/actions/dashboard";
+import { TOAST_TYPE } from "../utils/constants";
+import { toastMessage } from "../utils/toast";
 
 const URL = "http://localhost:8080/api/users";
 axios.defaults.withCredentials = true;
 axios.defaults.credentials = "include";
 
-// axios.interceptors.response.use(
-//   function (response) {
-//     return response;
-//   },
-//   function (error) {
-//     console.log(error);
-//     let res = error.response;
-//     // if (res.status == 401) {
-//     //   window.location.href = “https://example.com/login”;
-//     // }
-//     // console.error(“Looks like there was a problem. Status Code: “ + res.status);
-//     return Promise.reject(error);
-//   }
-// );
+export const getActiveUsers = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${URL}`);
+    dispatch(setDashboardData(data, "users"));
+  } catch (err) {
+    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+  }
+};
 
-export const getUsers = async () => {
-  const resolved = await resolve(
-    axios.get(`${URL}`, {
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-  );
-  return resolved;
+export const getPendingRequests = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${URL}/pending`);
+    dispatch(setDashboardData(data, "pending"));
+  } catch (err) {
+    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+  }
+};
+
+export const approvePendingRequest = (id) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`${URL}/pending`, {
+      hash: id,
+    });
+    dispatch(deleteDashboardData(id, "pending"));
+    dispatch(setDashboardData([data], "users"));
+  } catch (err) {
+    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+  }
+};
+
+export const declinePendingRequest = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`${URL}/pending/${id}`);
+    dispatch(deleteDashboardData(id, "pending"));
+  } catch (err) {
+    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+  }
 };

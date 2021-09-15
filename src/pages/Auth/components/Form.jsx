@@ -4,16 +4,10 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import Select from "react-select";
-import { GoogleLogin } from "react-google-login";
-// import FacebookLogin from "react-facebook-login";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import Banner from "./Banner";
 import Input from "./Input";
 import Divider from "../../../components/Divider/Divider";
 import Button from "../../../components/Button/Button";
-
-import Facebook from "../../../assets/images/facebook_small.png";
-import Google from "../../../assets/images/google_small.png";
 
 import { ContentWrapper, Submit } from "../style";
 import { theme } from "../../../styled/theme";
@@ -88,7 +82,8 @@ const initialState = (isSignup) => {
 
   return {
     roleId: "",
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     phone: "",
@@ -109,8 +104,6 @@ const Form = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
-
-  console.log("form", form);
 
   const toggleShowPassword = (isRepeatedPass) => {
     if (!isRepeatedPass) {
@@ -139,42 +132,23 @@ const Form = () => {
     e.preventDefault();
     const isValid = isValidForm();
     if (!isValid) {
-      alert("invalid form");
+      alert("passwords dont match");
       return;
     }
 
     try {
       const { data } = await auth(form);
-      if (data.requestMessage) {
-        toastMessage(data.requestMessage, TOAST_TYPE.SUCCESS);
+      if (data.message) {
+        toastMessage(data.message, TOAST_TYPE.SUCCESS);
       } else {
-        dispatch(setUserProfile(data));
-        const { roleId } = data;
-        history.push(`/dashboard/${ROLE_ID[roleId]}`);
+        // localStorage.setItem("isAuth", true);
+        // dispatch(setUserProfile(data));
+        history.push(`/dashboard`);
       }
     } catch (err) {
       console.log(err);
       toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
     }
-
-    // auth(form)
-    //   .then((res) => {
-    //     console.log(res);
-    //     if (res.data.requestMessage) {
-    //       toastMessage(res.data.requestMessage, TOAST_TYPE.SUCCESS);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.response.data.error.message);
-    //     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
-    //   });
-
-    // const { data, error } = await auth(form);
-    // if (error) {
-    //   toastMessage(error.data.error.message, TOAST_TYPE.ERROR);
-    //   return;
-    // }
-    // console.log("data", data);
   };
 
   const handleInputChange = (e) => {
@@ -185,17 +159,6 @@ const Form = () => {
     setSelectedOption(e);
     setForm({ ...form, roleId: e.value });
   };
-
-  const responseGoogle = (response) => {
-    console.log("from gugl", response);
-  };
-
-  const responseFacebook = (response) => {
-    console.log(response);
-    console.log("facebook response");
-  };
-
-  const componentClicked = () => console.log("clicked");
 
   return (
     <ContentWrapper>
@@ -214,8 +177,14 @@ const Form = () => {
             </div>
             <Input
               type="text"
-              name="name"
-              label="Name"
+              name="firstName"
+              label="First Name"
+              onChange={handleInputChange}
+            />
+            <Input
+              type="text"
+              name="lastName"
+              label="Last Name"
               onChange={handleInputChange}
             />
             <Input
@@ -259,41 +228,6 @@ const Form = () => {
         )}
 
         <Submit type="submit">{!isSignup ? "Sign in" : "Sign up"}</Submit>
-
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        {/* <Divider {...dividerProps} /> */}
-
-        {/* <ServiceAuth>
-          <GoogleLogin
-            clientId="18898452442-tg7rbb8f1tj8o7vvciqhmikj68sc2qbg.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <AuthBtn
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              >
-                <AuthImg src={Google} />
-              </AuthBtn>
-            )}
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy="single_host_origin"
-          />
-          <FacebookLogin
-            appId="834081687533758"
-            fields="name,email,picture"
-            onClick={componentClicked}
-            callback={responseFacebook}
-            autoLoad
-            render={(renderProps) => (
-              <AuthBtn
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              >
-                <AuthImg src={Facebook} />
-              </AuthBtn>
-            )}
-          />
-        </ServiceAuth> */}
         <AuthSwap>
           <span style={{ marginRight: "5px" }}>
             {!isSignup ? "Don't have account?" : "Already a member?"}

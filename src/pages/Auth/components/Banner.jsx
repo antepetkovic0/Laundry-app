@@ -35,7 +35,6 @@ const Text = styled.div`
 
 const Banner = () => {
   const location = useLocation();
-  console.log("banner", location);
 
   const generateText = (loc) => {
     if (loc.pathname === "/auth/forget") {

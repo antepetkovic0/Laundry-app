@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "../../styled/theme";
 
 import Icon from "../../components/Icon/Icon";
-import Avatar from "./Avatar";
+import Avatar from "./components/Avatar";
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,13 +41,15 @@ const Notification = styled.div`
 `;
 
 const DashHead = () => {
-  const profile = useSelector((state) => state.profile);
+  const { profile } = useSelector((state) => state);
   return (
     <Wrapper>
       <Welcome>
         <Avatar />
         <div>
-          <h4>{profile.name}</h4>
+          <h4>
+            {profile.displayName || `${profile.firstName} ${profile.lastName}`}
+          </h4>
           <p>Welcome back</p>
         </div>
       </Welcome>

@@ -1,25 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import { theme } from "../../../../styled/theme";
 import Banner from "../../../../assets/images/banner.jpg";
 import Button from "../../../../components/Button/Button";
+import { theme } from "../../../../styled/theme";
 
 const Section = styled.section`
   height: 100vh;
   display: flex;
   align-items: center;
-  /* background-image: linear-gradient(
+  background-image: linear-gradient(
       to right bottom,
       rgba(251, 252, 255, 0.8),
       rgba(251, 252, 255, 0.8)
     ),
     url(${Banner});
-  background-size: cover; */
+  background-size: cover;
+  background-position: top;
 `;
 
 const Intro = styled.div`
@@ -41,42 +40,25 @@ const H2 = styled.h2`
   color: ${theme.text.alt};
 `;
 
-const GetStarted = () => {
-  const notify = () => {
-    // toast("🦄 Wow so easy!", {
-    //   position: "top-right",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    // });
-    toast.warning("⚠ salasl");
-  };
-  return (
-    <Section id="get-started">
-      <Intro>
-        <H1>All laundry services in one place</H1>
-        <H2>
-          Whether you are the laundry cleaning owner or just wanna clean your
-          laundry we have something for you
-        </H2>
-        <button type="button" onClick={notify}>
-          toast me
-        </button>
-        <ToastContainer />
-        <Link
-          to={{
-            pathname: "/auth",
-            state: { isSignup: true },
-          }}
-        >
-          <Button text="Get Started" />
-        </Link>
-      </Intro>
-    </Section>
-  );
-};
+const GetStarted = () => (
+  <Section id="get-started">
+    <Intro>
+      <H1>All laundry services in one place</H1>
+      <H2>
+        Whether you are the laundry cleaning owner or just wanna clean your
+        laundry we have something for you
+      </H2>
+      <Link
+        to={{
+          pathname: "/auth",
+          state: { isSignup: true },
+        }}
+      >
+        <Button text="Get Started" />
+      </Link>
+    </Intro>
+    <ToastContainer />
+  </Section>
+);
 
 export default GetStarted;

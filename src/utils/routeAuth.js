@@ -3,43 +3,40 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import { verifyAuth } from "../api/auth";
+import { checkPermission } from "./permissions";
+import localStorage from "./localStorage";
 
-const checkIfVerified = (res) => {};
-
-// eslint-disable-next-line react/prop-types
 const RouteAuth = ({ Component, ...props }) => {
-  // const { isAuth, roleId } = useSelector((state) => state.profile);
-  // const auth = checkAuth();
-  // const { data } = await verifyAuth({ roles: props.roles });
-
-  // let role = getUserRole(),
-  //   access = checkAccess(role, props.roles);
-  // const access = props.roles.includes(roleId);
-  const isAuth = true;
-  const access = true;
-
+  console.log(props);
+  const { profile } = useSelector((state) => state);
+  const { isAuth } = profile;
+  // const isAuth = localStorage.get("isAuth");
+  // const isAuth = true;
   if (!isAuth) {
     // logout();
     return <Redirect to="/auth" />;
   }
 
+  const { permissions } = profile.Role;
+  const access = checkPermission(props.rule, permissions);
+  // const access = true;
   if (isAuth && !access) {
-    return <Redirect to="/error/401" />;
+    return <Redirect to="/unauthorized" />;
   }
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Route {...props} render={(routeProps) => <Component {...routeProps} />} />
   );
 };
 
-// RouteAuth.defaultProps = {
-//   roles: [],
-// };
+RouteAuth.defaultProps = {
+  rule: "",
+};
 
 RouteAuth.propTypes = {
-  roles: PropTypes.arrayOf(PropTypes.number).isRequired,
+  Component: PropTypes.node.isRequired,
+  rule: PropTypes.string,
+  routes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default RouteAuth;

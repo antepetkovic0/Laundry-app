@@ -10,8 +10,6 @@ const DashNav = () => {
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
 
-  console.log("path in nav", path);
-  console.log("pathname in nav", pathname);
   return (
     <Nav>
       <Li to={path} isActive={pathname === "/dashboard/service"}>

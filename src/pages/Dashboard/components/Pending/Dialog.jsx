@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
 import {
-  approvePendingRegistration,
-  declinePendingRegistration,
-} from "../../../../api/pending_request";
+  approvePendingRequest,
+  declinePendingRequest,
+} from "../../../../api/user";
 import { hideDialog } from "../../../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../../../utils/constants";
 
 import Button from "../../../../components/Button/Button";
-
 import {
   DialogBody,
   DialogContent,
@@ -23,9 +22,9 @@ const Dialog = () => {
     dialog,
     dashboard: { pending },
   } = useSelector((state) => state);
+
   const { userId } = dialog.dialogProps;
   const targetUser = pending.find((user) => user.id === userId);
-
   const dispatch = useDispatch();
 
   const close = () => {
@@ -33,11 +32,11 @@ const Dialog = () => {
   };
 
   const handleDecline = () => {
-    dispatch(declinePendingRegistration(targetUser.hash, targetUser.id));
+    dispatch(declinePendingRequest(targetUser.id));
   };
 
   const handleApprove = () => {
-    dispatch(approvePendingRegistration(targetUser.hash, targetUser.id));
+    dispatch(approvePendingRequest(targetUser.id));
   };
 
   const generateTitle = () => {
@@ -70,7 +69,8 @@ const Dialog = () => {
                   : "approve"}
               </span>{" "}
               <b>
-                <span>{targetUser.name}</span>&apos;s
+                <span>{`${targetUser.firstName} ${targetUser.lastName}`}</span>
+                &apos;s
               </b>{" "}
               request?
             </div>

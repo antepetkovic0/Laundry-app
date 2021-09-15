@@ -6,7 +6,7 @@ import DeleteDialog from "./DeleteDialog";
 import Actions from "./Actions";
 
 const Users = () => {
-  const users = useSelector((state) => state.dashboard.users);
+  const { users } = useSelector((state) => state.dashboard);
 
   const columns = useMemo(
     () => [
@@ -32,8 +32,8 @@ const Users = () => {
 
   const userRows = useMemo(
     () =>
-      users.map(({ name, phone, email, id }) => ({
-        name,
+      users.map(({ firstName, lastName, phone, email, id }) => ({
+        name: `${firstName} ${lastName}`,
         phone,
         email,
         actions: <Actions userId={id} />,

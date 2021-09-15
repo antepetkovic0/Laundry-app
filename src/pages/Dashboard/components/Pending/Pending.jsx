@@ -7,7 +7,7 @@ import Dialog from "./Dialog";
 import Actions from "./Actions";
 
 const Pending = () => {
-  const pending = useSelector((state) => state.dashboard.pending);
+  const { pending } = useSelector((state) => state.dashboard);
 
   const columns = useMemo(
     () => [
@@ -33,8 +33,8 @@ const Pending = () => {
 
   const pendingRows = useMemo(
     () =>
-      pending.map(({ name, phone, email, id }) => ({
-        name,
+      pending.map(({ firstName, lastName, phone, email, id }) => ({
+        name: `${firstName} ${lastName}`,
         phone,
         email,
         actions: <Actions userId={id} />,
@@ -42,7 +42,7 @@ const Pending = () => {
     [pending]
   );
 
-  if (!pendingRows.length)
+  if (!pendingRows.length) {
     return (
       <EmptyState
         message="Currently there are no open pending requests"
@@ -53,6 +53,7 @@ const Pending = () => {
         }}
       />
     );
+  }
 
   return (
     <>

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import User from "../../assets/images/user.png";
+import User from "../../../assets/images/user.png";
 
 const Wrapper = styled.div`
   width: 4rem;

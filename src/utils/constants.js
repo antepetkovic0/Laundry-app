@@ -25,10 +25,10 @@ export const TOAST_TYPE = {
   INFO: "info",
 };
 
-export const ROLE_ID = {
-  1: "admin",
-  2: "service",
-  3: "user",
+export const Roles = {
+  ADMIN: "Admin",
+  SERVICE: "Service",
+  USER: "User",
 };
 
 export const Alignment = {
