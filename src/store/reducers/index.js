@@ -4,8 +4,8 @@ import { combineReducers } from "redux";
 import { DRAWER_TYPE, SWITCH_TYPE } from "../../utils/constants";
 
 import profile from "./profile";
-import dialog from "./dialog";
 import dashboard from "./dashboard";
+import dialog from "./dialog";
 import { createTypedDrawers } from "./drawer";
 import { createTypedSwitchers } from "./switcher";
 

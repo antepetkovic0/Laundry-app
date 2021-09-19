@@ -103,11 +103,11 @@ const Signal = styled.div`
 `;
 
 const DashNav = () => {
-  const { path } = useRouteMatch();
   const { pathname } = useLocation();
 
   const { permissions } = useSelector((state) => state.profile.Role);
-  const { pending } = useSelector((state) => state.dashboard);
+  const pendingNum = useSelector((state) => state.dashboard.pending).length;
+
   if (!permissions) return null;
   return (
     <Nav>
@@ -116,9 +116,7 @@ const DashNav = () => {
           <Icon name={item.iconName} />
           {/* <span>{item.name}</span> */}
           <>
-            {item.path === "/dashboard/pending" && pending.length > 0 && (
-              <Signal />
-            )}
+            {item.path === "/dashboard/pending" && pendingNum > 0 && <Signal />}
           </>
         </Li>
       ))}

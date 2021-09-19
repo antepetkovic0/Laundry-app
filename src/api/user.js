@@ -10,7 +10,7 @@ const URL = "http://localhost:8080/api/users";
 axios.defaults.withCredentials = true;
 axios.defaults.credentials = "include";
 
-export const getActiveUsers = () => async (dispatch) => {
+export const getUsers = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`${URL}`);
     dispatch(setDashboardData(data, "users"));

@@ -11,6 +11,11 @@ const profile = (state = INITIAL_STATE, action) => {
         ...action.payload,
         isAuth: true,
       };
+    case "LOG_OFF":
+      return {
+        ...state,
+        isAuth: false,
+      };
     default:
       return state;
   }

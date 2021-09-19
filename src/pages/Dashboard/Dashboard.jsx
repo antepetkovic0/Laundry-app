@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
+import { getProfile } from "../../api/auth";
+import { getPendingRequests, getUsers } from "../../api/user";
+import { getShops } from "../../api/shop";
 import { dashboardRoutes } from "./dashRoutes";
 import RouteAuth from "../../utils/routeAuth";
-import { getActiveUsers, getPendingRequests } from "../../api/user";
 
 import DashNav from "./DashNav";
 import DashHead from "./DashHead";
 import { DashWrapper, Content } from "./style";
-import { getShops } from "../../api/shop";
-import { getProfile } from "../../api/auth";
 import "../../modal.css";
 
 const Dashboard = () => {
@@ -19,9 +19,20 @@ const Dashboard = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    console.log("runnned");
-    dispatch(getProfile()).then(() => setIsLoaded(true));
+    console.log("runnned main");
+    dispatch(getProfile());
   }, []);
+
+  useEffect(() => {
+    if (profile && profile.isAuth) {
+      if (profile.roleId === 1) {
+        dispatch(getUsers());
+        dispatch(getPendingRequests());
+      }
+      dispatch(getShops());
+      setIsLoaded(true);
+    }
+  }, [profile]);
 
   if (!isLoaded) return <div className="loader" />;
   return (

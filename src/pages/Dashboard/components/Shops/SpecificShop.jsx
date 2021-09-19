@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Back from "../../../../components/Link/Back";
 import { breakpoint } from "../../../../styled/breakpoint";
+import Back from "../../../../components/Link/Back";
+import Button from "../../../../components/Button/Button";
+import Create from "../Product/Create";
+import ProductList from "../Product/ProductList";
 
 const ShopBox = styled.div`
   display: flex;
@@ -15,7 +18,6 @@ const ShopBox = styled.div`
 
 const Image = styled.div`
   display: flex;
-  /* width: -webkit-fill-available; */
   justify-content: center;
 
   img {
@@ -34,14 +36,24 @@ const Info = styled.div`
 const SpecificShop = () => {
   const { slug } = useParams();
   const { shops } = useSelector((state) => state.dashboard);
-  console.log("shop slug", slug);
+
+  const [productCreating, setProductCreating] = useState(false);
+
   const shop = shops.find((item) => item.slug === slug);
+  // console.log("prodc", shop.products);
+
+  const startProductCreation = () => {
+    setProductCreating(true);
+  };
+  const finishProductCreation = () => {
+    setProductCreating(false);
+  };
 
   if (!shop) return <div>no specific shop</div>;
 
   return (
     <div>
-      <Back to="/dashboard/shops" title={`Shop ${shop.name}`} />
+      <Back to="/dashboard/shops" title="Shop info" />
       <ShopBox>
         <Image>
           <img src={shop.image} alt={shop.slug} />
@@ -56,6 +68,19 @@ const SpecificShop = () => {
           </p>
         </Info>
       </ShopBox>
+      <ProductList products={shop.products} />
+      <div style={{ textAlign: "right", marginTop: "1.6rem" }}>
+        {!productCreating && (
+          <Button
+            type="button"
+            text="Add product"
+            onClick={startProductCreation}
+          />
+        )}
+      </div>
+      {productCreating && (
+        <Create shopId={shop.id} closeForm={finishProductCreation} />
+      )}
     </div>
   );
 };

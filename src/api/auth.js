@@ -20,7 +20,8 @@ export const getProfile = () => async (dispatch) => {
     const { data } = await axios.get(`${URL}/api/auth/profile`);
     dispatch(setUserProfile(data));
   } catch (err) {
-    if (err.response.data.authenticationErr) {
+    console.log(err.response);
+    if (err.response?.data?.authenticationErr) {
       window.location.href = "http://localhost:3000/auth";
     } else {
       console.log("blabla", err);

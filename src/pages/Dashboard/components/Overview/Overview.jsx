@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Roles } from "../../../../utils/constants";
@@ -90,7 +90,9 @@ const Wrapper = styled.div`
 
 const Overview = () => {
   const { Role } = useSelector((state) => state.profile);
-
+  useEffect(() => {
+    console.log("running overview");
+  }, []);
   return (
     <Wrapper userRole={Role.title}>
       {Role.title === Roles.ADMIN && (

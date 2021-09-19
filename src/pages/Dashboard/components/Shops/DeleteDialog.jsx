@@ -2,12 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
+import { deleteShop } from "../../../../api/shop";
 import { hideDialog } from "../../../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../../../utils/constants";
-
 import Button from "../../../../components/Button/Button";
-import SectionMessage from "../../../Auth/components/SectionMessage";
-
 import {
   DialogBody,
   DialogContent,
@@ -18,10 +16,11 @@ import {
 const DeleteDialog = () => {
   const {
     dialog,
-    dashboard: { users },
+    dashboard: { shops },
   } = useSelector((state) => state);
-  const { userId } = dialog.dialogProps;
-  const targetUser = users.find((user) => user.id === userId);
+
+  const { shopId } = dialog.dialogProps;
+  const shop = shops.find((s) => s.id === shopId);
 
   const dispatch = useDispatch();
 
@@ -30,28 +29,31 @@ const DeleteDialog = () => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteUser(userId));
-    close();
+    dispatch(deleteShop(shopId));
   };
 
-  if (!targetUser) return null;
+  if (!shop) {
+    return null;
+  }
 
   return (
     <ReactModal
-      isOpen={dialog.dialogType === DIALOG_TYPE.ADMIN_USER_DELETE}
+      isOpen={dialog.dialogType === DIALOG_TYPE.SHOP_DELETE}
       onRequestClose={close}
       ariaHideApp={false}
     >
       <DialogContent>
-        <DialogHeader>Delete user</DialogHeader>
+        <DialogHeader>Delete shop</DialogHeader>
         <DialogBody>
-          <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <div style={{ textAlign: "center" }}>
             <div>
-              Are you sure you want to delete <b>{targetUser.name}</b>?
+              Are you sure you want to delete{" "}
+              <b>
+                <span>{shop.name}</span>
+              </b>{" "}
+              shop?
             </div>
-            <div>This action is irreversible.</div>
           </div>
-          <SectionMessage />
         </DialogBody>
         <DialogFooter>
           <Button text="Cancel" type="subtle" onClick={close} />

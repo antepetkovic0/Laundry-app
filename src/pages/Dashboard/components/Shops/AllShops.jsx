@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import { theme } from "../../../../styled/theme";
 import { Roles } from "../../../../utils/constants";
-import CaretLink from "../CaretLink";
 import Shop from "./Shop";
 
 const List = styled.div`
@@ -19,12 +19,14 @@ const Anchor = styled(Link)`
   justify-content: center;
   width: fit-content;
   background-color: ${theme.bg.def};
-  border: 0.2rem dotted ${theme.gray.dark};
+  border: 0.2rem solid ${theme.primary.def};
   padding: 0.8rem;
   border-radius: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 1.6rem;
 `;
 
-const ShopList = () => {
+const AllShops = () => {
   const { Role } = useSelector((state) => state.profile);
   const { shops } = useSelector((state) => state.dashboard);
 
@@ -33,10 +35,8 @@ const ShopList = () => {
       {Role.title === Roles.SERVICE && (
         <Anchor to="/dashboard/shops/create">Create shop</Anchor>
       )}
-      {!shops ? (
-        <p style={{ textAlign: "center" }}>
-          There are no attachments on selected page
-        </p>
+      {!shops.length ? (
+        <p>There is no created shops.</p>
       ) : (
         <List>
           {shops.map((shop) => (
@@ -48,8 +48,4 @@ const ShopList = () => {
   );
 };
 
-// ShopList.propTypes = {
-//   shops: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };
-
-export default ShopList;
+export default AllShops;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,17 +14,23 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Auth = () => (
-  <Wrapper>
-    <Header title="Auth" />
-    <Switch>
-      <Route path="/auth" component={Form} exact />
-      <Route path="/auth/forget" component={ForgetPass} exact />
-      <Route>
-        <NotFound isAuthRelated />
-      </Route>
-    </Switch>
-  </Wrapper>
-);
+const Auth = () => {
+  useEffect(() => {
+    console.log("runned auth");
+  }, []);
+
+  return (
+    <Wrapper>
+      <Header title="Auth" />
+      <Switch>
+        <Route path="/auth" component={Form} exact />
+        <Route path="/auth/forget" component={ForgetPass} exact />
+        <Route>
+          <NotFound isAuthRelated />
+        </Route>
+      </Switch>
+    </Wrapper>
+  );
+};
 
 export default Auth;

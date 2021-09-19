@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouteMatch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -13,6 +13,9 @@ const Home = () => {
   const { path } = useRouteMatch();
   const { drawerHome } = useSelector((state) => state);
 
+  useEffect(() => {
+    console.log("runned home");
+  }, []);
   return (
     <div>
       <Route path={path}>

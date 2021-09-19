@@ -1,8 +1,9 @@
 import { checkPermission, rules } from "../../utils/permissions";
+
 import Overview from "./components/Overview/Overview";
 import Users from "./components/Users/Users";
-import Shops, { x, y } from "./components/Shops/Shops";
 import Pending from "./components/Pending/Pending";
+import Shops from "./components/Shops/Shops";
 import Orders from "./components/Orders/Orders";
 import Cart from "./components/Cart/Cart";
 import Settings from "./components/Settings/Settings";

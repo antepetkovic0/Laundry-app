@@ -10,9 +10,24 @@ export const Wrapper = styled.div`
   grid-area: ${(props) => props.gridArea};
   border-radius: 0.8rem;
   padding: 1rem;
+  position: relative;
 
   a {
     align-self: flex-end;
+  }
+`;
+
+export const ShopAvatar = styled.div`
+  position: absolute;
+  right: 1rem;
+  top: 3rem;
+  width: 5rem;
+  height: 5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.8rem;
   }
 `;
 

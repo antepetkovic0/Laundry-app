@@ -12,6 +12,7 @@ import NotFound from "./pages/Error/NotFound";
 import RouteAuth from "./utils/routeAuth";
 import { rules } from "./utils/permissions";
 import "./modal.css";
+import { dashboardRoutes } from "./pages/Dashboard/dashRoutes";
 
 const App = () => (
   <Router>
@@ -19,6 +20,15 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/auth" component={Auth} />
+      {/* {dashboardRoutes.map((item) => (
+        <RouteAuth
+          path={item.path}
+          component={item.component}
+          // exact
+          rule={item.rule}
+          exact={item.exact}
+        />
+      ))} */}
       <Route
         path="/dashboard"
         component={Dashboard}

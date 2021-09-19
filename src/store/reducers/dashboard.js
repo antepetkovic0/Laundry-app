@@ -1,15 +1,13 @@
 import {
   SET_DATA,
-  // ADD_TODO,
-  // TOGGLE_TODO,
-  DELETE_USER,
-  DELETE_DASHBOARD_DATA,
+  DELETE_DATA,
+  DELETE_SHOP_PRODUCT,
 } from "../actions/dashboard";
 
 const INITIAL_STATE = {
   users: [],
-  shops: [],
   pending: [],
+  shops: [],
   orders: [],
 };
 
@@ -23,8 +21,6 @@ const dashboard = (state = INITIAL_STATE, action) => {
           ...state[action.payload.type],
         ],
       };
-    // case ADD_TODO:
-    //   return { ...state, users: [...state.users, action.payload] };
     // case TOGGLE_TODO:
     //   return {
     //     ...state,
@@ -34,11 +30,25 @@ const dashboard = (state = INITIAL_STATE, action) => {
     //         : { ...todo, completed: !todo.completed }
     //     ),
     //   };
-    case DELETE_DASHBOARD_DATA:
+    case DELETE_DATA:
       return {
         ...state,
         [action.payload.type]: state[action.payload.type].filter(
           (item) => item.id !== action.payload.id
+        ),
+      };
+    case DELETE_SHOP_PRODUCT:
+      return {
+        ...state,
+        shops: state.shops.map((shop) =>
+          shop.id !== action.payload.shopId
+            ? shop
+            : {
+                ...shop,
+                products: shop.products.filter(
+                  (product) => product.id !== action.payload.id
+                ),
+              }
         ),
       };
     default:

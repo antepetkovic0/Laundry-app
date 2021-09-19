@@ -1,5 +1,9 @@
 import axios from "axios";
-import { setDashboardData } from "../store/actions/dashboard";
+import {
+  setDashboardData,
+  deleteDashboardData,
+} from "../store/actions/dashboard";
+import { hideDialog } from "../store/actions/dialog";
 import { TOAST_TYPE } from "../utils/constants";
 import { toastMessage } from "../utils/toast";
 
@@ -19,9 +23,21 @@ export const getShops = () => async (dispatch) => {
 export const createShop = (shop) => async (dispatch) => {
   try {
     const { data } = await axios.post(`${URL}`, shop);
-    console.log("shop", data);
-    dispatch(setDashboardData([data], "shops"));
+    dispatch(deleteDashboardData([data], "shops"));
+    toastMessage("Shop has been successfully created", TOAST_TYPE.SUCCESS);
   } catch (err) {
     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+  }
+};
+
+export const deleteShop = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`${URL}/${id}`);
+    dispatch(deleteDashboardData(id, "shops"));
+    dispatch(hideDialog());
+    toastMessage("Shop has been successfully deleted", TOAST_TYPE.SUCCESS);
+  } catch (err) {
+    console.log(err);
+    // toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
   }
 };

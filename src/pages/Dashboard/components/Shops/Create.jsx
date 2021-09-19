@@ -1,18 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { createShop } from "../../../../api/shop";
 import Button from "../../../../components/Button/Button";
 import Back from "../../../../components/Link/Back";
 import Input from "../../../Auth/components/Input";
-
-const initialState = () => ({
-  name: "",
-  slug: "",
-  address: "",
-  image: "",
-  about: "",
-});
 
 const Textarea = styled.textarea`
   margin: 1.6rem 0;
@@ -47,38 +39,23 @@ const FormUpper = styled.div`
   flex-direction: column;
 `;
 
+const initialState = () => ({
+  name: "",
+  slug: "",
+  address: "",
+  image: "",
+  about: "",
+});
+
 const Create = () => {
+  const { firstName, lastName } = useSelector((state) => state.profile);
   const [form, setForm] = useState(() => initialState());
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("blaba");
-    console.log(form);
-    dispatch(createShop(form));
+    dispatch(createShop({ ...form, firstName, lastName }));
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const isValid = isValidForm();
-  //   if (!isValid) {
-  //     alert("passwords dont match");
-  //     return;
-  //   }
-
-  //   try {
-  //     const { data } = await auth(form);
-  //     if (data.message) {
-  //       toastMessage(data.message, TOAST_TYPE.SUCCESS);
-  //     } else {
-  //       // localStorage.setItem("isAuth", true);
-  //       // dispatch(setUserProfile(data));
-  //       history.push(`/dashboard`);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
-  //   }
-  // };
 
   const handleInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -86,7 +63,7 @@ const Create = () => {
 
   return (
     <div>
-      <Back to="/dashboard/shops" title="Create new shop" />
+      <Back to="/dashboard/shops" title="Create shop" />
       <form style={{ padding: "1rem 0" }} onSubmit={handleSubmit}>
         <FormUpper>
           <div>
@@ -118,10 +95,8 @@ const Create = () => {
           <ImgHolder>
             <img
               src={form.image}
-              // onLoad={handleImageLoaded}
               alt="upload"
               onError={(e) => {
-                // handleImageErr();
                 e.target.onerror = null;
                 e.target.src =
                   "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png";

@@ -11,25 +11,25 @@ const Pending = () => {
 
   return (
     <Wrapper gridArea="pending">
-      <OverviewTitle>Pending Registrations</OverviewTitle>
+      <OverviewTitle>Pending requests</OverviewTitle>
       <Content>
-        {!pending.length ? (
-          <EmptyState
-            message="Currently there are no open pending requests"
-            imgCss={{ maxHeight: "150px" }}
-          />
-        ) : (
+        <div style={{ marginBottom: "10px" }}>
+          <SubTitle>Total</SubTitle>
+          {pending.length}
+        </div>
+        {pending.length > 0 ? (
           <>
-            <div>
-              <SubTitle>Total</SubTitle>
-              {pending.length}
-            </div>
             <div>
               <SubTitle>Last signed</SubTitle>
               {`${pending[0].firstName} ${pending[0].lastName}`},{" "}
               {isoToLocaleDate(pending[0].createdAt)}
             </div>
           </>
+        ) : (
+          <EmptyState
+            message="Currently there are no open pending requests"
+            imgCss={{ maxHeight: "150px" }}
+          />
         )}
       </Content>
       <CaretLink linkTo="/dashboard/pending" />
