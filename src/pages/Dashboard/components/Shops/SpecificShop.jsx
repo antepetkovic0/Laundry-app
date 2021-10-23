@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { breakpoint } from "../../../../styled/breakpoint";
 import Back from "../../../../components/Link/Back";
 import Button from "../../../../components/Button/Button";
-import Create from "../Product/Create";
+import ProductForm from "../Product/Form";
 import ProductList from "../Product/ProductList";
+import { ProductFormContext } from "../Product/ProductFormContext";
+import { Roles } from "../../../../utils/constants";
 
 const ShopBox = styled.div`
   display: flex;
@@ -35,21 +37,54 @@ const Info = styled.div`
 
 const SpecificShop = () => {
   const { slug } = useParams();
+  const { Role } = useSelector((state) => state.profile);
   const { shops } = useSelector((state) => state.dashboard);
 
-  const [productCreating, setProductCreating] = useState(false);
-
   const shop = shops.find((item) => item.slug === slug);
-  // console.log("prodc", shop.products);
+  if (!shop) return <div>No specific shop!</div>;
 
-  const startProductCreation = () => {
-    setProductCreating(true);
-  };
-  const finishProductCreation = () => {
-    setProductCreating(false);
+  const [productCreateOrEdit, setProductCreateOrEdit] = useState(false);
+  const [productEditMode, setProductEditMode] = useState(false);
+  const [productForm, setProductForm] = useState({
+    name: "",
+    slug: "",
+    price: "",
+    discount: 0,
+    image: "",
+    content: "",
+  });
+
+  const productFormRef = useRef();
+
+  const contextGetter = {
+    productCreateOrEdit,
+    productEditMode,
+    productForm,
   };
 
-  if (!shop) return <div>no specific shop</div>;
+  const contextSetter = {
+    setProductCreateOrEdit,
+    setProductEditMode,
+    setProductForm,
+  };
+
+  productFormRef.current = contextGetter;
+
+  const startProductChange = () => {
+    setProductEditMode(false);
+    setProductForm({
+      name: "",
+      slug: "",
+      price: "",
+      discount: 0,
+      image: "",
+      content: "",
+    });
+    setProductCreateOrEdit(true);
+  };
+  const finishProductChange = () => {
+    setProductCreateOrEdit(false);
+  };
 
   return (
     <div>
@@ -68,19 +103,32 @@ const SpecificShop = () => {
           </p>
         </Info>
       </ShopBox>
-      <ProductList products={shop.products} />
-      <div style={{ textAlign: "right", marginTop: "1.6rem" }}>
-        {!productCreating && (
-          <Button
-            type="button"
-            text="Add product"
-            onClick={startProductCreation}
-          />
+      <ProductFormContext.Provider
+        value={{ ...contextGetter, ...contextSetter }}
+      >
+        <ProductList products={shop.products} />
+        {Role.title === Roles.SERVICE && (
+          <>
+            <div style={{ textAlign: "right", marginTop: "1.6rem" }}>
+              {!productCreateOrEdit && (
+                <Button
+                  type="button"
+                  text="Add product"
+                  onClick={startProductChange}
+                />
+              )}
+            </div>
+            {productCreateOrEdit && (
+              <ProductForm
+                initialState={productForm}
+                shopId={shop.id}
+                closeForm={finishProductChange}
+                isEditMode={productEditMode}
+              />
+            )}
+          </>
         )}
-      </div>
-      {productCreating && (
-        <Create shopId={shop.id} closeForm={finishProductCreation} />
-      )}
+      </ProductFormContext.Provider>
     </div>
   );
 };

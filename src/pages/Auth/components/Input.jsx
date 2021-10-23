@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "../../../styled/theme";
 import Icon from "../../../components/Icon/Icon";
 
-const Group = styled.div`
+export const Group = styled.div`
   margin-bottom: 10px;
   position: relative;
 `;
@@ -47,16 +47,27 @@ const IconWrapper = styled.div`
   }
 `;
 
-const Input = ({ name, type, onChange, label, iconName, onIconClick }) => (
-  <Group>
-    <Label htmlFor={name}>{label}</Label>
-    <Field type={type} name={name} onChange={onChange} id={name} />
-    {iconName && (
-      <IconWrapper onClick={onIconClick}>
-        <Icon name={iconName} />
-      </IconWrapper>
-    )}
-  </Group>
+const Input = React.memo(
+  ({ name, type, value, onChange, label, iconName, onIconClick }) => {
+    console.log("rerenders");
+    return (
+      <Group>
+        <Label htmlFor={name}>{label}</Label>
+        <Field
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          id={name}
+        />
+        {iconName && (
+          <IconWrapper onClick={onIconClick}>
+            <Icon name={iconName} />
+          </IconWrapper>
+        )}
+      </Group>
+    );
+  }
 );
 
 Input.defaultProps = {
@@ -67,6 +78,7 @@ Input.defaultProps = {
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   iconName: PropTypes.string,

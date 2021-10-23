@@ -15,6 +15,9 @@ export const auth = async (data) => {
   return axios.post(`${URL}/api/auth/${query}`, data);
 };
 
+export const googleAuth = async (data) =>
+  axios.post(`${URL}/api/auth/google`, data);
+
 export const getProfile = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`${URL}/api/auth/profile`);

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "../../../../components/Button/Button";
 import Input from "../../../Auth/components/Input";
-import { createProduct } from "../../../../api/product";
+import { createProduct, editProduct } from "../../../../api/product";
 
 const Textarea = styled.textarea`
   margin: 1.6rem 0;
@@ -39,23 +39,23 @@ const FormUpper = styled.div`
   flex-direction: column;
 `;
 
-const initialState = () => ({
-  name: "",
-  slug: "",
-  price: "",
-  discount: 0,
-  image: "",
-  content: "",
-});
-
-const Create = ({ shopId, closeForm }) => {
-  const [form, setForm] = useState(initialState());
+const Form = ({ initialState, shopId, closeForm, isEditMode }) => {
+  const [form, setForm] = useState(initialState);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setForm(initialState);
+  }, [isEditMode]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form, shopId);
-    dispatch(createProduct({ ...form, shopId }));
+    if (isEditMode) {
+      const { id, ...rest } = form;
+      dispatch(editProduct(form.id, { ...rest, shopId }));
+    } else {
+      dispatch(createProduct({ ...form, shopId }));
+    }
   };
 
   const handleInputChange = (e) => {
@@ -70,24 +70,28 @@ const Create = ({ shopId, closeForm }) => {
             type="text"
             name="name"
             label="Product Name"
+            value={form.name}
             onChange={handleInputChange}
           />
           <Input
             type="text"
             name="slug"
             label="Slug"
+            value={form.slug}
             onChange={handleInputChange}
           />
           <Input
             type="text"
             name="price"
             label="Price"
+            value={form.price}
             onChange={handleInputChange}
           />
           <Input
             type="number"
             name="discount"
             label="Discount"
+            value={form.discount}
             onChange={handleInputChange}
           />
         </div>
@@ -112,19 +116,22 @@ const Create = ({ shopId, closeForm }) => {
         name="content"
         rows="5"
         placeholder="Enter about product..."
+        value={form.content}
         onChange={handleInputChange}
       />
       <div style={{ textAlign: "right" }}>
         <Button type="subtle" text="Cancel" onClick={closeForm} />
-        <Button type="submit" text="Add product" />
+        <Button type="submit" text="Submit product" />
       </div>
     </form>
   );
 };
 
-Create.propTypes = {
+Form.propTypes = {
+  initialState: PropTypes.shape.isRequired,
   shopId: PropTypes.string.isRequired,
   closeForm: PropTypes.func.isRequired,
+  isEditMode: PropTypes.bool.isRequired,
 };
 
-export default Create;
+export default Form;

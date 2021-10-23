@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   deleteShopProduct,
   setDashboardData,
+  updateShopProduct,
 } from "../store/actions/dashboard";
 import { hideDialog } from "../store/actions/dialog";
 import { TOAST_TYPE } from "../utils/constants";
@@ -28,6 +29,17 @@ export const deleteProduct = (id, shopId) => async (dispatch) => {
     dispatch(deleteShopProduct(id, shopId));
     dispatch(hideDialog());
     toastMessage("Product has been successfully deleted", TOAST_TYPE.SUCCESS);
+  } catch (err) {
+    console.log(err);
+    // toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+  }
+};
+
+export const editProduct = (id, product) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(`${URL}/${id}`, product);
+    dispatch(updateShopProduct(id, data.shopId, data));
+    toastMessage("Product has been successfully updated", TOAST_TYPE.SUCCESS);
   } catch (err) {
     console.log(err);
     // toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);

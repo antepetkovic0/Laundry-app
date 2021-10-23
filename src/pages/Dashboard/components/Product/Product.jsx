@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -8,6 +8,8 @@ import { TableAction, TableActionsGroup } from "../../style";
 import Icon from "../../../../components/Icon/Icon";
 import DeleteDialog from "./DeleteDialog";
 import { showDialog } from "../../../../store/actions/dialog";
+import { ProductFormContext } from "./ProductFormContext";
+import QuantityPicker from "./QuantityPicker";
 
 const Box = styled.div`
   height: 20rem;
@@ -88,8 +90,27 @@ const Actions = styled.div`
 
 const Product = ({ product }) => {
   const { profile } = useSelector((state) => state);
+  const {
+    setProductCreateOrEdit,
+    setProductEditMode,
+    setProductForm,
+  } = useContext(ProductFormContext);
 
   const dispatch = useDispatch();
+
+  const handleEditProduct = () => {
+    setProductCreateOrEdit(true);
+    setProductEditMode(true);
+    setProductForm({
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      price: product.price,
+      discount: product.discount,
+      image: product.image,
+      content: product.content,
+    });
+  };
 
   const handleDeleteProduct = () => {
     dispatch(
@@ -126,7 +147,7 @@ const Product = ({ product }) => {
         {profile.Role.title === Roles.SERVICE && (
           <>
             <TableActionsGroup>
-              <TableAction>
+              <TableAction onClick={handleEditProduct}>
                 <Icon name="edit" />
               </TableAction>
               <TableAction onClick={handleDeleteProduct}>
@@ -136,7 +157,7 @@ const Product = ({ product }) => {
             <DeleteDialog />
           </>
         )}
-        {profile.Role.title === Roles.USER && <p>add to cart</p>}
+        {profile.Role.title === Roles.USER && <QuantityPicker />}
       </Actions>
     </Box>
   );

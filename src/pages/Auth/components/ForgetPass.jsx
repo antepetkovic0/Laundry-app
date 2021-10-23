@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import Banner from "./Banner";
 import Input from "./Input";
 
-import { ContentWrapper, Submit } from "../style";
+import { ContentWrapper, Banner, Submit } from "../style";
 
 const Hint = styled.div`
   font-size: 1.2rem;

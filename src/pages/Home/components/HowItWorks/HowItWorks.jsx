@@ -12,6 +12,7 @@ import { SWITCH_TYPE } from "../../../../utils/constants";
 import { CARD_DATA } from "../../cardData";
 
 import Switcher from "../../../../components/Switcher/Switcher";
+import { roleOptions } from "../../../../components/Switcher/switcherOptions";
 import Card from "../Card/Card";
 
 const Section = styled.section`
@@ -30,11 +31,6 @@ const CardsWrapper = styled.div`
   justify-content: center;
 `;
 
-const switchOptions = {
-  option_one: "Service",
-  option_two: "User",
-};
-
 const HowItWorks = () => {
   const switchRoleFeatures = useSelector((state) => state.switchRoleFeatures);
 
@@ -49,7 +45,7 @@ const HowItWorks = () => {
         </SectionDescription>
       </SectionHeader>
 
-      <Switcher type={SWITCH_TYPE.ROLE_FEATURES} options={switchOptions} />
+      <Switcher type={SWITCH_TYPE.ROLE_FEATURES} options={roleOptions} />
 
       <CardsWrapper>
         {CARD_DATA(!switchRoleFeatures ? "SERVICE" : "USER").map((c) => (

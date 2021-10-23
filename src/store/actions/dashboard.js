@@ -1,6 +1,7 @@
 export const SET_DATA = "SET_DATA";
 export const DELETE_DATA = "DELETE_DATA";
 export const DELETE_SHOP_PRODUCT = "DELETE_SHOP_PRODUCT";
+export const UPDATE_SHOP_PRODUCT = "UPDATE_SHOP_PRODUCT";
 
 export const setDashboardData = (data, type) => ({
   type: SET_DATA,
@@ -15,6 +16,15 @@ export const deleteDashboardData = (id, type) => ({
   payload: {
     type,
     id,
+  },
+});
+
+export const updateShopProduct = (id, shopId, product) => ({
+  type: UPDATE_SHOP_PRODUCT,
+  payload: {
+    id,
+    shopId,
+    product,
   },
 });
 

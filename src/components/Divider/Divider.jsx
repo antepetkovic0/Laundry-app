@@ -40,15 +40,15 @@ const DividerText = styled.div`
   min-width: fit-content;
   font-size: ${(props) => {
     if (!props.fontSize) {
-      return "1.4rem";
+      return "1.2rem";
     }
     if (props.fontSize === Size.MEDIUM) {
-      return "1.4rem";
+      return "1.2rem";
     }
     if (props.fontSize === Size.LARGE) {
-      return "1.6rem";
+      return "1.4rem";
     }
-    return "1.2rem";
+    return "1rem";
   }};
 `;
 

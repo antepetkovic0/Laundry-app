@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   padding: 0.5rem 1rem;
   font-size: 1.6rem;
   font-weight: 500;
+  z-index: 10;
 `;
 
 const Back = styled.div`
@@ -54,7 +55,7 @@ const Header = ({ css, title }) => {
       <LinkStyled to={getPath(location.pathname)}>
         <Back>
           <Icon name="back" />
-          <span>{title}</span>
+          {/* <span>{title}</span> */}
         </Back>
       </LinkStyled>
     </Wrapper>

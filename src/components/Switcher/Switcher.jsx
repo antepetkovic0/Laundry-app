@@ -50,8 +50,8 @@ Item.propTypes = {
 Switcher.propTypes = {
   type: PropTypes.string.isRequired,
   options: PropTypes.exact({
-    option_one: PropTypes.string,
-    option_two: PropTypes.string,
+    optionOne: PropTypes.string,
+    optionTwo: PropTypes.string,
   }).isRequired,
 };
 

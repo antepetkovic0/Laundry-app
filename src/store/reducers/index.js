@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   dialog,
   drawerHome: createTypedDrawers(DRAWER_TYPE.HOME),
   switchRoleFeatures: createTypedSwitchers(SWITCH_TYPE.ROLE_FEATURES),
+  switchGoogleAuth: createTypedSwitchers(SWITCH_TYPE.GOOGLE_AUTH_ROLE),
 });
 
 export default rootReducer;

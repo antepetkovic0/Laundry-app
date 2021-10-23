@@ -1,16 +1,35 @@
 import styled from "styled-components";
 import { theme } from "../../styled/theme";
 import { breakpoint } from "../../styled/breakpoint";
+import RegisterImg from "../../assets/images/register_feature_small.jpg";
 
 export const ContentWrapper = styled.div`
-  border: 2px solid ${theme.gray.medium};
-  border-radius: 3px;
+  height: calc(100vh - 38px);
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  margin: 3rem 0;
+  align-items: center;
 
   @media ${breakpoint.tablet} {
     flex-direction: row;
+    justify-content: center;
+  }
+`;
+
+export const Banner = styled.div`
+  width: 100%;
+  min-height: 20rem;
+  padding: 0 2rem;
+  background-image: url(${RegisterImg});
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+
+  @media ${breakpoint.tablet} {
+    width: 50%;
+    min-height: 100%;
   }
 `;
 
@@ -23,7 +42,7 @@ export const Submit = styled.button`
   font-weight: 700;
   font-size: 1.2rem;
   text-transform: uppercase;
-  margin-top: 1rem;
+  margin-top: 2rem;
 
   &:hover {
     opacity: 0.9;

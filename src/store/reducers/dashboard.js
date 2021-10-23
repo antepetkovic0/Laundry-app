@@ -2,6 +2,7 @@ import {
   SET_DATA,
   DELETE_DATA,
   DELETE_SHOP_PRODUCT,
+  UPDATE_SHOP_PRODUCT,
 } from "../actions/dashboard";
 
 const INITIAL_STATE = {
@@ -47,6 +48,25 @@ const dashboard = (state = INITIAL_STATE, action) => {
                 ...shop,
                 products: shop.products.filter(
                   (product) => product.id !== action.payload.id
+                ),
+              }
+        ),
+      };
+    case UPDATE_SHOP_PRODUCT:
+      return {
+        ...state,
+        shops: state.shops.map((shop) =>
+          shop.id !== action.payload.shopId
+            ? shop
+            : {
+                ...shop,
+                products: shop.products.map((product) =>
+                  product.id !== action.payload.id
+                    ? product
+                    : {
+                        ...product,
+                        ...action.payload.product,
+                      }
                 ),
               }
         ),

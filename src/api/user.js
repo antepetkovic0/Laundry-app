@@ -45,6 +45,10 @@ export const declinePendingRequest = (id) => async (dispatch) => {
     await axios.delete(`${URL}/pending/${id}`);
     dispatch(deleteDashboardData(id, "pending"));
   } catch (err) {
-    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+    if (err.response?.data?.authenticationErr) {
+      dispatch({ type: "LOG_OFF" });
+    } else {
+      toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+    }
   }
 };
