@@ -9,18 +9,23 @@ import { breakpoint } from "../../styled/breakpoint";
 import { dashboardMenu, dashboardRoutes } from "./dashRoutes";
 
 const Nav = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  border-radius: 8px;
   padding: 0.5rem;
   background-color: ${theme.bg.def};
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.05);
-  overflow-x: auto;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 
   @media ${breakpoint.tablet} {
     flex-direction: column;
+    height: 100%;
     width: fit-content;
-    overflow-y: auto;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 `;
 

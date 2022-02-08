@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import ReactModal from "react-modal";
 import {
   DialogBody,
@@ -7,18 +8,20 @@ import {
   DialogFooter,
   DialogHeader,
 } from "../../Dashboard/style";
-import { DIALOG_TYPE, SWITCH_TYPE } from "../../../utils/constants";
-import Button from "../../../components/Button/Button";
 import { hideDialog } from "../../../store/actions/dialog";
+import { googleAuth } from "../../../api/auth";
+import { roleOptions } from "../../../components/Switcher/switcherOptions";
+import Button from "../../../components/Button/Button";
 import Switcher from "../../../components/Switcher/Switcher";
 import Icon from "../../../components/Icon/Icon";
-import { roleOptions } from "../../../components/Switcher/switcherOptions";
-import { googleAuth } from "../../../api/auth";
+import { DIALOG_TYPE, SWITCH_TYPE, TOAST_TYPE } from "../../../utils/constants";
+import { toastMessage } from "../../../utils/toast";
 
 const GoogleDialog = () => {
   const { dialog, switchGoogleAuth } = useSelector((state) => state);
   const { googleCredential } = dialog.dialogProps;
 
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const close = () => {
@@ -26,10 +29,20 @@ const GoogleDialog = () => {
   };
 
   const handleAuth = async () => {
-    await googleAuth({
-      roleId: !switchGoogleAuth ? 2 : 3,
-      token: googleCredential,
-    });
+    try {
+      const { data } = await googleAuth({
+        roleId: !switchGoogleAuth ? 2 : 3,
+        token: googleCredential,
+      });
+      if (data.message) {
+        toastMessage(data.message, TOAST_TYPE.SUCCESS);
+      } else {
+        history.push(`/dashboard`);
+      }
+    } catch (err) {
+      console.log(err);
+      toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+    }
     close();
   };
 

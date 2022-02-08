@@ -12,7 +12,7 @@ import { theme } from "../../../styled/theme";
 import Divider from "../../../components/Divider/Divider";
 import Button from "../../../components/Button/Button";
 
-import { auth } from "../../../api/auth";
+import { auth, googleAuth } from "../../../api/auth";
 import { toastMessage } from "../../../utils/toast";
 import { authLabel } from "../../../utils/selectLabel";
 import { DIALOG_TYPE, TOAST_TYPE } from "../../../utils/constants";
@@ -103,6 +103,8 @@ const Form = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
 
+  console.log("form", form);
+
   const dispatch = useDispatch();
 
   const toggleShowPassword = (isRepeatedPass) => {
@@ -119,7 +121,7 @@ const Form = () => {
     setIsSignup(!isSignup);
   };
 
-  const handleSubmit = useCallback(async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("form", form);
     try {
@@ -133,14 +135,17 @@ const Form = () => {
       console.log(err);
       toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
     }
-  }, []);
+  };
 
-  const handleInputChange = useCallback(
-    (e) => {
-      setForm({ ...form, [e.target.name]: e.target.value });
-    },
-    [setForm]
-  );
+  const handleInputChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+  // const handleInputChange = useCallback(
+  //   (e) => {
+  //     setForm({ ...form, [e.target.name]: e.target.value });
+  //   },
+  //   [setForm]
+  // );
 
   const handleConfirmPasswordChange = useCallback(
     (e) => setConfirmPassword(e.target.value),
@@ -159,7 +164,7 @@ const Form = () => {
   //   [setForm]
   // );
 
-  const handleGoogleResponse = (response) => {
+  const handleGoogleResponse = async (response) => {
     dispatch(
       showDialog(DIALOG_TYPE.GOOGLE_AUTH, {
         googleCredential: response.credential,
@@ -168,24 +173,22 @@ const Form = () => {
   };
 
   useEffect(() => {
-    window.google.accounts.id.initialize({
-      client_id:
-        "18898452442-tg7rbb8f1tj8o7vvciqhmikj68sc2qbg.apps.googleusercontent.com",
-      login_uri: "http://localhost:8080",
-      callback: handleGoogleResponse,
-    });
-
-    window.google.accounts.id.renderButton(
-      document.getElementById("googleButton"),
-      {
-        type: "standard",
-        size: "large",
-        locale: "en-US",
-        text: "continue_with",
-      }
-    );
-
-    window.google.accounts.id.prompt();
+    // window.google.accounts.id.initialize({
+    //   client_id:
+    //     "18898452442-tg7rbb8f1tj8o7vvciqhmikj68sc2qbg.apps.googleusercontent.com",
+    //   login_uri: "http://localhost:8080",
+    //   callback: handleGoogleResponse,
+    // });
+    // window.google.accounts.id.renderButton(
+    //   document.getElementById("googleButton"),
+    //   {
+    //     type: "icon",
+    //     shape: "circle",
+    //     size: "large",
+    //     text: "continue_with",
+    //   }
+    // );
+    // window.google.accounts.id.prompt();
   }, []);
 
   return (
@@ -238,7 +241,7 @@ const Form = () => {
           label="Password"
           onChange={handleInputChange}
           iconName={!showPassword ? "visibility" : "visibility_off"}
-          // onIconClick={() => toggleShowPassword(false)}
+          onIconClick={() => toggleShowPassword(false)}
         />
 
         {!isSignup && (
@@ -259,7 +262,6 @@ const Form = () => {
             // onIconClick={() => toggleShowPassword(true)}
           />
         )}
-
         <Submit type="submit">{!isSignup ? "Login" : "Sign up"}</Submit>
         <Divider {...dividerProps} />
         <div id="googleButton" />

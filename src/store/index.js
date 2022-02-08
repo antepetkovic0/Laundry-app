@@ -5,10 +5,14 @@ import rootReducer from "./reducers";
 import storeCache from "../utils/localStorage";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const initialState = storeCache.get("APP_STATE");
+
+// const initialState = {
+//   profile: { isAuth: true },
+// };
 
 export const store = createStore(
   rootReducer,
+  // initialState,
   composeEnhancer(applyMiddleware(thunk))
 );
 

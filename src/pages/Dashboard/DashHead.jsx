@@ -45,7 +45,7 @@ const DashHead = () => {
   return (
     <Wrapper>
       <Welcome>
-        <Avatar />
+        <Avatar src={profile.picture} />
         <div>
           <h4>
             {profile.displayName || `${profile.firstName} ${profile.lastName}`}

@@ -13,6 +13,7 @@ const Item = ({ children, onItemClick }) => (
 
 const Switcher = ({ type, options }) => {
   const [sliderPos, setSliderPos] = useState(5);
+  console.log(sliderPos);
 
   const dispatch = useDispatch();
 

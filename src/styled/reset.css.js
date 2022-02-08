@@ -41,21 +41,27 @@ const GlobalStyle = createGlobalStyle`
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
-  }
-  button:focus {
-    outline: none;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   a {
     color: ${theme.primary.def};
     text-decoration: none;
-  }
-  a:hover {
-    cursor: pointer;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   ul {
     list-style: none;
+  }
+
+  p {
+    color: ${theme.text.alt}
   }
 `;
 

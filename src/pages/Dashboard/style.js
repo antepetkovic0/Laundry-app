@@ -3,18 +3,6 @@ import { Link } from "react-router-dom";
 import { breakpoint } from "../../styled/breakpoint";
 import { theme } from "../../styled/theme";
 
-export const DashWrapper = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  padding: 1rem;
-  min-height: 100vh;
-  background-color: ${theme.bg.alt};
-
-  @media ${breakpoint.tablet} {
-    flex-direction: row;
-  }
-`;
-
 export const Nav = styled.div`
   display: flex;
   justify-content: space-between;

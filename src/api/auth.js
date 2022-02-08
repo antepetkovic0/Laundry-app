@@ -22,13 +22,14 @@ export const getProfile = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`${URL}/api/auth/profile`);
     dispatch(setUserProfile(data));
+    console.log("user data", data);
   } catch (err) {
     console.log(err.response);
-    if (err.response?.data?.authenticationErr) {
-      window.location.href = "http://localhost:3000/auth";
-    } else {
-      console.log("blabla", err);
-    }
+    // if (err.response?.data?.authenticationErr) {
+    //   window.location.href = "http://localhost:3000/auth";
+    // } else {
+    //   console.log("blabla", err);
+    // }
     // toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
   }
 };

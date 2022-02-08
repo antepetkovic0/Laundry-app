@@ -15,8 +15,9 @@ const Wrapper = styled.div`
 `;
 
 const Img = styled.img`
-  max-width: 100%;
-  border-radius: 0.4rem;
+  /* width: 100%;
+  max-height: 300px;
+  object-fit: cover; */
 `;
 
 const Nav = styled.div`
@@ -80,9 +81,9 @@ const SettingsNav = () => {
   const location = useLocation();
   return (
     <Wrapper>
-      <div>
-        <Img src={ImageSettings} alt="Settings" />
-      </div>
+      <h2>Settings</h2>
+      <p>Keep your account up to date</p>
+      <Img src={ImageSettings} alt="Settings" />
       <Nav>
         {links.map(({ to, icon, title, desc }) => (
           <Li to={to}>

@@ -5,13 +5,14 @@ import styled from "styled-components";
 import User from "../../../assets/images/user.png";
 
 const Wrapper = styled.div`
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 100%;
 `;
 
 const Img = styled.img`
   max-width: 100%;
+  border-radius: 100%;
   object-fit: contain;
 `;
 

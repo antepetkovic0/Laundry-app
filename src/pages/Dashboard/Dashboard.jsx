@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Switch } from "react-router-dom";
+import styled from "styled-components";
 
 import { getProfile } from "../../api/auth";
 import { getPendingRequests, getUsers } from "../../api/user";
@@ -10,8 +11,16 @@ import RouteAuth from "../../utils/routeAuth";
 
 import DashNav from "./DashNav";
 import DashHead from "./DashHead";
-import { DashWrapper, Content } from "./style";
 import "../../modal.css";
+import { breakpoint } from "../../styled/breakpoint";
+
+const ContentContainer = styled.div`
+  padding: 2rem 2rem 6rem;
+
+  @media ${breakpoint.tablet} {
+    padding: 2rem 2rem 2rem 6rem;
+  }
+`;
 
 const Dashboard = () => {
   const { profile } = useSelector((state) => state);
@@ -36,10 +45,10 @@ const Dashboard = () => {
 
   if (!isLoaded) return <div className="loader" />;
   return (
-    <DashWrapper>
+    <>
       <DashNav />
-      <Content>
-        <DashHead />
+      <ContentContainer>
+        {/* <DashHead /> */}
         <Switch>
           {dashboardRoutes.map((item) => (
             <RouteAuth
@@ -50,8 +59,8 @@ const Dashboard = () => {
             />
           ))}
         </Switch>
-      </Content>
-    </DashWrapper>
+      </ContentContainer>
+    </>
   );
 };
 
