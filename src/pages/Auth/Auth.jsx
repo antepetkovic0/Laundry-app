@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Switch, Route, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import NotFound from "../Error/NotFound";
@@ -15,8 +16,13 @@ const Wrapper = styled.div`
 `;
 
 const Auth = () => {
+  const history = useHistory();
+  const { profile } = useSelector((state) => state);
+
   useEffect(() => {
-    console.log("runned auth");
+    if (profile.isAuth) {
+      history.push("/dashboard");
+    }
   }, []);
 
   return (

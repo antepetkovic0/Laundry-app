@@ -5,6 +5,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { setUserProfile } from "../store/actions/profile";
 import { TOAST_TYPE } from "../utils/constants";
 import { toastMessage } from "../utils/toast";
+import { setCookie } from "../utils/cookie";
 // const URL = "http://192.168.1.8:8080/clean-api/auth";
 const URL = "http://localhost:8080";
 axios.defaults.withCredentials = true;
@@ -22,6 +23,7 @@ export const getProfile = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`${URL}/api/auth/profile`);
     dispatch(setUserProfile(data));
+    setCookie("user", JSON.stringify(data), 10);
     console.log("user data", data);
   } catch (err) {
     console.log(err.response);

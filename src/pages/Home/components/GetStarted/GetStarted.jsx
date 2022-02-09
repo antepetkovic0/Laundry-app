@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
@@ -40,25 +41,34 @@ const H2 = styled.h2`
   color: ${theme.text.alt};
 `;
 
-const GetStarted = () => (
-  <Section id="get-started">
-    <Intro>
-      <H1>All laundry services in one place</H1>
-      <H2>
-        Whether you are the laundry cleaning owner or just wanna clean your
-        laundry we have something for you
-      </H2>
-      <Link
-        to={{
-          pathname: "/auth",
-          state: { isSignup: true },
-        }}
-      >
-        <Button text="Get Started" />
-      </Link>
-    </Intro>
-    <ToastContainer />
-  </Section>
-);
+const GetStarted = () => {
+  const { profile } = useSelector((state) => state);
+  const { isAuth } = profile;
+
+  return (
+    <Section id="get-started">
+      <Intro>
+        <H1>All laundry services in one place</H1>
+        <H2>
+          Whether you are the laundry cleaning owner or just wanna clean your
+          laundry we have something for you
+        </H2>
+        <Link
+          to={
+            isAuth
+              ? { pathname: "/dashboard" }
+              : {
+                  pathname: "/auth",
+                  state: { isSignup: true },
+                }
+          }
+        >
+          <Button text="Get Started" />
+        </Link>
+      </Intro>
+      <ToastContainer />
+    </Section>
+  );
+};
 
 export default GetStarted;

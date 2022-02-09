@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useRouteMatch, Route } from "react-router-dom";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import NavBar from "./components/NavBar/NavBar";
@@ -10,23 +9,17 @@ import HowItWorks from "./components/HowItWorks/HowItWorks";
 import Features from "./components/Features/Features";
 
 const Home = () => {
-  const { path } = useRouteMatch();
   const { drawerHome } = useSelector((state) => state);
 
-  useEffect(() => {
-    console.log("runned home");
-  }, []);
   return (
-    <div>
-      <Route path={path}>
-        <NavBar />
-        <SideDrawer />
-        {drawerHome && <BackDrop />}
-        <GetStarted />
-        <HowItWorks />
-        <Features />
-      </Route>
-    </div>
+    <>
+      <NavBar />
+      <SideDrawer />
+      {drawerHome && <BackDrop />}
+      <GetStarted />
+      <HowItWorks />
+      <Features />
+    </>
   );
 };
 

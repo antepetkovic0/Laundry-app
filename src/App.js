@@ -13,13 +13,16 @@ import RouteAuth from "./utils/routeAuth";
 import { rules } from "./utils/permissions";
 import "./modal.css";
 import { dashboardRoutes } from "./pages/Dashboard/dashRoutes";
+import Form from "./pages/Auth/components/Form";
+import ForgetPass from "./pages/Auth/components/ForgetPass";
 
 const App = () => (
   <Router>
     <ToastContainer />
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/auth" component={Auth} />
+      <Route path="/auth" component={Form} exact />
+      <Route path="/auth/forget" component={ForgetPass} exact />
       {/* {dashboardRoutes.map((item) => (
         <RouteAuth
           path={item.path}

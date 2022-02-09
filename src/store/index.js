@@ -3,16 +3,22 @@ import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 import storeCache from "../utils/localStorage";
+import { getCookie } from "../utils/cookie";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// const initialState = {
-//   profile: { isAuth: true },
-// };
+const userData = getCookie("user");
+const userInitialState = userData
+  ? { isAuth: true, ...JSON.parse(userData) }
+  : { isAuth: false };
+
+const initialState = {
+  profile: userInitialState,
+};
 
 export const store = createStore(
   rootReducer,
-  // initialState,
+  initialState,
   composeEnhancer(applyMiddleware(thunk))
 );
 
