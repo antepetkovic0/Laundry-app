@@ -10,6 +10,7 @@ import { links } from "./routing";
 import SettingsNav from "./SettingsNav";
 import Appearance from "./Appearance";
 import Account from "./Account";
+import Button from "../../../../components/Button/Button";
 
 const DesktopWrapper = styled.div`
   display: flex;
@@ -37,10 +38,13 @@ const Settings = () => {
   }
 
   return (
-    <Switch>
-      <Route exact path={path} component={SettingsNav} />
-      <Route path={`${path}/appearance`} component={Appearance} />
-    </Switch>
+    <>
+      <Switch>
+        <Route exact path={path} component={SettingsNav} />
+        <Route path={`${path}/appearance`} component={Appearance} />
+      </Switch>
+      <Button type="subtle" text="Logout" />
+    </>
   );
 };
 

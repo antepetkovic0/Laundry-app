@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "../../../../components/Button/Button";
-import Input from "../../../Auth/components/Input";
+import Input from "../../../../components/Input/Input";
 import { createProduct, editProduct } from "../../../../api/product";
 
 const Textarea = styled.textarea`

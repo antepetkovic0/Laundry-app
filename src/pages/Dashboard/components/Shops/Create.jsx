@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { createShop } from "../../../../api/shop";
 import Button from "../../../../components/Button/Button";
 import Back from "../../../../components/Link/Back";
-import Input from "../../../Auth/components/Input";
+import Input from "../../../../components/Input/Input";
 
 const Textarea = styled.textarea`
   margin: 1.6rem 0;

@@ -18,7 +18,7 @@ import { authLabel } from "../../../utils/selectLabel";
 import { DIALOG_TYPE, TOAST_TYPE } from "../../../utils/constants";
 import { showDialog } from "../../../store/actions/dialog";
 import { ContentWrapper, Banner, Submit } from "../style";
-import Input, { Group } from "./Input";
+import Input, { Group } from "../../../components/Input/Input";
 import GoogleDialog from "./GoogleDialog";
 
 const FormContainer = styled.form`

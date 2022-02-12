@@ -70,7 +70,7 @@ const SideDrawer = () => {
           <Li onClick={handleLinkClick}>Contact</Li>
           <Link
             to={{
-              pathname: "/auth",
+              pathname: "/sign-in",
               state: { isSignup: false },
             }}
           >

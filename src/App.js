@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -15,14 +16,29 @@ import "./modal.css";
 import { dashboardRoutes } from "./pages/Dashboard/dashRoutes";
 import Form from "./pages/Auth/components/Form";
 import ForgetPass from "./pages/Auth/components/ForgetPass";
+import AuthLayout from "./layouts/AuthLayout";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+
+const withAuthLayout = (Component) => (props) => (
+  <AuthLayout>
+    {/* All props are passed through to the Component being wrapped */}
+    <Component {...props} /> /
+  </AuthLayout>
+);
+
+const SignInPage = withAuthLayout(SignIn);
+const SignUpPage = withAuthLayout(SignUp);
+const BB = withAuthLayout(ForgetPass);
 
 const App = () => (
   <Router>
     <ToastContainer />
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/auth" component={Form} exact />
-      <Route path="/auth/forget" component={ForgetPass} exact />
+      <Route path="/sign-in" component={SignInPage} />
+      <Route path="/sign-up" component={SignUpPage} />
+      <Route path="/auth/forget" component={BB} exact />
       {/* {dashboardRoutes.map((item) => (
         <RouteAuth
           path={item.path}

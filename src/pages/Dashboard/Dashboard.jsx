@@ -27,12 +27,16 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    console.log("runnned main");
-    dispatch(getProfile());
-  }, []);
+  // useEffect(() => {
+  //   console.log("runnned main");
+  //   dispatch(getProfile());
+  // }, []);
 
   useEffect(() => {
+    if (!profile.isAuth) {
+      dispatch(getProfile());
+    }
+
     if (profile && profile.isAuth) {
       if (profile.roleId === 1) {
         dispatch(getUsers());

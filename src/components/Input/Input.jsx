@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { theme } from "../../../styled/theme";
-import Icon from "../../../components/Icon/Icon";
+import { theme } from "../../styled/theme";
+import Icon from "../Icon/Icon";
 
 export const Group = styled.div`
   margin-bottom: 10px;
@@ -47,42 +47,46 @@ const IconWrapper = styled.div`
   }
 `;
 
-const Input = React.memo(
-  ({ name, type, value, onChange, label, iconName, onIconClick }) => {
-    console.log("rerenders");
-    return (
-      <Group>
-        <Label htmlFor={name}>{label}</Label>
-        <Field
-          type={type}
-          name={name}
-          value={value}
-          onChange={onChange}
-          id={name}
-        />
-        {iconName && (
-          <IconWrapper onClick={onIconClick}>
-            <Icon name={iconName} />
-          </IconWrapper>
-        )}
-      </Group>
-    );
-  }
+const InputField = ({
+  name,
+  type,
+  value,
+  onChange,
+  label,
+  iconName,
+  onIconClick,
+}) => (
+  <Group>
+    <Label htmlFor={name}>{label}</Label>
+    <Field
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      id={name}
+    />
+    {iconName && (
+      <IconWrapper onClick={onIconClick}>
+        <Icon name={iconName} />
+      </IconWrapper>
+    )}
+  </Group>
 );
 
-Input.defaultProps = {
+InputField.defaultProps = {
+  value: undefined,
   iconName: "",
-  onIconClick: undefined,
+  onIconClick: () => null,
 };
 
-Input.propTypes = {
+InputField.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
+  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   iconName: PropTypes.string,
   onIconClick: PropTypes.func,
 };
 
-export default Input;
+export default InputField;

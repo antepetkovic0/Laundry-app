@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "../../../Auth/components/Input";
+import Input from "../../../../components/Input/Input";
 
 const Account = () => {
   const [name, setName] = useState();
