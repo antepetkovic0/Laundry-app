@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 
-import RouteAuth from "../../../../utils/routeAuth";
+import PrivateRoute from "../../../../components/PrivateRoute/PrivateRoute";
 import { rules } from "../../../../utils/permissions";
 
 import AllShops from "./AllShops";
@@ -10,21 +10,21 @@ import SpecificShop from "./SpecificShop";
 
 const Shops = () => (
   <Switch>
-    <RouteAuth
+    <PrivateRoute
       path="/dashboard/shops"
       rule={rules.READ_SHOP}
-      Component={AllShops}
+      component={AllShops}
       exact
     />
-    <RouteAuth
+    <PrivateRoute
       path="/dashboard/shops/create"
       rule={rules.CREATE_SHOP}
-      Component={Create}
+      component={Create}
     />
-    <RouteAuth
+    <PrivateRoute
       path="/dashboard/shops/:slug"
       rule={rules.READ_SHOP}
-      Component={SpecificShop}
+      component={SpecificShop}
     />
   </Switch>
 );

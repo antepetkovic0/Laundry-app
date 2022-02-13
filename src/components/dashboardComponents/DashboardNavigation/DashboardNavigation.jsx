@@ -1,12 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useRouteMatch, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { theme } from "../../styled/theme";
+import { dashboardRoutePath } from "../../../constants/routes";
 
-import Icon from "../../components/Icon/Icon";
-import { breakpoint } from "../../styled/breakpoint";
-import { dashboardMenu, dashboardRoutes } from "./dashRoutes";
+import { breakpoint } from "../../../styled/breakpoint";
+import { theme } from "../../../styled/theme";
+
+import Icon from "../../Icon/Icon";
+import { getDashboardLinksByRole } from "./dashboardLinks";
 
 const Nav = styled.div`
   position: fixed;
@@ -107,29 +109,28 @@ const Signal = styled.div`
   border-radius: 100px;
 `;
 
-const DashNav = () => {
+const DashboardNavigation = () => {
   const { pathname } = useLocation();
+  console.log(pathname);
 
   const { permissions } = useSelector((state) => state.profile.Role);
-  const pendingNum = useSelector((state) => state.dashboard.pending).length;
+  const { pending } = useSelector((state) => state.dashboard);
 
-  if (!permissions) return null;
+  const navigationLinks = getDashboardLinksByRole(permissions);
+
   return (
     <Nav>
-      {dashboardMenu(permissions).map((item) => (
+      {navigationLinks.map((item) => (
         <Li key={item.path} to={item.path} isActive={pathname === item.path}>
           <Icon name={item.iconName} />
           {/* <span>{item.name}</span> */}
-          <>
-            {item.path === "/dashboard/pending" && pendingNum > 0 && <Signal />}
-          </>
+          {item.path ===
+            `/dashboard/${dashboardRoutePath.PENDING_REGISTRATIONS}` &&
+            pending.length > 0 && <Signal />}
         </Li>
       ))}
     </Nav>
   );
-
-  // <Icon name="pending_actions" />
-  //       {pending.length > 0 && <Signal />}
 };
 
-export default DashNav;
+export default DashboardNavigation;

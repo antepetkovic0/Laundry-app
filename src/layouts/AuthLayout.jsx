@@ -61,6 +61,7 @@ const Banner = styled.div`
 const AuthLayout = ({ children }) => {
   const location = useLocation();
   const { pathname } = location;
+
   const linkTo = pathname === "/auth/password-reset" ? "/auth/sign-in" : "/";
 
   return (
@@ -85,29 +86,3 @@ AuthLayout.propTypes = {
 };
 
 export default AuthLayout;
-
-// const Header = ({ css, title }) => {
-//   const location = useLocation();
-
-//   const getPath = (isAuthLocation) => {
-//     const urlTo =
-//       isAuthLocation !== "/auth"
-//         ? {
-//             pathname: "/auth",
-//             state: { isSignup: false },
-//           }
-//         : "/";
-//     return urlTo;
-//   };
-
-//   return (
-//     <Wrapper style={{ ...css }}>
-//       <LinkStyled to={getPath(location.pathname)}>
-//         <Back>
-//           <Icon name="back" />
-//           {/* <span>{title}</span> */}
-//         </Back>
-//       </LinkStyled>
-//     </Wrapper>
-//   );
-// };

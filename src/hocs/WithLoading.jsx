@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Spinner from "@atlaskit/spinner";
 import "../modal.css";
 
 const LoadingWrapper = styled.div`

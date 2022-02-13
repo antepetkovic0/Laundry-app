@@ -1,20 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
-import { checkPermission } from "./permissions";
+import { checkPermission } from "../../utils/permissions";
 
-const RouteAuth = ({ Component, ...props }) => {
+const PrivateRoute = ({ component: Component, rule, ...props }) => {
   const { profile } = useSelector((state) => state);
   const { isAuth } = profile;
 
   if (!isAuth) {
-    return <Redirect to="/auth" />;
+    return <Redirect to="/auth/sign-in" />;
   }
 
   const { permissions } = profile.Role;
-  const access = checkPermission(props.rule, permissions);
+  const access = checkPermission(rule, permissions);
 
   if (isAuth && !access) {
     return <Redirect to="/unauthorized" />;
@@ -25,13 +25,9 @@ const RouteAuth = ({ Component, ...props }) => {
   );
 };
 
-RouteAuth.defaultProps = {
-  rule: "",
+PrivateRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  rule: PropTypes.string.isRequired,
 };
 
-RouteAuth.propTypes = {
-  Component: PropTypes.node.isRequired,
-  rule: PropTypes.string,
-};
-
-export default RouteAuth;
+export default PrivateRoute;
