@@ -6,7 +6,7 @@ import { hideDialog } from "../../../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../../../utils/constants";
 
 import Button from "../../../../components/Button/Button";
-import SectionMessage from "../../../Auth/components/SectionMessage";
+// import SectionMessage from "../../../Auth/components/SectionMessage";
 
 import {
   DialogBody,
@@ -51,7 +51,7 @@ const DeleteDialog = () => {
             </div>
             <div>This action is irreversible.</div>
           </div>
-          <SectionMessage />
+          {/* <SectionMessage /> */}
         </DialogBody>
         <DialogFooter>
           <Button text="Cancel" type="subtle" onClick={close} />

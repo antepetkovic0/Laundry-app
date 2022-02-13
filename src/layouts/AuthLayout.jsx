@@ -60,15 +60,16 @@ const Banner = styled.div`
 
 const AuthLayout = ({ children }) => {
   const location = useLocation();
-  console.log(location);
+  const { pathname } = location;
+
+  const linkTo = pathname === "/password-forgot" ? "/sign-in" : "/";
 
   return (
     <div>
       <Header>
-        <StyledLink to="#">
+        <StyledLink to={linkTo}>
           <BackContainer>
             <Icon name="back" />
-            {/* <span>{title}</span> */}
           </BackContainer>
         </StyledLink>
       </Header>

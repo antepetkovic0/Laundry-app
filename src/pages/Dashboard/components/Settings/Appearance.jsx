@@ -5,7 +5,7 @@ import Radio from "../../../../components/Radio/Radio";
 
 import useDeviceDetect from "../../../../hooks/useDeviceDetect";
 import { theme } from "../../../../styled/theme";
-import Header from "../../../Auth/components/Header";
+// import Header from "../../../Auth/components/Header";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,7 +28,8 @@ const Appearance = () => {
   return (
     <Wrapper style={!isMobile && { padding: "1rem" }}>
       {isMobile ? (
-        <Header title="Appearance" css={{ padding: "0.5rem 0" }} />
+        // <Header title="Appearance" css={{ padding: "0.5rem 0" }} />
+        <div>appearace</div>
       ) : (
         <h2>Appearence</h2>
       )}

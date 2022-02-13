@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import Home from "./pages/Home/Home";
-import Auth from "./pages/Auth/Auth";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotAuthorized from "./pages/Error/NotAuthorized";
 import NotFound from "./pages/Error/NotFound";
@@ -14,11 +13,10 @@ import RouteAuth from "./utils/routeAuth";
 import { rules } from "./utils/permissions";
 import "./modal.css";
 import { dashboardRoutes } from "./pages/Dashboard/dashRoutes";
-import Form from "./pages/Auth/components/Form";
-import ForgetPass from "./pages/Auth/components/ForgetPass";
 import AuthLayout from "./layouts/AuthLayout";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const withAuthLayout = (Component) => (props) => (
   <AuthLayout>
@@ -29,7 +27,7 @@ const withAuthLayout = (Component) => (props) => (
 
 const SignInPage = withAuthLayout(SignIn);
 const SignUpPage = withAuthLayout(SignUp);
-const BB = withAuthLayout(ForgetPass);
+const ForgotPasswordPage = withAuthLayout(ForgotPassword);
 
 const App = () => (
   <Router>
@@ -38,7 +36,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route path="/sign-in" component={SignInPage} />
       <Route path="/sign-up" component={SignUpPage} />
-      <Route path="/auth/forget" component={BB} exact />
+      <Route path="/password-forgot" component={ForgotPasswordPage} />
       {/* {dashboardRoutes.map((item) => (
         <RouteAuth
           path={item.path}

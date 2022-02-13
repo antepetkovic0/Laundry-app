@@ -7,7 +7,7 @@ import { breakpoint } from "../../../styled/breakpoint";
 import { theme } from "../../../styled/theme";
 import Button from "../../Button/Button";
 import Input from "../../Input/Input";
-import { Submit } from "../../../pages/Auth/style";
+import { Submit } from "../styled";
 
 const FormContainer = styled.form`
   padding: 3rem 1rem;
@@ -63,7 +63,7 @@ const SignInForm = ({ onSubmit }) => {
         iconName={!showPassword ? "visibility" : "visibility_off"}
         onIconClick={toggleShowPassword}
       />
-      <Link to="/auth/forget">
+      <Link to="/password-forgot">
         <ForgotPass>
           <Button text="Forgot password?" type="link" />
         </ForgotPass>

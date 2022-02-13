@@ -47,7 +47,7 @@ const IconWrapper = styled.div`
   }
 `;
 
-const InputField = ({
+const Input = ({
   name,
   type,
   value,
@@ -73,20 +73,20 @@ const InputField = ({
   </Group>
 );
 
-InputField.defaultProps = {
+Input.defaultProps = {
   value: undefined,
   iconName: "",
   onIconClick: () => null,
 };
 
-InputField.propTypes = {
+Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   iconName: PropTypes.string,
   onIconClick: PropTypes.func,
 };
 
-export default InputField;
+export default Input;

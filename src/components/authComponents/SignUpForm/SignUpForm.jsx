@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import SelectRolePicker from "../SelectRolePicker/SelectRolePicker.";
 import Input from "../../Input/Input";
-import { Submit } from "../../../pages/Auth/style";
+import { Submit } from "../styled";
 
 const SignUpForm = ({ onSubmit }) => {
   const [form, setForm] = useState({
