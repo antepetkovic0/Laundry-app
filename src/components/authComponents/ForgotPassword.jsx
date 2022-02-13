@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Submit } from "../components/authComponents/styled";
-import Button from "../components/Button/Button";
-import Input from "../components/Input/Input";
+import Button from "../Button/Button";
+import Input from "../Input/Input";
+import { Submit } from "./styled";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

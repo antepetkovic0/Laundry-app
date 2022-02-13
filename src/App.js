@@ -12,32 +12,22 @@ import RouteAuth from "./utils/routeAuth";
 import { rules } from "./utils/permissions";
 import "./modal.css";
 import { dashboardRoutes } from "./pages/Dashboard/dashRoutes";
-import AuthLayout from "./layouts/AuthLayout";
 import Home from "./pages/Home";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import ForgotPassword from "./pages/ForgotPassword";
-
-const withAuthLayout = (Component) => (props) =>
-  (
-    <AuthLayout>
-      {/* All props are passed through to the Component being wrapped */}
-      <Component {...props} /> /
-    </AuthLayout>
-  );
-
-const SignInPage = withAuthLayout(SignIn);
-const SignUpPage = withAuthLayout(SignUp);
-const ForgotPasswordPage = withAuthLayout(ForgotPassword);
+import AuthRoutes from "./pages/AuthRoutes";
 
 const App = () => (
   <Router>
     <ToastContainer />
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route
+        path="/auth"
+        render={({ match }) => <AuthRoutes basePath={match.path} />}
+      />
+      {/* <Route exact path="/" component={Home} />
       <Route path="/sign-in" component={SignInPage} />
       <Route path="/sign-up" component={SignUpPage} />
-      <Route path="/password-forgot" component={ForgotPasswordPage} />
+      <Route path="/password-forgot" component={ForgotPasswordPage} /> */}
 
       <Route
         path="/dashboard"

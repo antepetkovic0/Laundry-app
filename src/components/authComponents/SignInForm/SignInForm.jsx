@@ -63,7 +63,7 @@ const SignInForm = ({ onSubmit }) => {
         iconName={!showPassword ? "visibility" : "visibility_off"}
         onIconClick={toggleShowPassword}
       />
-      <Link to="/password-forgot">
+      <Link to="/auth/password-reset">
         <ForgotPass>
           <Button text="Forgot password?" type="link" />
         </ForgotPass>

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { auth } from "../api/auth";
-import SignUpForm from "../components/authComponents/SignUpForm/SignUpForm";
-import { theme } from "../styled/theme";
-import { TOAST_TYPE } from "../utils/constants";
-import { toastMessage } from "../utils/toast";
+import { auth } from "../../api/auth";
+import SignUpForm from "./SignUpForm/SignUpForm";
+import { theme } from "../../styled/theme";
+import { TOAST_TYPE } from "../../utils/constants";
+import { toastMessage } from "../../utils/toast";
 
 const AuthSwap = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ const SignUp = () => {
       <SignUpForm onSubmit={handleSubmit} />
       <AuthSwap>
         <span style={{ marginRight: "5px" }}>Joined us before?</span>
-        <Link to="sign-in">Sign in</Link>
+        <Link to="/auth/sign-in">Sign in</Link>
       </AuthSwap>
     </>
   );

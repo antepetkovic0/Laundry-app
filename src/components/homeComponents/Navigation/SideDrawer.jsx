@@ -68,7 +68,7 @@ const SideDrawer = () => {
             <a href="#features">Features</a>
           </Li>
           <Li onClick={handleLinkClick}>Contact</Li>
-          <Link to="/sign-in">
+          <Link to="/auth/sign-in">
             <Li onClick={handleLinkClick}>
               <Button text="Sign In" buttonType="primary" />
             </Li>

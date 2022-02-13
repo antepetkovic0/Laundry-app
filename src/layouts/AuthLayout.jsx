@@ -61,8 +61,7 @@ const Banner = styled.div`
 const AuthLayout = ({ children }) => {
   const location = useLocation();
   const { pathname } = location;
-
-  const linkTo = pathname === "/password-forgot" ? "/sign-in" : "/";
+  const linkTo = pathname === "/auth/password-reset" ? "/auth/sign-in" : "/";
 
   return (
     <div>
