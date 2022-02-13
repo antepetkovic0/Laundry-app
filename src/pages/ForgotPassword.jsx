@@ -4,7 +4,7 @@ import Button from "../components/Button/Button";
 import Input from "../components/Input/Input";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("s");
+  const [email, setEmail] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);

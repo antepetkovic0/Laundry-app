@@ -7,13 +7,13 @@ import {
   SectionBorder,
   SectionTitle,
   SectionDescription,
-} from "../../style";
-import { SWITCH_TYPE } from "../../../../utils/constants";
-import { CARD_DATA } from "../../cardData";
+} from "../styled";
+import { SWITCH_TYPE } from "../../../utils/constants";
+import { HOW_IT_WORKS_DATA } from "./cards";
 
-import Switcher from "../../../../components/Switcher/Switcher";
-import { roleOptions } from "../../../../components/Switcher/switcherOptions";
-import Card from "../Card/Card";
+import Switcher from "../../Switcher/Switcher";
+import { roleOptions } from "../../Switcher/switcherOptions";
+import Card from "./Card";
 
 const Section = styled.section`
   padding: 10rem 3rem;
@@ -48,9 +48,11 @@ const HowItWorks = () => {
       <Switcher type={SWITCH_TYPE.ROLE_FEATURES} options={roleOptions} />
 
       <CardsWrapper>
-        {CARD_DATA(!switchRoleFeatures ? "SERVICE" : "USER").map((c) => (
-          <Card key={c.title} data={c} />
-        ))}
+        {HOW_IT_WORKS_DATA(!switchRoleFeatures ? "SERVICE" : "USER").map(
+          (card) => (
+            <Card key={card.key} data={card} />
+          )
+        )}
       </CardsWrapper>
     </Section>
   );

@@ -2,11 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Banner from "../../../../assets/images/banner.jpg";
-import Button from "../../../../components/Button/Button";
-import { theme } from "../../../../styled/theme";
+import { theme } from "../../../styled/theme";
+import Banner from "../../../assets/images/banner.jpg";
+import Button from "../../Button/Button";
 
 const Section = styled.section`
   height: 100vh;
@@ -22,7 +20,7 @@ const Section = styled.section`
   background-position: top;
 `;
 
-const Intro = styled.div`
+const BannerTextContainer = styled.div`
   margin: 0 auto;
   text-align: center;
   max-width: 30rem;
@@ -45,28 +43,20 @@ const GetStarted = () => {
   const { profile } = useSelector((state) => state);
   const { isAuth } = profile;
 
+  const linkTo = isAuth ? "/dashboard" : "/sign-in";
+
   return (
     <Section id="get-started">
-      <Intro>
+      <BannerTextContainer>
         <H1>All laundry services in one place</H1>
         <H2>
           Whether you are the laundry cleaning owner or just wanna clean your
           laundry we have something for you
         </H2>
-        <Link
-          to={
-            isAuth
-              ? { pathname: "/dashboard" }
-              : {
-                  pathname: "/auth",
-                  state: { isSignup: true },
-                }
-          }
-        >
+        <Link to={linkTo}>
           <Button text="Get Started" />
         </Link>
-      </Intro>
-      <ToastContainer />
+      </BannerTextContainer>
     </Section>
   );
 };

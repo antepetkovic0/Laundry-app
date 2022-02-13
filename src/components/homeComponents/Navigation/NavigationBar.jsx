@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Logo from "../../../../components/Logo/Logo";
-import NavToggle from "../../../../components/NavToggle/NavToggle";
+import Logo from "../../Logo/Logo";
+import Hamburger from "./Hamburger";
 
 const Nav = styled.nav`
   position: fixed;
@@ -15,11 +15,11 @@ const Nav = styled.nav`
   align-items: center;
 `;
 
-const NavBar = () => (
+const NavigationBar = () => (
   <Nav>
     <Logo />
-    <NavToggle forDrawerType="drawerHome" />
+    <Hamburger />
   </Nav>
 );
 
-export default NavBar;
+export default NavigationBar;

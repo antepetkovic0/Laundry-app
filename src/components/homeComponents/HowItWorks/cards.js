@@ -1,13 +1,13 @@
-import RegisterS from "../../assets/images/register_feature_small.jpg";
-import RegisterL from "../../assets/images/register_feature_large.jpg";
-import OrderS from "../../assets/images/order_feature_small.jpg";
-import OrderL from "../../assets/images/order_feature_large.jpg";
-import ManageServiceS from "../../assets/images/manage_service_feature_small.jpg";
-import ManageServiceL from "../../assets/images/manage_service_feature_large.jpg";
-import DeliveryS from "../../assets/images/delivery_feature_small.jpg";
-import DeliveryL from "../../assets/images/delivery_feature_large.jpg";
+import RegisterS from "../../../assets/images/register_feature_small.jpg";
+import RegisterL from "../../../assets/images/register_feature_large.jpg";
+import OrderS from "../../../assets/images/order_feature_small.jpg";
+import OrderL from "../../../assets/images/order_feature_large.jpg";
+import ManageServiceS from "../../../assets/images/manage_service_feature_small.jpg";
+import ManageServiceL from "../../../assets/images/manage_service_feature_large.jpg";
+import DeliveryS from "../../../assets/images/delivery_feature_small.jpg";
+import DeliveryL from "../../../assets/images/delivery_feature_large.jpg";
 
-export const CARD_DATA = (role) => [
+export const HOW_IT_WORKS_DATA = (role) => [
   {
     key: "step_one",
     imageS: RegisterS,

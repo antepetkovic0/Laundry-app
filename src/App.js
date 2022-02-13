@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 
-import Home from "./pages/Home/Home";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotAuthorized from "./pages/Error/NotAuthorized";
 import NotFound from "./pages/Error/NotFound";
@@ -14,6 +13,7 @@ import { rules } from "./utils/permissions";
 import "./modal.css";
 import { dashboardRoutes } from "./pages/Dashboard/dashRoutes";
 import AuthLayout from "./layouts/AuthLayout";
+import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";

@@ -1,10 +1,8 @@
-/* eslint-disable react/prop-types */
-import React, { useState } from "react";
-// import PropTypes from "prop-types";
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import { useImageOnLoad } from "../../../../hooks/useImageOnLoad";
-
-import { theme } from "../../../../styled/theme";
+import { theme } from "../../../styled/theme";
+import { useImageOnLoad } from "../../../hooks/useImageOnLoad";
 
 const Wrapper = styled.div`
   width: 25rem;
@@ -70,10 +68,14 @@ const Card = ({ data }) => {
   );
 };
 
-// Card.propTypes = {
-//   image: PropTypes.node.isRequired,
-//   title: PropTypes.string.isRequired,
-//   description: PropTypes.string.isRequired,
-// };
+Card.propTypes = {
+  data: PropTypes.exact({
+    key: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    imageS: PropTypes.node,
+    imageL: PropTypes.node,
+  }).isRequired,
+};
 
 export default Card;

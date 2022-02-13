@@ -1,10 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-
-import { theme } from "../../styled/theme";
-import { openDrawer } from "../../store/actions/drawer";
+import { theme } from "../../../styled/theme";
+import { openDrawer } from "../../../store/actions/drawer";
 
 const Line = styled.span`
   &,
@@ -64,8 +62,8 @@ const Button = styled.button`
   `}
 `;
 
-const NavToggle = ({ forDrawerType }) => {
-  const isDrawerOpen = useSelector((state) => state[forDrawerType]);
+const Hamburger = () => {
+  const isDrawerOpen = useSelector((state) => state.drawerHome);
 
   const dispatch = useDispatch();
 
@@ -80,8 +78,4 @@ const NavToggle = ({ forDrawerType }) => {
   );
 };
 
-NavToggle.propTypes = {
-  forDrawerType: PropTypes.string.isRequired,
-};
-
-export default NavToggle;
+export default Hamburger;

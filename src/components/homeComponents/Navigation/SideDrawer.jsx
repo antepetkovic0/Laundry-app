@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { theme } from "../../../../styled/theme";
-import { closeDrawer } from "../../../../store/actions/drawer";
-import { DRAWER_TYPE } from "../../../../utils/constants";
+import { theme } from "../../../styled/theme";
+import { closeDrawer } from "../../../store/actions/drawer";
+import { DRAWER_TYPE } from "../../../utils/constants";
 
-import Button from "../../../../components/Button/Button";
-import Logo from "../../../../components/Logo/Logo";
+import Button from "../../Button/Button";
+import Logo from "../../Logo/Logo";
 
-const Div = styled.div`
+const DrawerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +54,7 @@ const SideDrawer = () => {
   };
 
   return (
-    <Div isOpened={drawerHome}>
+    <DrawerContainer isOpened={drawerHome}>
       <Logo />
       <nav style={{ marginTop: "1.5rem" }}>
         <ul>
@@ -68,19 +68,14 @@ const SideDrawer = () => {
             <a href="#features">Features</a>
           </Li>
           <Li onClick={handleLinkClick}>Contact</Li>
-          <Link
-            to={{
-              pathname: "/sign-in",
-              state: { isSignup: false },
-            }}
-          >
+          <Link to="/sign-in">
             <Li onClick={handleLinkClick}>
               <Button text="Sign In" buttonType="primary" />
             </Li>
           </Link>
         </ul>
       </nav>
-    </Div>
+    </DrawerContainer>
   );
 };
 

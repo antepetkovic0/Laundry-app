@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { closeDrawer } from "../../store/actions/drawer";
+import { closeDrawer } from "../../../store/actions/drawer";
 
 const Wrapper = styled.div`
   position: fixed;
