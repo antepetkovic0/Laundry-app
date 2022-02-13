@@ -24,15 +24,19 @@ export const toastMessage = (message, type) => {
   if (type === TOAST_TYPE.SUCCESS) {
     return toast.success(<ToastContent message={message} />, toastOptions);
   }
+
   if (type === TOAST_TYPE.ERROR) {
     return toast.error(<ToastContent message={message} />, toastOptions);
   }
+
   if (type === TOAST_TYPE.WARNING) {
     return toast.warning(<ToastContent message={message} />, toastOptions);
   }
+
   if (type === TOAST_TYPE.INFO) {
     return toast.info(<ToastContent message={message} />, toastOptions);
   }
+
   return toast(<ToastContent message={message} />, toastOptions);
 };
 
