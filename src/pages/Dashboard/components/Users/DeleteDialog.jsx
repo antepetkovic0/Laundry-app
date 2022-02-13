@@ -30,7 +30,7 @@ const DeleteDialog = () => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteUser(userId));
+    // dispatch(deleteUser(userId));
     close();
   };
 

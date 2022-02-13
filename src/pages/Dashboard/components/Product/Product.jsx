@@ -90,11 +90,8 @@ const Actions = styled.div`
 
 const Product = ({ product }) => {
   const { profile } = useSelector((state) => state);
-  const {
-    setProductCreateOrEdit,
-    setProductEditMode,
-    setProductForm,
-  } = useContext(ProductFormContext);
+  const { setProductCreateOrEdit, setProductEditMode, setProductForm } =
+    useContext(ProductFormContext);
 
   const dispatch = useDispatch();
 

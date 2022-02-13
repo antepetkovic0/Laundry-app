@@ -18,12 +18,13 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
 
-const withAuthLayout = (Component) => (props) => (
-  <AuthLayout>
-    {/* All props are passed through to the Component being wrapped */}
-    <Component {...props} /> /
-  </AuthLayout>
-);
+const withAuthLayout = (Component) => (props) =>
+  (
+    <AuthLayout>
+      {/* All props are passed through to the Component being wrapped */}
+      <Component {...props} /> /
+    </AuthLayout>
+  );
 
 const SignInPage = withAuthLayout(SignIn);
 const SignUpPage = withAuthLayout(SignUp);
@@ -37,15 +38,7 @@ const App = () => (
       <Route path="/sign-in" component={SignInPage} />
       <Route path="/sign-up" component={SignUpPage} />
       <Route path="/password-forgot" component={ForgotPasswordPage} />
-      {/* {dashboardRoutes.map((item) => (
-        <RouteAuth
-          path={item.path}
-          component={item.component}
-          // exact
-          rule={item.rule}
-          exact={item.exact}
-        />
-      ))} */}
+
       <Route
         path="/dashboard"
         component={Dashboard}
