@@ -2,16 +2,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
-import { deleteShop } from "../../../../api/shop";
-import { hideDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../../utils/constants";
-import Button from "../../../../components/Button/Button";
+import { deleteShop } from "../../../api/shop";
+import { hideDialog } from "../../../store/actions/dialog";
+import { DIALOG_TYPE } from "../../../utils/constants";
+import Button from "../../Button/Button";
 import {
   DialogBody,
   DialogContent,
   DialogFooter,
   DialogHeader,
-} from "../../style";
+} from "../../../pages/Dashboard/style";
 
 const DeleteDialog = () => {
   const {

@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 
-import PrivateRoute from "../../../../components/PrivateRoute/PrivateRoute";
-import { rules } from "../../../../utils/permissions";
+import PrivateRoute from "../../PrivateRoute/PrivateRoute";
+import { rules } from "../../../utils/permissions";
 
 import AllShops from "./AllShops";
 import Create from "./Create";

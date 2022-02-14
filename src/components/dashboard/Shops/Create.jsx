@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { createShop } from "../../../../api/shop";
-import Button from "../../../../components/Button/Button";
-import Back from "../../../../components/Link/Back";
-import Input from "../../../../components/Input/Input";
+import { createShop } from "../../../api/shop";
+import Button from "../../Button/Button";
+import Back from "../../Link/Back";
+import Input from "../../Input/Input";
 
 const Textarea = styled.textarea`
   margin: 1.6rem 0;

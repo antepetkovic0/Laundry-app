@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { dashboardRoutePath } from "../../../constants/routes";
+import { dashboardRoutePath } from "../../../constants/routePaths";
 
 import { breakpoint } from "../../../styled/breakpoint";
 import { theme } from "../../../styled/theme";
@@ -110,8 +110,9 @@ const Signal = styled.div`
 `;
 
 const DashboardNavigation = () => {
-  const { pathname } = useLocation();
-  console.log(pathname);
+  const location = useLocation();
+  const { pathname } = location;
+  console.log(location);
 
   const { permissions } = useSelector((state) => state.profile.Role);
   const { pending } = useSelector((state) => state.dashboard);
@@ -121,7 +122,11 @@ const DashboardNavigation = () => {
   return (
     <Nav>
       {navigationLinks.map((item) => (
-        <Li key={item.path} to={item.path} isActive={pathname === item.path}>
+        <Li
+          key={item.path}
+          to={item.path}
+          isActive={pathname === `/dashboard/${item.path}`}
+        >
           <Icon name={item.iconName} />
           {/* <span>{item.name}</span> */}
           {item.path ===

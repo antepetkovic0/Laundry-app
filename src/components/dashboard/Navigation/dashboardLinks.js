@@ -1,4 +1,4 @@
-import { dashboardRoutes } from "../../../constants/routes";
+import { dashboardRoutes } from "../../../pages/routes";
 import { checkPermission } from "../../../utils/permissions";
 
 export const getDashboardLinksByRole = (permissions) => {

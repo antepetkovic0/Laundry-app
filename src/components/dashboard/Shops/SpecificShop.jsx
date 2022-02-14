@@ -2,13 +2,13 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { breakpoint } from "../../../../styled/breakpoint";
-import Back from "../../../../components/Link/Back";
-import Button from "../../../../components/Button/Button";
-import ProductForm from "../Product/Form";
-import ProductList from "../Product/ProductList";
-import { ProductFormContext } from "../Product/ProductFormContext";
-import { Roles } from "../../../../utils/constants";
+import { breakpoint } from "../../../styled/breakpoint";
+import Back from "../../Link/Back";
+import Button from "../../Button/Button";
+import ProductForm from "../../../pages/Dashboard/components/Product/Form";
+import ProductList from "../../../pages/Dashboard/components/Product/ProductList";
+import { ProductFormContext } from "../../../pages/Dashboard/components/Product/ProductFormContext";
+import { Roles } from "../../../utils/constants";
 
 const ShopBox = styled.div`
   display: flex;

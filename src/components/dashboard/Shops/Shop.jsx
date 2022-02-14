@@ -2,13 +2,13 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { theme } from "../../../../styled/theme";
-import CaretLink from "../CaretLink";
-import { TableAction, TableActionsGroup } from "../../style";
-import Icon from "../../../../components/Icon/Icon";
-import { DIALOG_TYPE, Roles } from "../../../../utils/constants";
-import { showDialog } from "../../../../store/actions/dialog";
+import { TableAction, TableActionsGroup } from "../../../pages/Dashboard/style";
+import Icon from "../../Icon/Icon";
+import { DIALOG_TYPE, Roles } from "../../../utils/constants";
 import DeleteDialog from "./DeleteDialog";
+import { theme } from "../../../styled/theme";
+import CaretLink from "../../../pages/Dashboard/components/CaretLink";
+import { showDialog } from "../../../store/actions/dialog";
 
 const Box = styled.div`
   height: 20rem;

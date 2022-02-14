@@ -1,22 +1,18 @@
-import Cart from "../pages/Dashboard/components/Cart/Cart";
-import Orders from "../pages/Dashboard/components/Orders/Orders";
-import Overview from "../pages/Dashboard/components/Overview/Overview";
-import Pending from "../pages/Dashboard/components/Pending/Pending";
-import Settings from "../pages/Dashboard/components/Settings/Settings";
-import Shops from "../pages/Dashboard/components/Shops/Shops";
-import Users from "../pages/Dashboard/components/Users/Users";
+import Cart from "./Dashboard/components/Cart/Cart";
+import Orders from "./Dashboard/components/Orders/Orders";
+import Overview from "./Dashboard/components/Overview/Overview";
+import Pending from "./Dashboard/components/Pending/Pending";
+import Settings from "./Dashboard/components/Settings/Settings";
+import Users from "./Dashboard/components/Users/Users";
 
-import { permissionRules } from "./permissions";
+import AllShops from "../components/dashboard/Shops/AllShops";
+import SpecificShop from "../components/dashboard/Shops/SpecificShop";
+import Create from "../components/dashboard/Shops/Create";
 
-export const dashboardRoutePath = {
-  OVERVIEW: "overview",
-  USERS: "users",
-  SHOPS: "shops",
-  PENDING_REGISTRATIONS: "pending-registrations",
-  ORDERS: "orders",
-  CART: "cart",
-  SETTINGS: "settings",
-};
+import { permissionRules } from "../constants/permissions";
+import { dashboardRoutePath } from "../constants/routePaths";
+import { rules } from "../utils/permissions";
+import ShopsRoutes from "./ShopsRoutes";
 
 export const dashboardRoutes = [
   {
@@ -37,7 +33,7 @@ export const dashboardRoutes = [
     path: dashboardRoutePath.SHOPS,
     name: "Shops",
     iconName: "business",
-    component: Shops,
+    component: ShopsRoutes,
     rule: permissionRules.READ_SHOP,
   },
   {

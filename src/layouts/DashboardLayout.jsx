@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { breakpoint } from "../styled/breakpoint";
-import DashboardNavigation from "../components/dashboardComponents/DashboardNavigation/DashboardNavigation";
+import DashboardNavigation from "../components/dashboard/Navigation/DashboardNavigation";
 
 const ContentContainer = styled.div`
   padding: 2rem 2rem 6rem;

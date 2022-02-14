@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { theme } from "../../../../styled/theme";
-import { Roles } from "../../../../utils/constants";
+import { theme } from "../../../styled/theme";
+import { Roles } from "../../../utils/constants";
 import Shop from "./Shop";
 
 const List = styled.div`
