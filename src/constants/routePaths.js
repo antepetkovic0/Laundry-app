@@ -1,5 +1,5 @@
 export const dashboardRoutePath = {
-  OVERVIEW: "overview",
+  OVERVIEW: "",
   USERS: "users",
   SHOPS: "shops",
   PENDING_REGISTRATIONS: "pending-registrations",

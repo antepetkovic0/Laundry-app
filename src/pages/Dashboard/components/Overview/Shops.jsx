@@ -7,7 +7,8 @@ import CaretLink from "../CaretLink";
 import { Wrapper, OverviewTitle, Content, SubTitle, ShopAvatar } from "./style";
 
 const Shops = () => {
-  const { shops } = useSelector((state) => state.dashboard);
+  const { count, list } = useSelector((state) => state.dashboard.shops);
+  const shop = list[0] ?? {};
 
   return (
     <Wrapper gridArea="service">
@@ -15,20 +16,20 @@ const Shops = () => {
       <Content>
         <div style={{ marginBottom: "10px" }}>
           <SubTitle>Total</SubTitle>
-          {shops.length}
+          {count}
         </div>
-        {shops.length > 0 ? (
+        {count > 0 ? (
           <>
             <div style={{ marginBottom: "10px" }}>
               <SubTitle>Last created</SubTitle>
-              {`${shops[0].name}`}, {isoToLocaleDate(shops[0].createdAt)}
+              {`${shop.name}`}, {isoToLocaleDate(shop.createdAt)}
             </div>
             <div>
               <SubTitle>Owner</SubTitle>
-              {`${shops[0].User.firstName} ${shops[0].User.lastName}`}
+              {`${shop.User.firstName} ${shop.User.lastName}`}
             </div>
             <ShopAvatar>
-              <img src={shops[0].image} alt={shops[0].name} />
+              <img src={shop.image} alt={shop.name} />
             </ShopAvatar>
           </>
         ) : (

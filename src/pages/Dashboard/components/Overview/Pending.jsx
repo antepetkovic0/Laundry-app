@@ -7,7 +7,8 @@ import CaretLink from "../CaretLink";
 import { Wrapper, OverviewTitle, Content, SubTitle } from "./style";
 
 const Pending = () => {
-  const { pending } = useSelector((state) => state.dashboard);
+  const { count, list } = useSelector((state) => state.dashboard.pending);
+  const user = list[0] ?? {};
 
   return (
     <Wrapper gridArea="pending">
@@ -15,14 +16,14 @@ const Pending = () => {
       <Content>
         <div style={{ marginBottom: "10px" }}>
           <SubTitle>Total</SubTitle>
-          {pending.length}
+          {count}
         </div>
-        {pending.length > 0 ? (
+        {count ? (
           <>
             <div>
               <SubTitle>Last signed</SubTitle>
-              {`${pending[0].firstName} ${pending[0].lastName}`},{" "}
-              {isoToLocaleDate(pending[0].createdAt)}
+              {`${user.firstName} ${user.lastName}`},{" "}
+              {isoToLocaleDate(user.createdAt)}
             </div>
           </>
         ) : (

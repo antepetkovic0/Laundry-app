@@ -21,6 +21,7 @@ export const dashboardRoutes = [
     iconName: "dashboard",
     component: Overview,
     rule: permissionRules.MANAGE_DASHBOARD,
+    exact: true,
   },
   {
     path: dashboardRoutePath.USERS,
@@ -28,6 +29,7 @@ export const dashboardRoutes = [
     iconName: "groups",
     component: Users,
     rule: permissionRules.MANAGE_USER,
+    exact: false,
   },
   {
     path: dashboardRoutePath.SHOPS,
@@ -35,6 +37,7 @@ export const dashboardRoutes = [
     iconName: "business",
     component: ShopsRoutes,
     rule: permissionRules.READ_SHOP,
+    exact: false,
   },
   {
     path: dashboardRoutePath.PENDING_REGISTRATIONS,
@@ -42,6 +45,7 @@ export const dashboardRoutes = [
     iconName: "pending_actions",
     component: Pending,
     rule: permissionRules.MANAGE_USER,
+    exact: false,
   },
   {
     path: dashboardRoutePath.ORDERS,
@@ -49,6 +53,7 @@ export const dashboardRoutes = [
     iconName: "orders",
     component: Orders,
     rule: permissionRules.READ_ORDER,
+    exact: false,
   },
   {
     path: dashboardRoutePath.CART,
@@ -56,6 +61,7 @@ export const dashboardRoutes = [
     iconName: "shopping_cart",
     component: Cart,
     rule: permissionRules.MANAGE_CART,
+    exact: false,
   },
   {
     path: dashboardRoutePath.SETTINGS,
@@ -63,5 +69,6 @@ export const dashboardRoutes = [
     iconName: "settings",
     component: Settings,
     rule: permissionRules.MANAGE_DASHBOARD,
+    exact: false,
   },
 ];

@@ -1,12 +1,10 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { theme } from "../../styled/theme";
-
-import { auth } from "../../api/auth";
-import { toastMessage } from "../../utils/toast";
-import { TOAST_TYPE } from "../../utils/constants";
+import { loginUser } from "../../api/auth";
 import SignInForm from "./SignInForm/SignInForm";
 
 const AuthSwap = styled.div`
@@ -22,19 +20,10 @@ const AuthSwap = styled.div`
 
 const SignIn = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (formData) => {
-    try {
-      const { data } = await auth(formData);
-      if (data.message) {
-        toastMessage(data.message, TOAST_TYPE.SUCCESS);
-      } else {
-        history.push(`/dashboard`);
-      }
-    } catch (err) {
-      console.log(err);
-      toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
-    }
+    dispatch(loginUser(formData, history));
   };
 
   return (

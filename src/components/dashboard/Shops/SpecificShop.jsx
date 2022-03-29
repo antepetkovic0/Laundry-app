@@ -37,10 +37,11 @@ const Info = styled.div`
 
 const SpecificShop = () => {
   const { slug } = useParams();
-  const { Role } = useSelector((state) => state.profile);
-  const { shops } = useSelector((state) => state.dashboard);
+  const { role } = useSelector((state) => state.profile);
+  const { list: shops } = useSelector((state) => state.shops);
 
   const shop = shops.find((item) => item.slug === slug);
+
   if (!shop) return <div>No specific shop!</div>;
 
   const [productCreateOrEdit, setProductCreateOrEdit] = useState(false);
@@ -91,7 +92,7 @@ const SpecificShop = () => {
       <Back to="/dashboard/shops" title="Shop info" />
       <ShopBox>
         <Image>
-          <img src={shop.image} alt={shop.slug} />
+          <img src={shop.image} alt="shop" />
         </Image>
         <Info>
           <h1>{shop.name}</h1>
@@ -107,7 +108,7 @@ const SpecificShop = () => {
         value={{ ...contextGetter, ...contextSetter }}
       >
         <ProductList products={shop.products} />
-        {Role.title === Roles.SERVICE && (
+        {role.title === Roles.SERVICE && (
           <>
             <div style={{ textAlign: "right", marginTop: "1.6rem" }}>
               {!productCreateOrEdit && (

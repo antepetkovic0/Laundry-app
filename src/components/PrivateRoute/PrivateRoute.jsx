@@ -13,7 +13,7 @@ const PrivateRoute = ({ component: Component, rule, ...props }) => {
     return <Redirect to="/auth/sign-in" />;
   }
 
-  const { permissions } = profile.Role;
+  const { permissions } = profile.role;
   const access = checkPermission(rule, permissions);
 
   if (isAuth && !access) {

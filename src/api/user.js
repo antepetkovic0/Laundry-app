@@ -3,21 +3,34 @@ import {
   deleteDashboardData,
   setDashboardData,
 } from "../store/actions/dashboard";
+import { getUsers, setUsersData } from "../store/actions/users";
 import { TOAST_TYPE } from "../utils/constants";
 import { toastMessage } from "../utils/toast";
+import { httpClient } from "./client";
 
-const URL = "http://localhost:8080/api/users";
-axios.defaults.withCredentials = true;
-axios.defaults.credentials = "include";
-
-export const getUsers = () => async (dispatch) => {
+export const fetchUsers = () => async (dispatch) => {
+  dispatch(getUsers());
   try {
-    const { data } = await axios.get(`${URL}`);
-    dispatch(setDashboardData(data, "users"));
+    const { data } = await httpClient.get("/users");
+    dispatch(setUsersData(data));
   } catch (err) {
-    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+    console.log("we are in err");
+    // if (err.response.data.authenticationErr) {
+    //   dispatch(logoutUser());
+    // }
+    // dispatch(setShopsError(err.response.data.authenticationErr));
+    // toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
   }
 };
+
+// export const getUsers = () => async (dispatch) => {
+//   try {
+//     const { data } = await axios.get(`${URL}`);
+//     dispatch(setDashboardData(data, "users"));
+//   } catch (err) {
+//     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+//   }
+// };
 
 export const getPendingRequests = () => async (dispatch) => {
   try {

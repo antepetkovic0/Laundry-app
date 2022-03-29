@@ -18,10 +18,10 @@ import {
 const DeleteDialog = () => {
   const {
     dialog,
-    dashboard: { users },
+    users: { list },
   } = useSelector((state) => state);
   const { userId } = dialog.dialogProps;
-  const targetUser = users.find((user) => user.id === userId);
+  const targetUser = list.find((user) => user.id === userId);
 
   const dispatch = useDispatch();
 

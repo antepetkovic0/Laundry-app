@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Roles } from "../../../../utils/constants";
 import { breakpoint } from "../../../../styled/breakpoint";
@@ -10,6 +10,7 @@ import Shops from "./Shops";
 import Calendar from "./Calendar";
 import Orders from "./Orders";
 import Revenue from "./Revenue";
+import { fetchDashboardData } from "../../../../api/dashboard";
 
 const Wrapper = styled.div`
   display: grid;
@@ -89,21 +90,29 @@ const Wrapper = styled.div`
 `;
 
 const Overview = () => {
-  const { Role } = useSelector((state) => state.profile);
+  const { role } = useSelector((state) => state.profile);
+  const { loading, error } = useSelector((state) => state.dashboard);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    console.log("running overview");
+    dispatch(fetchDashboardData());
   }, []);
 
+  if (error) return <div>{error}</div>;
+
+  if (loading) return <div className="loader" />;
+
   return (
-    <Wrapper userRole={Role.title}>
-      {Role.title === Roles.ADMIN && (
+    <Wrapper userRole={role.title}>
+      {role.title === Roles.ADMIN && (
         <>
           <Users />
           <Pending />
         </>
       )}
-      {Role.title === Roles.SERVICE && <Revenue />}
-      {Role.title !== Roles.ADMIN && <Calendar />}
+      {role.title === Roles.SERVICE && <Revenue />}
+      {role.title !== Roles.ADMIN && <Calendar />}
       <Shops />
       <Orders />
     </Wrapper>

@@ -1,12 +1,19 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Table, { TableWrapper } from "../../../../components/Table/Table";
 import DeleteDialog from "./DeleteDialog";
 import Actions from "./Actions";
+import { fetchUsers } from "../../../../api/user";
 
 const Users = () => {
-  const { users } = useSelector((state) => state.dashboard);
+  const { loading, list, error } = useSelector((state) => state.users);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
 
   const columns = useMemo(
     () => [
@@ -32,19 +39,25 @@ const Users = () => {
 
   const userRows = useMemo(
     () =>
-      users.map(({ firstName, lastName, phone, email, id }) => ({
+      list.map(({ firstName, lastName, phone, email, id }) => ({
         name: `${firstName} ${lastName}`,
         phone,
         email,
         actions: <Actions userId={id} />,
       })),
-    [users]
+    [list]
   );
 
-  if (!users.length) return <div>No users</div>;
+  if (error) return <div>error</div>;
+
+  if (loading) return <div className="loader" />;
+
+  if (!list.length) return <div>No users</div>;
 
   return (
     <>
+      <h2>Users</h2>
+      <p>List of active users</p>
       <TableWrapper>
         <Table columns={columns} data={userRows} />
       </TableWrapper>

@@ -98,13 +98,13 @@ const Create = () => {
               alt="upload"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src =
-                  "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png";
-                setForm({
-                  ...form,
-                  image:
-                    "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png",
-                });
+                // e.target.src =
+                //   "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png";
+                // setForm({
+                //   ...form,
+                //   image:
+                //     "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png",
+                // });
               }}
             />
           </ImgHolder>

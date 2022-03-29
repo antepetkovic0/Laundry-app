@@ -43,7 +43,7 @@ const GetStarted = () => {
   const { profile } = useSelector((state) => state);
   const { isAuth } = profile;
 
-  const linkTo = isAuth ? "/dashboard/overview" : "/auth/sign-in";
+  const linkTo = isAuth ? "/dashboard" : "/auth/sign-in";
 
   return (
     <Section id="get-started">

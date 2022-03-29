@@ -28,19 +28,22 @@ export const shopRoutes = [
   },
 ];
 
-const ShopsRoutes = ({ match }) => (
-  <Switch>
-    {shopRoutes.map((route) => (
-      <PrivateRoute
-        key={route.path}
-        path={`${match.path}${route.path}`}
-        component={route.component}
-        rule={route.rule}
-        exact={route.exact}
-      />
-    ))}
-  </Switch>
-);
+const ShopsRoutes = ({ match }) => {
+  console.log("match", match);
+  return (
+    <Switch>
+      {shopRoutes.map((route) => (
+        <PrivateRoute
+          key={route.path}
+          path={`${match.path}/${route.path}`}
+          component={route.component}
+          rule={route.rule}
+          exact={route.exact}
+        />
+      ))}
+    </Switch>
+  );
+};
 
 ShopsRoutes.propTypes = {
   match: PropTypes.shape({

@@ -1,4 +1,4 @@
-import { SET_PROFILE } from "../actions/profile";
+import { LOGIN_USER, LOGOUT_USER } from "../actions/profile";
 
 const INITIAL_STATE = {
   isAuth: false,
@@ -6,12 +6,12 @@ const INITIAL_STATE = {
 
 const profile = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SET_PROFILE:
+    case LOGIN_USER:
       return {
         ...action.payload,
         isAuth: true,
       };
-    case "LOG_OFF":
+    case LOGOUT_USER:
       return {
         ...state,
         isAuth: false,

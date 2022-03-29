@@ -53,7 +53,7 @@ const Actions = styled.div`
 `;
 
 const Shop = ({ shop }) => {
-  const { Role } = useSelector((state) => state.profile);
+  const { role } = useSelector((state) => state.profile);
 
   const dispatch = useDispatch();
 
@@ -74,7 +74,7 @@ const Shop = ({ shop }) => {
       </ShopInfo>
       <Actions>
         <TableActionsGroup>
-          {Role.title === Roles.SERVICE && (
+          {role.title === Roles.SERVICE && (
             <>
               <TableAction>
                 <Icon name="edit" />

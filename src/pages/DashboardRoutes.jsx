@@ -14,7 +14,7 @@ const DashboardRoutes = ({ basePath }) => (
           path={`${basePath}/${route.path}`}
           component={route.component}
           rule={route.rule}
-          exact
+          exact={route.exact}
         />
       ))}
     </Switch>

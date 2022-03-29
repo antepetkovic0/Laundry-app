@@ -12,7 +12,7 @@ export const Group = styled.div`
 const Field = styled.input`
   width: 100%;
   min-height: 38px;
-  font-size: 16px;
+  /* font-size: 16px; */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   padding: 2px 10px;
@@ -20,7 +20,8 @@ const Field = styled.input`
   border: 1px solid hsl(0, 0%, 80%);
 
   &:focus {
-    outline-color: #2684ff;
+    /* outline-color: #2684ff; */
+    outline-color: ${theme.primary.def};
   }
 `;
 
@@ -50,6 +51,7 @@ const IconWrapper = styled.div`
 const Input = ({
   name,
   type,
+  placeholder,
   value,
   onChange,
   label,
@@ -57,10 +59,11 @@ const Input = ({
   onIconClick,
 }) => (
   <Group>
-    <Label htmlFor={name}>{label}</Label>
+    {label && <Label htmlFor={name}>{label}</Label>}
     <Field
-      type={type}
       name={name}
+      type={type}
+      placeholder={placeholder}
       value={value}
       onChange={onChange}
       id={name}
@@ -75,6 +78,8 @@ const Input = ({
 
 Input.defaultProps = {
   value: undefined,
+  placeholder: "",
+  label: "",
   iconName: "",
   onIconClick: () => null,
 };
@@ -82,9 +87,10 @@ Input.defaultProps = {
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   iconName: PropTypes.string,
   onIconClick: PropTypes.func,
 };

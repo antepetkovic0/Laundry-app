@@ -1,27 +1,53 @@
 import {
-  SET_DATA,
+  GET_DASHBOARD_INIT,
+  GET_DASHBOARD_SUCCESS,
   DELETE_DATA,
   DELETE_SHOP_PRODUCT,
   UPDATE_SHOP_PRODUCT,
 } from "../actions/dashboard";
 
 const INITIAL_STATE = {
-  users: [],
-  pending: [],
-  shops: [],
-  orders: [],
+  loading: true,
+  error: null,
+  users: {
+    count: null,
+    list: [],
+  },
+  pending: {
+    count: null,
+    list: [],
+  },
+  shops: {
+    count: null,
+    list: [],
+  },
+  orders: {
+    count: null,
+    list: [],
+  },
 };
 
 const dashboard = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SET_DATA:
+    case GET_DASHBOARD_INIT:
       return {
         ...state,
-        [action.payload.type]: [
-          ...action.payload.data,
-          ...state[action.payload.type],
-        ],
+        loading: true,
       };
+    case GET_DASHBOARD_SUCCESS:
+      return {
+        ...state,
+        ...action.payload.data,
+        loading: false,
+      };
+    // case SET_DATA:
+    //   return {
+    //     ...state,
+    //     [action.payload.type]: [
+    //       ...action.payload.data,
+    //       ...state[action.payload.type],
+    //     ],
+    //   };
     // case TOGGLE_TODO:
     //   return {
     //     ...state,

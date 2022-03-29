@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import { dashboardRoutePath } from "../../../constants/routePaths";
 
@@ -21,6 +21,7 @@ const Nav = styled.div`
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  z-index: 100;
 
   @media ${breakpoint.tablet} {
     flex-direction: column;
@@ -43,8 +44,8 @@ const Li = styled(Link)`
   border-radius: 8px;
   position: relative;
 
-  ${({ isActive }) =>
-    isActive &&
+  ${({ isRouteActive }) =>
+    isRouteActive &&
     `
       color: ${theme.primary.def};
       fill: ${theme.primary.def};
@@ -111,10 +112,13 @@ const Signal = styled.div`
 
 const DashboardNavigation = () => {
   const location = useLocation();
+  const match = useRouteMatch();
+  const { path } = match;
+  console.log(match);
   const { pathname } = location;
   console.log(location);
 
-  const { permissions } = useSelector((state) => state.profile.Role);
+  const { permissions } = useSelector((state) => state.profile.role);
   const { pending } = useSelector((state) => state.dashboard);
 
   const navigationLinks = getDashboardLinksByRole(permissions);
@@ -124,8 +128,8 @@ const DashboardNavigation = () => {
       {navigationLinks.map((item) => (
         <Li
           key={item.path}
-          to={item.path}
-          isActive={pathname === `/dashboard/${item.path}`}
+          to={`${path}/${item.path}`}
+          isRouteActive={pathname === `/dashboard/${item.path}`}
         >
           <Icon name={item.iconName} />
           {/* <span>{item.name}</span> */}

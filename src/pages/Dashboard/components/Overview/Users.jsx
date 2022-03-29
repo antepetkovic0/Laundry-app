@@ -6,7 +6,8 @@ import CaretLink from "../CaretLink";
 import { Wrapper, OverviewTitle, Content, SubTitle } from "./style";
 
 const Users = () => {
-  const { users } = useSelector((state) => state.dashboard);
+  const { count, list } = useSelector((state) => state.dashboard.users);
+  const user = list[0] ?? {};
 
   return (
     <Wrapper gridArea="user">
@@ -14,18 +15,18 @@ const Users = () => {
       <Content>
         <div style={{ marginBottom: "10px" }}>
           <SubTitle>Total</SubTitle>
-          {users.length}
+          {count}
         </div>
-        {users.length > 0 && (
+        {count > 0 && (
           <>
             <div style={{ marginBottom: "10px" }}>
               <SubTitle>Last signed</SubTitle>
-              {`${users[0].firstName} ${users[0].lastName}`},{" "}
-              {isoToLocaleDate(users[0].createdAt)}
+              {`${user.firstName} ${user.lastName}`},{" "}
+              {isoToLocaleDate(user.createdAt)}
             </div>
             <div>
               <SubTitle>Status</SubTitle>
-              {`${users[0].status.toLowerCase()}`}
+              {`${user.status.toLowerCase()}`}
             </div>
           </>
         )}
