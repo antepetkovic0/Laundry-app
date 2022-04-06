@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 
@@ -24,6 +24,8 @@ const DesktopSwitchWrapper = styled.div`
 const Settings = () => {
   const { path, url } = useRouteMatch();
 
+  const [dd, setDd] = useState(false);
+
   const { isMobile } = useDeviceDetect();
   if (!isMobile) {
     return (
@@ -40,6 +42,9 @@ const Settings = () => {
   return (
     <>
       <Switch>
+        <button type="button" onClick={() => setDd(!dd)}>
+          change state
+        </button>
         <Route exact path={path} component={SettingsNav} />
         <Route path={`${path}/appearance`} component={Appearance} />
       </Switch>

@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Roles } from "../../../../utils/constants";
-import { breakpoint } from "../../../../styled/breakpoint";
-
-import Users from "./Users";
-import Pending from "./Pending";
-import Shops from "./Shops";
-import Calendar from "./Calendar";
-import Orders from "./Orders";
-import Revenue from "./Revenue";
-import { fetchDashboardData } from "../../../../api/dashboard";
+import { Roles } from "../../utils/constants";
+import { breakpoint } from "../../styled/breakpoint";
+import DashboardUsers from "../../containers/DashboardUsers/DashboardUsers";
+import DashboardPendingRequests from "../../containers/DashboardPendingRequests/DashboardPendingRequest";
+import DashboardShops from "../../containers/DashboardShops/DashboardShops";
 
 const Wrapper = styled.div`
   display: grid;
@@ -89,34 +84,23 @@ const Wrapper = styled.div`
   }
 `;
 
-const Overview = () => {
-  const { role } = useSelector((state) => state.profile);
-  const { loading, error } = useSelector((state) => state.dashboard);
+const DashboardView = ({ roleTitle }) => (
+  <Wrapper userRole={roleTitle}>
+    {roleTitle === Roles.ADMIN && (
+      <>
+        <DashboardUsers />
+        <DashboardPendingRequests />
+      </>
+    )}
+    {/* {roleTitle === Roles.SERVICE && <Revenue />}
+    {roleTitle !== Roles.ADMIN && <Calendar />} */}
+    <DashboardShops />
+    {/* <Orders /> */}
+  </Wrapper>
+);
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchDashboardData());
-  }, []);
-
-  if (error) return <div>{error}</div>;
-
-  if (loading) return <div className="loader" />;
-
-  return (
-    <Wrapper userRole={role.title}>
-      {role.title === Roles.ADMIN && (
-        <>
-          <Users />
-          <Pending />
-        </>
-      )}
-      {role.title === Roles.SERVICE && <Revenue />}
-      {role.title !== Roles.ADMIN && <Calendar />}
-      <Shops />
-      <Orders />
-    </Wrapper>
-  );
+DashboardView.propTypes = {
+  roleTitle: PropTypes.string.isRequired,
 };
 
-export default Overview;
+export default DashboardView;

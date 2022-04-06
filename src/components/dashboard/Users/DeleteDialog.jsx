@@ -2,10 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
-import { hideDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+import { hideDialog } from "../../../store/actions/dialog";
+import { DIALOG_TYPE } from "../../../utils/constants";
 
-import Button from "../../../../components/Button/Button";
+import Button from "../../Button/Button";
 // import SectionMessage from "../../../Auth/components/SectionMessage";
 
 import {
@@ -13,7 +13,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-} from "../../style";
+} from "../../../pages/Dashboard/style";
 
 const DeleteDialog = () => {
   const {

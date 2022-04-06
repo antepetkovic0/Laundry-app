@@ -8,15 +8,19 @@ import DashboardLayout from "../layouts/DashboardLayout";
 const DashboardRoutes = ({ basePath }) => (
   <DashboardLayout>
     <Switch>
-      {dashboardRoutes.map((route) => (
-        <PrivateRoute
-          key={route.path}
-          path={`${basePath}/${route.path}`}
-          component={route.component}
-          rule={route.rule}
-          exact={route.exact}
-        />
-      ))}
+      {dashboardRoutes.map((route) => {
+        const routePath = route.path ? `${basePath}/${route.path}` : basePath;
+
+        return (
+          <PrivateRoute
+            key={routePath}
+            path={routePath}
+            component={route.component}
+            rule={route.rule}
+            exact={route.exact}
+          />
+        );
+      })}
     </Switch>
   </DashboardLayout>
 );

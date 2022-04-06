@@ -1,7 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import "../modal.css";
+import { useSelector } from "react-redux";
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -14,20 +17,29 @@ const LoadingWrapper = styled.div`
   }
 `;
 
-const WithLoading = (Component) => {
-  function WithLoadingComponent({ isLoading, message, ...props }) {
-    if (!isLoading) return <Component {...props} />;
+const WithLoading = (Component, ...actionsToCheck) => {
+  function WithLoadingComponent({ ...props }) {
+    const { loader, errors } = useSelector((state) => state.ui);
 
-    return (
-      <LoadingWrapper>
-        <div className="spinner">
-          <div className="double-bounce1" />
-          <div className="double-bounce2" />
-        </div>
-        <div>{message}</div>
-      </LoadingWrapper>
+    const isLoading = loader.actions.some((action) =>
+      actionsToCheck.includes(action.name)
     );
+
+    const error = errors.actions.some((action) =>
+      actionsToCheck.includes(action.name)
+    );
+
+    if (isLoading) {
+      return <div className="loader" />;
+    }
+
+    if (error) {
+      return <div>Oops. Error exists</div>;
+    }
+
+    return <Component {...props} />;
   }
+
   return WithLoadingComponent;
 };
 

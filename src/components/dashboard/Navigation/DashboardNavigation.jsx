@@ -114,30 +114,27 @@ const DashboardNavigation = () => {
   const location = useLocation();
   const match = useRouteMatch();
   const { path } = match;
-  console.log(match);
   const { pathname } = location;
-  console.log(location);
 
   const { permissions } = useSelector((state) => state.profile.role);
-  const { pending } = useSelector((state) => state.dashboard);
+  const { count } = useSelector((state) => state.dashboard.pending);
 
   const navigationLinks = getDashboardLinksByRole(permissions);
 
   return (
     <Nav>
-      {navigationLinks.map((item) => (
-        <Li
-          key={item.path}
-          to={`${path}/${item.path}`}
-          isRouteActive={pathname === `/dashboard/${item.path}`}
-        >
-          <Icon name={item.iconName} />
-          {/* <span>{item.name}</span> */}
-          {item.path ===
-            `/dashboard/${dashboardRoutePath.PENDING_REGISTRATIONS}` &&
-            pending.length > 0 && <Signal />}
-        </Li>
-      ))}
+      {navigationLinks.map((item) => {
+        const linkTo = item.path ? `${path}/${item.path}` : path;
+
+        return (
+          <Li key={linkTo} to={linkTo} isRouteActive={pathname === linkTo}>
+            <Icon name={item.iconName} />
+            {item.path === dashboardRoutePath.PENDING_REGISTRATIONS && count ? (
+              <Signal />
+            ) : null}
+          </Li>
+        );
+      })}
     </Nav>
   );
 };

@@ -2,12 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-import { showDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+import { showDialog } from "../../../store/actions/dialog";
+import { DIALOG_TYPE } from "../../../utils/constants";
 
-import Icon from "../../../../components/Icon/Icon";
+import Icon from "../../Icon/Icon";
 
-import { TableAction, TableActionsGroup } from "../../style";
+import { TableAction, TableActionsGroup } from "../../../pages/Dashboard/style";
 
 const Actions = ({ userId }) => {
   const dispatch = useDispatch();

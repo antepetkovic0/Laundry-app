@@ -1,9 +1,14 @@
 import axios from "axios";
 import {
   deleteDashboardData,
-  setDashboardData,
+  // setDashboardData,
 } from "../store/actions/dashboard";
-import { getUsers, setUsersData } from "../store/actions/users";
+import {
+  getPendingUsers,
+  getUsers,
+  setPendingUsersData,
+  setUsersData,
+} from "../store/actions/users";
 import { TOAST_TYPE } from "../utils/constants";
 import { toastMessage } from "../utils/toast";
 import { httpClient } from "./client";
@@ -23,19 +28,11 @@ export const fetchUsers = () => async (dispatch) => {
   }
 };
 
-// export const getUsers = () => async (dispatch) => {
-//   try {
-//     const { data } = await axios.get(`${URL}`);
-//     dispatch(setDashboardData(data, "users"));
-//   } catch (err) {
-//     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
-//   }
-// };
-
-export const getPendingRequests = () => async (dispatch) => {
+export const fetchPendingUsers = () => async (dispatch) => {
+  dispatch(getPendingUsers());
   try {
-    const { data } = await axios.get(`${URL}/pending`);
-    dispatch(setDashboardData(data, "pending"));
+    const { data } = await httpClient.get("users/pending");
+    dispatch(setPendingUsersData(data));
   } catch (err) {
     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
   }
@@ -47,7 +44,7 @@ export const approvePendingRequest = (id) => async (dispatch) => {
       hash: id,
     });
     dispatch(deleteDashboardData(id, "pending"));
-    dispatch(setDashboardData([data], "users"));
+    // dispatch(setDashboardData([data], "users"));
   } catch (err) {
     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
   }

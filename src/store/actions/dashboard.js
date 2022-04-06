@@ -1,17 +1,13 @@
-export const GET_DASHBOARD_INIT = "GET_DASHBOARD_INIT";
-export const GET_DASHBOARD_SUCCESS = "GET_DASHBOARD_SUCCESS";
-export const GET_DASHBOARD_ERROR = "GET_DASHBOARD_ERROR";
+export const FETCH_DASHBOARD_USERS = "FETCH_DASHBOARD_USERS";
+export const FETCH_DASHBOARD_PENDING = "FETCH_DASHBOARD_PENDING";
+export const FETCH_DASHBOARD_SHOPS = "FETCH_DASHBOARD_SHOPS";
 
 export const DELETE_DATA = "DELETE_DATA";
 export const DELETE_SHOP_PRODUCT = "DELETE_SHOP_PRODUCT";
 export const UPDATE_SHOP_PRODUCT = "UPDATE_SHOP_PRODUCT";
 
-export const getDashboardData = () => ({
-  type: GET_DASHBOARD_INIT,
-});
-
-export const setDashboardData = (data) => ({
-  type: GET_DASHBOARD_SUCCESS,
+export const getDashboardData = (type, data) => ({
+  type,
   payload: {
     data,
   },

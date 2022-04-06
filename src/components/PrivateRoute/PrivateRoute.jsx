@@ -6,14 +6,14 @@ import { Route, Redirect } from "react-router-dom";
 import { checkPermission } from "../../utils/permissions";
 
 const PrivateRoute = ({ component: Component, rule, ...props }) => {
-  const { profile } = useSelector((state) => state);
-  const { isAuth } = profile;
+  const isAuth = useSelector((state) => state.profile.isAuth);
+  const role = useSelector((state) => state.profile.role);
 
   if (!isAuth) {
     return <Redirect to="/auth/sign-in" />;
   }
 
-  const { permissions } = profile.role;
+  const { permissions } = role;
   const access = checkPermission(rule, permissions);
 
   if (isAuth && !access) {
@@ -21,7 +21,12 @@ const PrivateRoute = ({ component: Component, rule, ...props }) => {
   }
 
   return (
-    <Route {...props} render={(routeProps) => <Component {...routeProps} />} />
+    <Route
+      {...props}
+      render={(routeProps) => (
+        <Component {...routeProps} roleTitle={role.title} />
+      )}
+    />
   );
 };
 

@@ -5,26 +5,26 @@ import ReactModal from "react-modal";
 import {
   approvePendingRequest,
   declinePendingRequest,
-} from "../../../../api/user";
-import { hideDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+} from "../../../api/user";
+import { hideDialog } from "../../../store/actions/dialog";
+import { DIALOG_TYPE } from "../../../utils/constants";
 
-import Button from "../../../../components/Button/Button";
+import Button from "../../Button/Button";
 import {
   DialogBody,
   DialogContent,
   DialogFooter,
   DialogHeader,
-} from "../../style";
+} from "../../../pages/Dashboard/style";
 
 const Dialog = () => {
   const {
     dialog,
-    dashboard: { pending },
+    pending: { list },
   } = useSelector((state) => state);
 
   const { userId } = dialog.dialogProps;
-  const targetUser = pending.find((user) => user.id === userId);
+  const targetUser = list.find((user) => user.id === userId);
   const dispatch = useDispatch();
 
   const close = () => {

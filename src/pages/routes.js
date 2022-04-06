@@ -1,9 +1,8 @@
 import Cart from "./Dashboard/components/Cart/Cart";
 import Orders from "./Dashboard/components/Orders/Orders";
-import Overview from "./Dashboard/components/Overview/Overview";
-import Pending from "./Dashboard/components/Pending/Pending";
 import Settings from "./Dashboard/components/Settings/Settings";
-import Users from "./Dashboard/components/Users/Users";
+import Users from "../components/dashboard/Users/Users";
+import PendingUsers from "../components/dashboard/PendingUsers/PendingUsers";
 
 import AllShops from "../components/dashboard/Shops/AllShops";
 import SpecificShop from "../components/dashboard/Shops/SpecificShop";
@@ -13,13 +12,27 @@ import { permissionRules } from "../constants/permissions";
 import { dashboardRoutePath } from "../constants/routePaths";
 import { rules } from "../utils/permissions";
 import ShopsRoutes from "./ShopsRoutes";
+import WithLoading from "../hocs/WithLoading";
+import {
+  FETCH_DASHBOARD_PENDING,
+  FETCH_DASHBOARD_SHOPS,
+  FETCH_DASHBOARD_USERS,
+} from "../store/actions/dashboard";
+import DashboardView from "../components/DashboardView/DashboardView";
+
+const DashboardWithLoading = WithLoading(
+  DashboardView,
+  FETCH_DASHBOARD_USERS,
+  FETCH_DASHBOARD_PENDING,
+  FETCH_DASHBOARD_SHOPS
+);
 
 export const dashboardRoutes = [
   {
     path: dashboardRoutePath.OVERVIEW,
     name: "Dashboard",
     iconName: "dashboard",
-    component: Overview,
+    component: DashboardWithLoading,
     rule: permissionRules.MANAGE_DASHBOARD,
     exact: true,
   },
@@ -43,7 +56,7 @@ export const dashboardRoutes = [
     path: dashboardRoutePath.PENDING_REGISTRATIONS,
     name: "Pending Registrations",
     iconName: "pending_actions",
-    component: Pending,
+    component: PendingUsers,
     rule: permissionRules.MANAGE_USER,
     exact: false,
   },

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { theme } from "../../../../styled/theme";
+import { theme } from "../../styled/theme";
 
-export const Wrapper = styled.div`
+export const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,21 +17,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const ShopAvatar = styled.div`
-  position: absolute;
-  right: 1rem;
-  top: 3rem;
-  width: 5rem;
-  height: 5rem;
-
-  img {
-    width: 100%;
-    height: 100%;
-    border-radius: 0.8rem;
-  }
-`;
-
-export const OverviewTitle = styled.div`
+export const Header = styled.div`
   display: flex;
   font-weight: 500;
 `;
@@ -39,7 +25,10 @@ export const OverviewTitle = styled.div`
 export const Content = styled.div`
   flex: 1;
   margin: 1rem 0;
-  /* font-size: 1.2rem; */
+
+  & > div:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const SubTitle = styled.div`

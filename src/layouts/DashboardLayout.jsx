@@ -14,9 +14,9 @@ const ContentContainer = styled.div`
 `;
 
 const DashboardLayout = ({ children }) => {
-  const { profile } = useSelector((state) => state);
+  const isAuth = useSelector((state) => state.profile.isAuth);
 
-  if (!profile.isAuth) {
+  if (!isAuth) {
     return <div>loading</div>;
   }
 

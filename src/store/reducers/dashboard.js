@@ -1,25 +1,24 @@
 import {
-  GET_DASHBOARD_INIT,
-  GET_DASHBOARD_SUCCESS,
   DELETE_DATA,
   DELETE_SHOP_PRODUCT,
   UPDATE_SHOP_PRODUCT,
+  FETCH_DASHBOARD_SHOPS,
+  FETCH_DASHBOARD_USERS,
+  FETCH_DASHBOARD_PENDING,
 } from "../actions/dashboard";
 
 const INITIAL_STATE = {
-  loading: true,
-  error: null,
   users: {
     count: null,
-    list: [],
+    user: null,
   },
   pending: {
     count: null,
-    list: [],
+    user: null,
   },
   shops: {
     count: null,
-    list: [],
+    shop: null,
   },
   orders: {
     count: null,
@@ -29,16 +28,12 @@ const INITIAL_STATE = {
 
 const dashboard = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_DASHBOARD_INIT:
-      return {
-        ...state,
-        loading: true,
-      };
-    case GET_DASHBOARD_SUCCESS:
+    case FETCH_DASHBOARD_USERS:
+    case FETCH_DASHBOARD_PENDING:
+    case FETCH_DASHBOARD_SHOPS:
       return {
         ...state,
         ...action.payload.data,
-        loading: false,
       };
     // case SET_DATA:
     //   return {
