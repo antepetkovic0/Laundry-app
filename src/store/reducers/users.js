@@ -5,9 +5,9 @@ import {
 } from "../actions/users";
 
 const INITIAL_STATE = {
-  loading: false,
+  userIds: [],
   list: [],
-  error: null,
+  lastFetched: 0,
 };
 
 const users = (state = INITIAL_STATE, action) => {

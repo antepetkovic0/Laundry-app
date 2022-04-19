@@ -22,7 +22,7 @@ const ShopAvatar = styled.div`
 `;
 
 const DashboardShopsCard = ({ count, shop }) => {
-  const { name, image, createdAt, User } = shop ?? {};
+  const { name, image, createdAt, user } = shop ?? {};
 
   return (
     <Card gridArea="service">
@@ -40,7 +40,7 @@ const DashboardShopsCard = ({ count, shop }) => {
             </div>
             <div>
               <SubTitle>Owner</SubTitle>
-              {`${User.firstName} ${User.lastName}`}
+              {`${user.firstName} ${user.lastName}`}
             </div>
             <ShopAvatar>
               <img src={image} alt="Shop" />
@@ -64,7 +64,7 @@ DashboardShopsCard.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     createdAt: PropTypes.string,
-    User: PropTypes.shape({
+    user: PropTypes.shape({
       firstName: PropTypes.string,
       lastName: PropTypes.string,
     }),

@@ -1,21 +1,32 @@
-export const GET_SHOPS_INIT = "GET_SHOPS_INIT";
-export const GET_SHOPS_SUCCESS = "GET_SHOPS_SUCCESS";
-export const GET_SHOPS_ERROR = "GET_SHOPS_ERROR";
+export const FETCH_SHOPS = "FETCH_SHOPS";
+export const FETCH_SPECIFIC_SHOP = "FETCH_SPECIFIC_SHOP";
+export const CREATE_SHOP = "CREATE_SHOP";
+export const DELETE_SHOP = "DELETE_SHOP";
 
-export const getShops = () => ({
-  type: GET_SHOPS_INIT,
-});
-
-export const setShopsData = (data) => ({
-  type: GET_SHOPS_SUCCESS,
+export const getShops = (data) => ({
+  type: FETCH_SHOPS,
   payload: {
     data,
   },
 });
 
-export const setShopsError = (data) => ({
-  type: GET_SHOPS_ERROR,
+export const getSpecificShop = (data) => ({
+  type: FETCH_SPECIFIC_SHOP,
   payload: {
-    error: data,
+    data,
+  },
+});
+
+export const createShop = (data) => ({
+  type: CREATE_SHOP,
+  payload: {
+    data,
+  },
+});
+
+export const deleteShop = (id) => ({
+  type: DELETE_SHOP,
+  payload: {
+    id,
   },
 });

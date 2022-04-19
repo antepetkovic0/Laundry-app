@@ -10,6 +10,8 @@ import AuthRoutes from "./pages/AuthRoutes";
 import "./modal.css";
 import DashboardRoutes from "./pages/DashboardRoutes";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => (
   <Router>
     <ToastContainer />

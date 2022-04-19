@@ -4,13 +4,8 @@ import Settings from "./Dashboard/components/Settings/Settings";
 import Users from "../components/dashboard/Users/Users";
 import PendingUsers from "../components/dashboard/PendingUsers/PendingUsers";
 
-import AllShops from "../components/dashboard/Shops/AllShops";
-import SpecificShop from "../components/dashboard/Shops/SpecificShop";
-import Create from "../components/dashboard/Shops/Create";
-
 import { permissionRules } from "../constants/permissions";
 import { dashboardRoutePath } from "../constants/routePaths";
-import { rules } from "../utils/permissions";
 import ShopsRoutes from "./ShopsRoutes";
 import WithLoading from "../hocs/WithLoading";
 import {

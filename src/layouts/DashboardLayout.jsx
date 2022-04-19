@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { breakpoint } from "../styled/breakpoint";
 import DashboardNavigation from "../components/dashboard/Navigation/DashboardNavigation";
@@ -13,20 +12,12 @@ const ContentContainer = styled.div`
   }
 `;
 
-const DashboardLayout = ({ children }) => {
-  const isAuth = useSelector((state) => state.profile.isAuth);
-
-  if (!isAuth) {
-    return <div>loading</div>;
-  }
-
-  return (
-    <>
-      <DashboardNavigation />
-      <ContentContainer>{children}</ContentContainer>
-    </>
-  );
-};
+const DashboardLayout = ({ children }) => (
+  <>
+    <DashboardNavigation />
+    <ContentContainer>{children}</ContentContainer>
+  </>
+);
 
 DashboardLayout.propTypes = {
   children: PropTypes.node.isRequired,

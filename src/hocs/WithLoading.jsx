@@ -30,7 +30,7 @@ const WithLoading = (Component, ...actionsToCheck) => {
     );
 
     if (isLoading) {
-      return <div className="loader" />;
+      return <div>loading</div>;
     }
 
     if (error) {

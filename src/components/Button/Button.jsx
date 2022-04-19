@@ -19,6 +19,21 @@ const ButtonBase = styled.button`
   }
 `;
 
+const ButtonSpinner = styled.div`
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+`;
+
 const ButtonSubtle = styled(ButtonBase)`
   background-color: ${theme.neutral.two};
   color: ${theme.text.alt};
@@ -37,7 +52,7 @@ const ButtonLink = styled.button`
   }
 `;
 
-const Button = ({ text, type, onClick }) => {
+const Button = ({ text, type, onClick, isLoading }) => {
   if (type === ButtonType.LINK) {
     return <ButtonLink onClick={onClick}>{text}</ButtonLink>;
   }
@@ -46,17 +61,27 @@ const Button = ({ text, type, onClick }) => {
     return <ButtonSubtle onClick={onClick}>{text}</ButtonSubtle>;
   }
 
+  if (isLoading) {
+    return (
+      <ButtonBase disabled>
+        <ButtonSpinner />
+      </ButtonBase>
+    );
+  }
+
   return <ButtonBase onClick={onClick}>{text}</ButtonBase>;
 };
 
 Button.defaultProps = {
   type: ButtonType.DEFAULT,
+  isLoading: false,
   onClick: () => null,
 };
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string,
+  isLoading: PropTypes.bool,
   onClick: PropTypes.func,
 };
 

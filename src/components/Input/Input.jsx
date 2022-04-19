@@ -5,7 +5,6 @@ import { theme } from "../../styled/theme";
 import Icon from "../Icon/Icon";
 
 export const Group = styled.div`
-  margin-bottom: 10px;
   position: relative;
 `;
 
@@ -17,11 +16,17 @@ const Field = styled.input`
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   padding: 2px 10px;
   border-radius: 4px;
+  padding-right: ${(props) => {
+    if (props.hasIcon) {
+      return "34px";
+    }
+    return "10px";
+  }};
   border: 1px solid hsl(0, 0%, 80%);
 
   &:focus {
     /* outline-color: #2684ff; */
-    outline-color: ${theme.primary.def};
+    outline-color: hsl(0, 0%, 80%);
   }
 `;
 
@@ -67,6 +72,7 @@ const Input = ({
       value={value}
       onChange={onChange}
       id={name}
+      hasIcon={iconName}
     />
     {iconName && (
       <IconWrapper onClick={onIconClick}>
