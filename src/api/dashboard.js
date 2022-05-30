@@ -1,4 +1,5 @@
 import { getDashboardData } from "../store/actions/dashboard";
+import { clearUserData } from "../store/actions/profile";
 import { setUIError, startUILoader, stopUILoader } from "../store/actions/ui";
 import { httpClient } from "./client";
 
@@ -6,6 +7,13 @@ import { httpClient } from "./client";
 // axios.defaults.withCredentials = true;
 // axios.defaults.credentials = "include";
 
+// export const fetchDashboardData =
+//   (actionName, queryPath) => async (dispatch) => {
+//     dispatch(startUILoader(actionName));
+//     const { data } = await httpClient.get(`/dashboard/${queryPath}`);
+//     dispatch(getDashboardData(actionName, data));
+//     dispatch(stopUILoader(actionName));
+//   };
 export const fetchDashboardData =
   (actionName, queryPath) => async (dispatch) => {
     try {
@@ -13,13 +21,8 @@ export const fetchDashboardData =
       const { data } = await httpClient.get(`/dashboard/${queryPath}`);
       dispatch(getDashboardData(actionName, data));
     } catch (err) {
-      console.log("we are in err");
+      console.log("we are in err", err.response);
       dispatch(setUIError(actionName));
-      // if (err.response.data.authenticationErr) {
-      //   dispatch(logoutUser());
-      // }
-      // dispatch(setShopsError(err.response.data.authenticationErr));
-      // toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
     } finally {
       dispatch(stopUILoader(actionName));
     }

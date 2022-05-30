@@ -15,8 +15,12 @@ import { setUserData } from "../store/actions/profile";
 export const loginUser = (userCredentials, history) => async (dispatch) => {
   try {
     const { data } = await httpClient.post("/auth/login", userCredentials);
-    dispatch(setUserData(data));
-    setCookie("user", JSON.stringify(data), 10);
+    const { user, accessToken } = data;
+
+    localStorage.setItem("access-token", accessToken);
+    setCookie("user", JSON.stringify(user), 10);
+
+    dispatch(setUserData(user));
     history.push("/dashboard");
   } catch (err) {
     console.log("we are in err");
@@ -32,3 +36,6 @@ export const auth = async (data) => {
   const query = data.roleId ? "register" : "login";
   return axios.post(`${URL}/api/auth/${query}`, data);
 };
+
+export const refreshTokens = async (refreshToken) =>
+  httpClient.post(`${URL}/api/auth/refresh`, refreshToken);

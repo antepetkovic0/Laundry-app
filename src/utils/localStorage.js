@@ -1,4 +1,4 @@
-export default Object.freeze({
+export default {
   get(key) {
     try {
       return JSON.parse(window.localStorage.getItem(key)) || {};
@@ -14,4 +14,4 @@ export default Object.freeze({
   clear(key) {
     window.localStorage.removeItem(key);
   },
-});
+};

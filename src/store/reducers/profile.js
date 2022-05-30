@@ -12,10 +12,7 @@ const profile = (state = INITIAL_STATE, action) => {
         isAuth: true,
       };
     case LOGOUT_USER:
-      return {
-        ...state,
-        isAuth: false,
-      };
+      return INITIAL_STATE;
     default:
       return state;
   }

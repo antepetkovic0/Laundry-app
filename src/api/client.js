@@ -1,9 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable consistent-return */
 import axios from "axios";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createBrowserHistory } from "history";
 import { store } from "../store";
-import { logoutUser } from "../store/actions/profile";
+import { clearUserData, LOGOUT_USER } from "../store/actions/profile";
+import { startUILoader } from "../store/actions/ui";
+import { getCookie } from "../utils/cookie";
 
 const instance = axios.create({
   withCredentials: true,
@@ -11,22 +13,36 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  (config) => config,
+  (config) => {
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = `Bearer ${localStorage.getItem(
+      "access-token"
+    )}`;
+
+    return config;
+  },
   (error) => Promise.reject(error)
 );
 
 instance.interceptors.response.use(
   (response) => response,
-  async function (error) {
+  async (error) => {
     const initialRequest = error.config;
-    console.log(initialRequest);
+
     if (error.response.status === 401 && !initialRequest._retry) {
       initialRequest._retry = true;
-      return instance(initialRequest);
-      // store.dispatch(logoutUser());
+
+      try {
+        const { data } = await instance.post("/auth/refresh", {
+          token: getCookie("refresh-token"),
+        });
+        localStorage.setItem("access-token", data.accessToken);
+        return instance(initialRequest);
+      } catch (err) {
+        return Promise.reject(err);
+      }
     }
     return Promise.reject(error);
-    // return Promise.reject(error)
   }
 );
 
