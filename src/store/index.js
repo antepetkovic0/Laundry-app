@@ -2,11 +2,11 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
-import { getCookie } from "../utils/cookie";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const userData = getCookie("user");
+// TODO: maybe only get access token from local storage and try to get user profile
+const userData = localStorage.getItem("user");
 const userInitialState = userData
   ? { isAuth: true, ...JSON.parse(userData) }
   : { isAuth: false };

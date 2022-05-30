@@ -2,12 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
-import { dashboardRoutePath } from "../../../constants/routePaths";
+import { dashboardRoutePath } from "../../constants/routePaths";
 
-import { breakpoint } from "../../../styled/breakpoint";
-import { theme } from "../../../styled/theme";
+import { breakpoint } from "../../styled/breakpoint";
+import { theme } from "../../styled/theme";
 
-import Icon from "../../Icon/Icon";
+import Icon from "../Icon/Icon";
 import { getDashboardLinksByRole } from "./dashboardLinks";
 
 const Nav = styled.div`

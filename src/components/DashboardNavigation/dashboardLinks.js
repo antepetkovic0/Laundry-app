@@ -1,5 +1,5 @@
-import { dashboardRoutes } from "../../../pages/routes";
-import { checkPermission } from "../../../utils/permissions";
+import { dashboardRoutes } from "../../pages/routes";
+import { checkPermission } from "../../utils/permissions";
 
 export const getDashboardLinksByRole = (permissions) => {
   const routesWithPermissionCheck = dashboardRoutes.map((route) => ({
