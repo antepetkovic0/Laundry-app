@@ -2,10 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
-import { hideDialog } from "../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../utils/constants";
+import { hideDialog } from "../../store/actions/dialog";
+import { DIALOG_TYPE } from "../../utils/constants";
 
-import Button from "../../Button/Button";
+import Button from "../Button/Button";
 // import SectionMessage from "../../../Auth/components/SectionMessage";
 
 import {
@@ -13,13 +13,14 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-} from "../../../pages/Dashboard/style";
+} from "../../pages/Dashboard/style";
 
 const DeleteDialog = () => {
   const {
     dialog,
     users: { list },
   } = useSelector((state) => state);
+
   const { userId } = dialog.dialogProps;
   const targetUser = list.find((user) => user.id === userId);
 
@@ -30,7 +31,6 @@ const DeleteDialog = () => {
   };
 
   const handleDelete = () => {
-    // dispatch(deleteUser(userId));
     close();
   };
 
@@ -38,7 +38,7 @@ const DeleteDialog = () => {
 
   return (
     <ReactModal
-      isOpen={dialog.dialogType === DIALOG_TYPE.ADMIN_USER_DELETE}
+      isOpen={dialog.dialogType === DIALOG_TYPE.ADMIN_REQUEST_APPROVE}
       onRequestClose={close}
       ariaHideApp={false}
     >
@@ -51,7 +51,6 @@ const DeleteDialog = () => {
             </div>
             <div>This action is irreversible.</div>
           </div>
-          {/* <SectionMessage /> */}
         </DialogBody>
         <DialogFooter>
           <Button text="Cancel" type="subtle" onClick={close} />

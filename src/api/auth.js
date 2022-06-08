@@ -24,7 +24,7 @@ export const loginUser = (userCredentials, history) => async (dispatch) => {
 
 export const auth = async (data) => {
   const query = data.roleId ? "register" : "login";
-  return axios.post(`${URL}/api/auth/${query}`, data);
+  return httpClient.post(`/auth/${query}`, data);
 };
 
 export const refreshTokens = async (refreshToken) =>

@@ -3,38 +3,22 @@ import {
   deleteDashboardData,
   // setDashboardData,
 } from "../store/actions/dashboard";
-import {
-  getPendingUsers,
-  getUsers,
-  setPendingUsersData,
-  setUsersData,
-} from "../store/actions/users";
+import { setUIError, startUILoader, stopUILoader } from "../store/actions/ui";
+import { getUsersData } from "../store/actions/users";
 import { TOAST_TYPE } from "../utils/constants";
 import { toastMessage } from "../utils/toast";
 import { httpClient } from "./client";
 
-export const fetchUsers = () => async (dispatch) => {
-  dispatch(getUsers());
+export const fetchUsers = (actionName) => async (dispatch) => {
   try {
+    dispatch(startUILoader(actionName));
     const { data } = await httpClient.get("/users");
-    dispatch(setUsersData(data));
+    dispatch(getUsersData(data));
   } catch (err) {
-    console.log("we are in err");
-    // if (err.response.data.authenticationErr) {
-    //   dispatch(logoutUser());
-    // }
-    // dispatch(setShopsError(err.response.data.authenticationErr));
-    // toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
-  }
-};
-
-export const fetchPendingUsers = () => async (dispatch) => {
-  dispatch(getPendingUsers());
-  try {
-    const { data } = await httpClient.get("users/pending");
-    dispatch(setPendingUsersData(data));
-  } catch (err) {
-    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+    console.log("we are in err", err.response);
+    dispatch(setUIError(actionName));
+  } finally {
+    dispatch(stopUILoader(actionName));
   }
 };
 

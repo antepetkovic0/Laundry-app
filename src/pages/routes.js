@@ -1,8 +1,7 @@
 import Cart from "./Dashboard/components/Cart/Cart";
 import Orders from "./Dashboard/components/Orders/Orders";
 import Settings from "./Dashboard/components/Settings/Settings";
-import Users from "../components/dashboard/Users/Users";
-import PendingUsers from "../components/dashboard/PendingUsers/PendingUsers";
+import Users from "../components/Users/Users";
 
 import { permissionRules } from "../constants/permissions";
 import { dashboardRoutePath } from "../constants/routePaths";
@@ -45,14 +44,6 @@ export const dashboardRoutes = [
     iconName: "business",
     component: ShopsRoutes,
     rule: permissionRules.READ_SHOP,
-    exact: false,
-  },
-  {
-    path: dashboardRoutePath.PENDING_REGISTRATIONS,
-    name: "Pending Registrations",
-    iconName: "pending_actions",
-    component: PendingUsers,
-    rule: permissionRules.MANAGE_USER,
     exact: false,
   },
   {

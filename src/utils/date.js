@@ -6,3 +6,9 @@ export const isoToLocaleDate = (date, locale = "en-US") => {
     day: "numeric",
   });
 };
+
+export const isRequestOutdated = (time) => {
+  const currentTime = new Date().getTime();
+
+  return currentTime >= time + 1 * 60000;
+};

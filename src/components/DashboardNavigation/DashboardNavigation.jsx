@@ -129,7 +129,7 @@ const DashboardNavigation = () => {
         return (
           <Li key={linkTo} to={linkTo} isRouteActive={pathname === linkTo}>
             <Icon name={item.iconName} />
-            {item.path === dashboardRoutePath.PENDING_REGISTRATIONS && count ? (
+            {item.path === dashboardRoutePath.USERS && count ? (
               <Signal />
             ) : null}
           </Li>

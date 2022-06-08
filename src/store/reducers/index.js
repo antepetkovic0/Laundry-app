@@ -8,7 +8,6 @@ import dashboard from "./dashboard";
 import dialog from "./dialog";
 import shops from "./shops";
 import users from "./users";
-import pending from "./pending";
 import ui from "./ui";
 import { createTypedDrawers } from "./drawer";
 import { createTypedSwitchers } from "./switcher";
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
   dialog,
   shops,
   users,
-  pending,
   drawerHome: createTypedDrawers(DRAWER_TYPE.HOME),
   switchRoleFeatures: createTypedSwitchers(SWITCH_TYPE.ROLE_FEATURES),
   ui,
