@@ -7,9 +7,9 @@ import NotFound from "./pages/Error/NotFound";
 import Home from "./pages/Home";
 import AuthRoutes from "./pages/AuthRoutes";
 
-import "./modal.css";
 import DashboardRoutes from "./pages/DashboardRoutes";
 
+import "./scss/main.scss";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => (

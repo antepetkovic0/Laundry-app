@@ -4,16 +4,7 @@ import ReactModal from "react-modal";
 
 import { hideDialog } from "../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../utils/constants";
-
 import Button from "../Button/Button";
-// import SectionMessage from "../../../Auth/components/SectionMessage";
-
-import {
-  DialogBody,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-} from "../../pages/Dashboard/style";
 
 const DeleteDialog = () => {
   const {
@@ -42,9 +33,9 @@ const DeleteDialog = () => {
       onRequestClose={close}
       ariaHideApp={false}
     >
-      <DialogContent>
-        <DialogHeader>Delete user</DialogHeader>
-        <DialogBody>
+      <div className="modal-dialog">
+        <h3 className="modal-dialog__header">Delete user</h3>
+        <div className="modal-dialog__body">
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
             <div>
               Are you sure you want to delete{" "}
@@ -55,12 +46,12 @@ const DeleteDialog = () => {
             </div>
             <div>This action is irreversible.</div>
           </div>
-        </DialogBody>
-        <DialogFooter>
+        </div>
+        <div className="modal-dialog__footer">
           <Button text="Cancel" type="subtle" onClick={close} />
           <Button text="Delete" onClick={handleDelete} />
-        </DialogFooter>
-      </DialogContent>
+        </div>
+      </div>
     </ReactModal>
   );
 };

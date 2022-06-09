@@ -6,16 +6,8 @@ import { hideDialog } from "../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../utils/constants";
 
 import Button from "../Button/Button";
-// import SectionMessage from "../../../Auth/components/SectionMessage";
 
-import {
-  DialogBody,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-} from "../../pages/Dashboard/style";
-
-const DeleteDialog = ({ submitAction }) => {
+const UserDeclineDialog = () => {
   const {
     dialog,
     users: { list },
@@ -30,40 +22,36 @@ const DeleteDialog = ({ submitAction }) => {
     dispatch(hideDialog());
   };
 
-  const handleDelete = () => {
-    submitAction();
+  const handleUserDecline = () => {
+    close();
   };
 
   if (!targetUser) return null;
 
   return (
     <ReactModal
-      isOpen={
-        dialog.dialogType === DIALOG_TYPE.ADMIN_USER_DELETE ||
-        dialog.dialogType === DIALOG_TYPE.ADMIN_REQUEST_APPROVE ||
-        dialog.dialogType === DIALOG_TYPE.ADMIN_REQUEST_DECLINE
-      }
+      isOpen={dialog.dialogType === DIALOG_TYPE.ADMIN_REQUEST_DECLINE}
       onRequestClose={close}
       ariaHideApp={false}
     >
-      <DialogContent>
-        <DialogHeader>Delete user</DialogHeader>
-        <DialogBody>
+      <div className="modal-dialog">
+        <h3 className="modal-dialog__header">Decline user request</h3>
+        <div className="modal-dialog__body">
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-            <div>
-              Are you sure you want to delete <b>{targetUser.name}</b>?
-            </div>
-            <div>This action is irreversible.</div>
+            Are you sure you want to delete{" "}
+            <b>
+              {targetUser.firstName} {targetUser.lastName}
+            </b>
+            ?
           </div>
-          {/* <SectionMessage /> */}
-        </DialogBody>
-        <DialogFooter>
+        </div>
+        <div className="modal-dialog__body">
           <Button text="Cancel" type="subtle" onClick={close} />
-          <Button text="Delete" onClick={handleDelete} />
-        </DialogFooter>
-      </DialogContent>
+          <Button text="Decline" onClick={handleUserDecline} />
+        </div>
+      </div>
     </ReactModal>
   );
 };
 
-export default DeleteDialog;
+export default UserDeclineDialog;

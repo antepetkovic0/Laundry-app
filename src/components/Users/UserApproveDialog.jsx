@@ -6,16 +6,8 @@ import { hideDialog } from "../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../utils/constants";
 
 import Button from "../Button/Button";
-// import SectionMessage from "../../../Auth/components/SectionMessage";
 
-import {
-  DialogBody,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-} from "../../pages/Dashboard/style";
-
-const DeleteDialog = () => {
+const UserApproveDialog = () => {
   const {
     dialog,
     users: { list },
@@ -30,7 +22,7 @@ const DeleteDialog = () => {
     dispatch(hideDialog());
   };
 
-  const handleDelete = () => {
+  const handleUserApprove = () => {
     close();
   };
 
@@ -42,23 +34,24 @@ const DeleteDialog = () => {
       onRequestClose={close}
       ariaHideApp={false}
     >
-      <DialogContent>
-        <DialogHeader>Delete user</DialogHeader>
-        <DialogBody>
+      <div className="modal-dialog">
+        <h3 className="modal-dialog__header">Approve user</h3>
+        <div className="modal-dialog__body">
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-            <div>
-              Are you sure you want to delete <b>{targetUser.name}</b>?
-            </div>
-            <div>This action is irreversible.</div>
+            Are you sure you want to approve{" "}
+            <b>
+              {targetUser.firstName} {targetUser.lastName}
+            </b>
+            ?
           </div>
-        </DialogBody>
-        <DialogFooter>
+        </div>
+        <div className="modal-dialog__footer">
           <Button text="Cancel" type="subtle" onClick={close} />
-          <Button text="Delete" onClick={handleDelete} />
-        </DialogFooter>
-      </DialogContent>
+          <Button text="Approve" onClick={handleUserApprove} />
+        </div>
+      </div>
     </ReactModal>
   );
 };
 
-export default DeleteDialog;
+export default UserApproveDialog;

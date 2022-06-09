@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+import UserApproveDialog from "./UserApproveDialog";
 import UserCard from "./UserCard";
-import DeleteDialog from "./UserDeleteDialog";
+import UserDeclineDialog from "./UserDeclineDialog";
+import UserDeleteDialog from "./UserDeleteDialog";
 
 const UserList = ({ users }) => {
   if (!users.length) {
@@ -13,7 +15,9 @@ const UserList = ({ users }) => {
       {users.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}
-      <DeleteDialog />
+      <UserDeleteDialog />
+      <UserApproveDialog />
+      <UserDeclineDialog />
     </>
   );
 };
