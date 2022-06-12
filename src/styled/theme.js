@@ -27,6 +27,7 @@ export const theme = {
   },
   success: "#16c784",
   error: "#ea3943",
+  warning: "#FFAB00",
   white: "#fff",
   gray: {
     dark: "hsl(0, 0%, 80%)",

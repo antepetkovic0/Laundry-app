@@ -45,7 +45,7 @@ const UserDeclineDialog = () => {
             ?
           </div>
         </div>
-        <div className="modal-dialog__body">
+        <div className="modal-dialog__footer">
           <Button text="Cancel" type="subtle" onClick={close} />
           <Button text="Decline" onClick={handleUserDecline} />
         </div>

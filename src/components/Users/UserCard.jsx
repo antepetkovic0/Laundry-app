@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -6,6 +6,8 @@ import { TableAction, TableActionsGroup } from "../../pages/Dashboard/style";
 import { showDialog } from "../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../utils/constants";
 import Icon from "../Icon/Icon";
+import Tag from "../Tag/Tag";
+import appearances from "../../constants/appearances";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -60,6 +62,14 @@ const UserCard = ({ user }) => {
 
   const dispatch = useDispatch();
 
+  const tagAppearance = useMemo(() => {
+    if (status === "ACTIVE") {
+      return appearances.SUCCESS;
+    }
+
+    return appearances.WARNING;
+  }, [status]);
+
   const handleUserDelete = () => {
     dispatch(showDialog(DIALOG_TYPE.ADMIN_USER_DELETE, { userId: id }));
   };
@@ -83,6 +93,7 @@ const UserCard = ({ user }) => {
         </h4>
         <p>{email}</p>
         <p>{roleId}</p>
+        <Tag text={status} appearance={tagAppearance} />
       </CardBody>
       <TableActionsGroup>
         {status === "ACTIVE" ? (

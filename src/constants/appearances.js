@@ -1,0 +1,7 @@
+export default {
+  DEFAULT: "DEFAULT",
+  PRIMARY: "PRIMARY",
+  WARNING: "WARNING",
+  DANGER: "DANGER",
+  SUCCESS: "SUCCESS",
+};
