@@ -4,7 +4,6 @@ import {
   UPDATE_SHOP_PRODUCT,
   FETCH_DASHBOARD_SHOPS,
   FETCH_DASHBOARD_USERS,
-  FETCH_DASHBOARD_PENDING,
 } from "../actions/dashboard";
 
 const INITIAL_STATE = {
@@ -29,7 +28,6 @@ const INITIAL_STATE = {
 const dashboard = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_DASHBOARD_USERS:
-    case FETCH_DASHBOARD_PENDING:
     case FETCH_DASHBOARD_SHOPS:
       return {
         ...state,

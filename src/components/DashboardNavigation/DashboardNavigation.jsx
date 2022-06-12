@@ -117,7 +117,9 @@ const DashboardNavigation = () => {
   const { pathname } = location;
 
   const { permissions } = useSelector((state) => state.profile.role);
-  const { count } = useSelector((state) => state.dashboard.pending);
+
+  const users = useSelector((state) => state.users.list);
+  const someUserPending = users?.some((user) => user.status === "PENDING");
 
   const navigationLinks = getDashboardLinksByRole(permissions);
 
@@ -129,7 +131,7 @@ const DashboardNavigation = () => {
         return (
           <Li key={linkTo} to={linkTo} isRouteActive={pathname === linkTo}>
             <Icon name={item.iconName} />
-            {item.path === dashboardRoutePath.USERS && count ? (
+            {item.path === dashboardRoutePath.USERS && someUserPending ? (
               <Signal />
             ) : null}
           </Li>

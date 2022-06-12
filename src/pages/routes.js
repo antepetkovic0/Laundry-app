@@ -8,7 +8,6 @@ import { dashboardRoutePath } from "../constants/routePaths";
 import ShopsRoutes from "./ShopsRoutes";
 import WithLoading from "../hocs/WithLoading";
 import {
-  FETCH_DASHBOARD_PENDING,
   FETCH_DASHBOARD_SHOPS,
   FETCH_DASHBOARD_USERS,
 } from "../store/actions/dashboard";
@@ -17,7 +16,6 @@ import DashboardView from "../components/DashboardView/DashboardView";
 const DashboardWithLoading = WithLoading(
   DashboardView,
   FETCH_DASHBOARD_USERS,
-  FETCH_DASHBOARD_PENDING,
   FETCH_DASHBOARD_SHOPS
 );
 

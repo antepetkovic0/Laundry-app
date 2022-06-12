@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Roles } from "../../utils/constants";
 import { breakpoint } from "../../styled/breakpoint";
 import DashboardUsers from "../../containers/DashboardUsers/DashboardUsers";
-import DashboardPendingRequests from "../../containers/DashboardPendingRequests/DashboardPendingRequest";
 import DashboardShops from "../../containers/DashboardShops/DashboardShops";
 
 const Wrapper = styled.div`
@@ -15,7 +14,6 @@ const Wrapper = styled.div`
     if (props.userRole === Roles.ADMIN) {
       return `
       "user"
-      "pending"
       "service"
       "orders"
       `;
@@ -40,8 +38,7 @@ const Wrapper = styled.div`
     grid-template-areas: ${(props) => {
       if (props.userRole === Roles.ADMIN) {
         return `
-        "user pending"
-        "service service"
+        "user service"
         "orders orders"
       `;
       }
@@ -65,7 +62,7 @@ const Wrapper = styled.div`
     grid-template-areas: ${(props) => {
       if (props.userRole === Roles.ADMIN) {
         return `
-        "user pending service"
+        "user service"
         "orders orders orders"
       `;
       }
@@ -86,12 +83,7 @@ const Wrapper = styled.div`
 
 const DashboardView = ({ roleTitle }) => (
   <Wrapper userRole={roleTitle}>
-    {roleTitle === Roles.ADMIN && (
-      <>
-        <DashboardUsers />
-        <DashboardPendingRequests />
-      </>
-    )}
+    {roleTitle === Roles.ADMIN && <DashboardUsers />}
     {/* {roleTitle === Roles.SERVICE && <Revenue />}
     {roleTitle !== Roles.ADMIN && <Calendar />} */}
     <DashboardShops />
