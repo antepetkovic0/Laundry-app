@@ -2,21 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import { rules } from "../utils/permissions";
-import { FETCH_SHOPS, FETCH_SPECIFIC_SHOP } from "../store/actions/shops";
-import WithLoading from "../hocs/WithLoading";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
-import Shops from "../containers/Shops/Shops";
-import SpecificShop from "../containers/SpecificShop/SpecificShop";
-import CreateShop from "../containers/CreateShop/CreateShop";
-
-const ShopsWithLoading = WithLoading(Shops, FETCH_SHOPS);
-const SpecificShopWithLoading = WithLoading(SpecificShop, FETCH_SPECIFIC_SHOP);
+import Shops from "../components/Shops/Shops";
+import CreateShop from "../components/Shops/CreateShop";
+import SpecificShop from "../components/Shops/SpecificShop";
+import EditShop from "../components/Shops/EditShop";
 
 export const shopRoutes = [
   {
     path: "",
     rule: rules.READ_SHOP,
-    component: ShopsWithLoading,
+    component: Shops,
     exact: true,
   },
   {
@@ -26,9 +22,15 @@ export const shopRoutes = [
     exact: false,
   },
   {
+    path: "edit",
+    rule: rules.EDIT_SHOP,
+    component: EditShop,
+    exact: false,
+  },
+  {
     path: ":slug",
     rule: rules.READ_SHOP,
-    component: SpecificShopWithLoading,
+    component: SpecificShop,
     exact: false,
   },
 ];

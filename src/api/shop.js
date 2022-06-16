@@ -1,5 +1,3 @@
-// import axios from "axios";
-import { deleteDashboardData } from "../store/actions/dashboard";
 import { hideDialog } from "../store/actions/dialog";
 import { getShops, getSpecificShop } from "../store/actions/shops";
 import * as actions from "../store/actions/shops";
@@ -38,6 +36,19 @@ export const createShop = (actionName, shop, history) => async (dispatch) => {
     dispatch(startUILoader(actionName));
     const { data } = await httpClient.post("/shops", shop);
     dispatch(actions.createShop(data));
+    history.push(`/dashboard/shops/${data.slug}`);
+  } catch (err) {
+    toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
+  } finally {
+    dispatch(stopUILoader(actionName));
+  }
+};
+
+export const editShop = (actionName, shop, history) => async (dispatch) => {
+  try {
+    dispatch(startUILoader(actionName));
+    const { data } = await httpClient.put(`shops/${shop.id}/edit`, shop);
+    dispatch(actions.editShop(data.id, data));
     history.push(`/dashboard/shops/${data.slug}`);
   } catch (err) {
     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);

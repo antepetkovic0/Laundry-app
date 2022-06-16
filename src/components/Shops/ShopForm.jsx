@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "../Button/Button";
@@ -37,12 +37,23 @@ const FormUpper = styled.div`
   flex-direction: column;
 `;
 
-const ShopForm = ({ formData, onInputChange, onSubmit, isSubmitting }) => {
-  const { name, slug, address, image, about } = formData;
+const ShopForm = ({ data, onSubmit, formSubmitting }) => {
+  const { name, slug, address, image, about } = data;
+  const [form, setForm] = useState({
+    name,
+    slug,
+    address,
+    image,
+    about,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit();
+    onSubmit(form);
+  };
+
+  const handleInputChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   return (
@@ -53,44 +64,37 @@ const ShopForm = ({ formData, onInputChange, onSubmit, isSubmitting }) => {
             type="text"
             name="name"
             label="Shop Name"
-            value={name}
-            onChange={onInputChange}
+            value={form.name}
+            onChange={handleInputChange}
           />
           <Input
             type="text"
             name="slug"
             label="Slug"
-            value={slug}
-            onChange={onInputChange}
+            value={form.slug}
+            onChange={handleInputChange}
           />
           <Input
             type="text"
             name="address"
             label="Address"
-            value={address}
-            onChange={onInputChange}
+            value={form.address}
+            onChange={handleInputChange}
           />
           <Input
             type="text"
             name="image"
             label="Image URL"
-            value={image}
-            onChange={onInputChange}
+            value={form.image}
+            onChange={handleInputChange}
           />
         </div>
         <ImgHolder>
           <img
-            src={image}
+            src={form.image}
             alt="upload"
             onError={(e) => {
               e.target.onerror = null;
-              // e.target.src =
-              //   "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png";
-              // setForm({
-              //   ...form,
-              //   image:
-              //     "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png",
-              // });
             }}
           />
         </ImgHolder>
@@ -99,26 +103,25 @@ const ShopForm = ({ formData, onInputChange, onSubmit, isSubmitting }) => {
         name="about"
         rows="5"
         placeholder="Enter about shop..."
-        value={about}
-        onChange={onInputChange}
+        value={form.about}
+        onChange={handleInputChange}
       />
       <div style={{ textAlign: "right" }}>
-        <Button type="submit" text="Create shop" isLoading={isSubmitting} />
+        <Button type="submit" text="Save changes" isLoading={formSubmitting} />
       </div>
     </form>
   );
 };
 
 ShopForm.propTypes = {
-  formData: PropTypes.exact({
+  data: PropTypes.shape({
     name: PropTypes.string,
     slug: PropTypes.string,
     address: PropTypes.string,
     image: PropTypes.string,
     about: PropTypes.string,
   }).isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
-  onInputChange: PropTypes.func.isRequired,
+  formSubmitting: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

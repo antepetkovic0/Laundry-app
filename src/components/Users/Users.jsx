@@ -6,6 +6,7 @@ import WithLoading from "../../hocs/WithLoading";
 import Input from "../Input/Input";
 import UserList from "./UserList";
 import { isRequestOutdated } from "../../utils/date";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const Users = () => {
   const { list, lastFetched } = useSelector((state) => state.users);
@@ -14,8 +15,12 @@ const Users = () => {
   // todo: filter by roles
   const [filterByRole, setFilterByRole] = useState("ALL");
 
+  const debouncedQuery = useDebounce(query, 750);
+
   const filteredUsers = list.filter(
-    (user) => user.firstName.includes(query) || user.lastName.includes(query)
+    (user) =>
+      user.firstName.includes(debouncedQuery) ||
+      user.lastName.includes(debouncedQuery)
   );
 
   const dispatch = useDispatch();
@@ -25,6 +30,11 @@ const Users = () => {
       dispatch(fetchUsers(FETCH_USERS));
     }
   }, []);
+  useEffect(() => {
+    console.log("lgg");
+  }, [debouncedQuery]);
+
+  console.log("rrr");
 
   return (
     <>

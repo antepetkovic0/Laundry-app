@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { theme } from "../../styled/theme";
 import { Roles } from "../../utils/constants";
 import Icon from "../Icon/Icon";
-import DeleteShop from "../../containers/DeleteShop/DeleteShop";
+import DeleteShop from "./DeleteShop";
 import CaretLink from "../CaretLink/CaretLink";
+import { isRequestOutdated } from "../../utils/date";
+import { fetchShops } from "../../api/shop";
+import { FETCH_SHOPS } from "../../store/actions/shops";
+import WithLoading from "../../hocs/WithLoading";
 
 const ListContainer = styled.div`
   display: grid;
@@ -76,13 +82,27 @@ export const ActionItem = styled.div`
   transition: all 0.2s;
 `;
 
-const ShopList = ({ shops, roleTitle, onDeleteShop }) => {
-  if (!shops.length) return <p>There is no created shops.</p>;
+const ShopList = ({ search }) => {
+  const { list, lastFetched } = useSelector((state) => state.shops);
+  const { title } = useSelector((state) => state.profile.role);
+
+  const filteredList = list.filter((shop) => shop.name.includes(search));
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!lastFetched || isRequestOutdated(lastFetched)) {
+      dispatch(fetchShops(FETCH_SHOPS));
+    }
+  }, []);
+
+  if (!list.length) return <p>There is no created shops.</p>;
 
   return (
     <>
       <ListContainer>
-        {shops.map((shop) => (
+        {filteredList.map((shop) => (
           <CardContainer key={shop.id}>
             <Content>
               <Image>
@@ -95,12 +115,15 @@ const ShopList = ({ shops, roleTitle, onDeleteShop }) => {
             </Content>
             <Actions>
               <ActionGroup>
-                {roleTitle === Roles.SERVICE && (
+                {title === Roles.SERVICE && (
                   <>
                     <ActionItem>
-                      <Icon name="edit" />
+                      <CaretLink
+                        linkTo={`/dashboard/shops/edit?slug=${shop.slug}`}
+                        iconName="edit"
+                      />
                     </ActionItem>
-                    <ActionItem onClick={() => onDeleteShop(shop.id)}>
+                    <ActionItem onClick={() => null}>
                       <Icon name="delete" />
                     </ActionItem>
                   </>
@@ -111,23 +134,24 @@ const ShopList = ({ shops, roleTitle, onDeleteShop }) => {
           </CardContainer>
         ))}
       </ListContainer>
-      {roleTitle === Roles.SERVICE && <DeleteShop />}
+      {title === Roles.SERVICE && <DeleteShop />}
     </>
   );
 };
 
-ShopList.defaultProps = {
-  shops: null,
-};
+// ShopList.defaultProps = {
+//   shops: null,
+// };
 
 ShopList.propTypes = {
-  shops: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-    })
-  ),
-  roleTitle: PropTypes.string.isRequired,
-  onDeleteShop: PropTypes.func.isRequired,
+  // shops: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     name: PropTypes.string,
+  //   })
+  // ),
+  // onDeleteShop: PropTypes.func.isRequired,
+  // roleTitle: PropTypes.string.isRequired,
+  search: PropTypes.string.isRequired,
 };
 
-export default ShopList;
+export default WithLoading(ShopList, FETCH_SHOPS);

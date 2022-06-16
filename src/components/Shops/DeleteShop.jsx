@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteShop } from "../../api/shop";
 import { hideDialog } from "../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../utils/constants";
-import DeleteShopDialog from "../../components/Dialog/DeleteShopDialog";
+import DeleteShopDialog from "../Dialog/DeleteShopDialog";
 
 const DeleteShop = () => {
   const { dialogType, dialogProps } = useSelector((state) => state.dialog);

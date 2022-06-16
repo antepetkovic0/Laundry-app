@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { breakpoint } from "../../styled/breakpoint";
@@ -30,12 +30,10 @@ const Info = styled.div`
 `;
 
 const ShopItem = ({ shop }) => {
-  console.log("sho", shop);
   const { image, name, address, about } = shop;
 
   return (
     <div>
-      {/* <Back to="/dashboard/shops" title="Shop info" /> */}
       <ShopContainer>
         <Image>
           <img
