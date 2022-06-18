@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { theme } from "../../styled/theme";
-import { Roles } from "../../utils/constants";
+import { DIALOG_TYPE, Roles } from "../../utils/constants";
 import Icon from "../Icon/Icon";
 import DeleteShop from "./DeleteShop";
 import CaretLink from "../CaretLink/CaretLink";
@@ -12,6 +11,7 @@ import { isRequestOutdated } from "../../utils/date";
 import { fetchShops } from "../../api/shop";
 import { FETCH_SHOPS } from "../../store/actions/shops";
 import WithLoading from "../../hocs/WithLoading";
+import { showDialog } from "../../store/actions/dialog";
 
 const ListContainer = styled.div`
   display: grid;
@@ -89,7 +89,6 @@ const ShopList = ({ search }) => {
   const filteredList = list.filter((shop) => shop.name.includes(search));
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     if (!lastFetched || isRequestOutdated(lastFetched)) {
@@ -123,7 +122,15 @@ const ShopList = ({ search }) => {
                         iconName="edit"
                       />
                     </ActionItem>
-                    <ActionItem onClick={() => null}>
+                    <ActionItem
+                      onClick={() =>
+                        dispatch(
+                          showDialog(DIALOG_TYPE.SHOP_DELETE, {
+                            shopId: shop.id,
+                          })
+                        )
+                      }
+                    >
                       <Icon name="delete" />
                     </ActionItem>
                   </>
