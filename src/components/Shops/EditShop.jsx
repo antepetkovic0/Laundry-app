@@ -29,7 +29,7 @@ const EditShop = () => {
   }, [slug]);
 
   const handleSubmit = (formData) => {
-    dispatch(editShop(EDIT_SHOP, formData, history));
+    dispatch(editShop(EDIT_SHOP, { id: targetShop.id, ...formData }, history));
   };
 
   if (!targetShop) return <div>Nothing to find here</div>;

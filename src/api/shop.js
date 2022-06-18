@@ -47,9 +47,9 @@ export const createShop = (actionName, shop, history) => async (dispatch) => {
 export const editShop = (actionName, shop, history) => async (dispatch) => {
   try {
     dispatch(startUILoader(actionName));
-    const { data } = await httpClient.put(`shops/${shop.id}/edit`, shop);
-    dispatch(actions.editShop(data.id, data));
-    history.push(`/dashboard/shops/${data.slug}`);
+    await httpClient.put("/shops", shop);
+    dispatch(actions.editShop(shop.id, shop));
+    history.push(`/dashboard/shops/${shop.slug}`);
   } catch (err) {
     toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
   } finally {
