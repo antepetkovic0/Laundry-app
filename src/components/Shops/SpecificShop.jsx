@@ -8,6 +8,7 @@ import { FETCH_SPECIFIC_SHOP } from "../../store/actions/shops";
 
 import HeaderBackLink from "../CaretLink/HeaderBackLink";
 import ShopItem from "./ShopItem";
+import Products from "../Products/Products";
 
 const SpecificShop = () => {
   const { slug } = useParams();
@@ -29,6 +30,7 @@ const SpecificShop = () => {
     <>
       <HeaderBackLink to="/dashboard/shops" title={targetShop.name} />
       <ShopItem shop={targetShop} />
+      <Products shopId={targetShop.id} />
     </>
   );
 };

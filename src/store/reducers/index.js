@@ -7,6 +7,7 @@ import profile from "./profile";
 import dashboard from "./dashboard";
 import dialog from "./dialog";
 import shops from "./shops";
+import products from "./products";
 import users from "./users";
 import ui from "./ui";
 import { createTypedDrawers } from "./drawer";
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   dashboard,
   dialog,
   shops,
+  products,
   users,
   drawerHome: createTypedDrawers(DRAWER_TYPE.HOME),
   switchRoleFeatures: createTypedSwitchers(SWITCH_TYPE.ROLE_FEATURES),

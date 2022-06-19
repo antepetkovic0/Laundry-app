@@ -3,7 +3,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import "../modal.css";
 import { useSelector } from "react-redux";
 
 const LoadingWrapper = styled.div`

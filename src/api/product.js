@@ -1,16 +1,30 @@
 import axios from "axios";
 import {
   deleteShopProduct,
-  setDashboardData,
   updateShopProduct,
 } from "../store/actions/dashboard";
 import { hideDialog } from "../store/actions/dialog";
+import { getShopProducts } from "../store/actions/products";
+import { setUIError, startUILoader, stopUILoader } from "../store/actions/ui";
 import { TOAST_TYPE } from "../utils/constants";
 import { toastMessage } from "../utils/toast";
+import { httpClient } from "./client";
 
 const URL = "http://localhost:8080/api/products";
 axios.defaults.withCredentials = true;
 axios.defaults.credentials = "include";
+
+export const fetchProducts = (actionName, shopId) => async (dispatch) => {
+  try {
+    dispatch(startUILoader(actionName));
+    const { data } = await httpClient.get(`/products/${shopId}`);
+    dispatch(getShopProducts(data, shopId));
+  } catch (err) {
+    dispatch(setUIError(actionName));
+  } finally {
+    dispatch(stopUILoader(actionName));
+  }
+};
 
 export const createProduct = (product) => async (dispatch) => {
   try {
