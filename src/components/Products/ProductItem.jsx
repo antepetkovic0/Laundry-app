@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -8,6 +9,7 @@ import { TableAction, TableActionsGroup } from "../../pages/Dashboard/style";
 import Icon from "../Icon/Icon";
 import { showDialog } from "../../store/actions/dialog";
 import QuantityPicker from "../../pages/Dashboard/components/Product/QuantityPicker";
+import CaretLink from "../CaretLink/CaretLink";
 
 const Box = styled.div`
   height: 20rem;
@@ -87,6 +89,8 @@ const Actions = styled.div`
 `;
 
 const ProductItem = ({ product }) => {
+  const params = useParams();
+  console.log(params);
   const { title } = useSelector((state) => state.profile.role);
 
   const dispatch = useDispatch();
@@ -127,7 +131,10 @@ const ProductItem = ({ product }) => {
           <>
             <TableActionsGroup>
               <TableAction onClick={() => null}>
-                <Icon name="edit" />
+                <CaretLink
+                  linkTo={`/dashboard/shops/${params.slug}/edit/${product.slug}`}
+                  iconName="edit"
+                />
               </TableAction>
               <TableAction onClick={handleDeleteProduct}>
                 <Icon name="delete" />

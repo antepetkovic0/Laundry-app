@@ -51,14 +51,6 @@ const shops = (state = INITIAL_STATE, action) => {
             : {
                 ...shop,
                 ...action.payload.data,
-                // products: shop.products.map((product) =>
-                //   product.id !== action.payload.id
-                //     ? product
-                //     : {
-                //         ...product,
-                //         ...action.payload.product,
-                //       }
-                // ),
               }
         ),
       };

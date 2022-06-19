@@ -5,6 +5,7 @@ import { rules } from "../utils/permissions";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import CreateProduct from "../components/Products/CreateProduct";
 import SpecificShop from "../components/Shops/SpecificShop";
+import EditProduct from "../components/Products/EditProduct";
 
 export const productRoutes = [
   {
@@ -17,6 +18,12 @@ export const productRoutes = [
     path: "create",
     rule: rules.CREATE_PRODUCT,
     component: CreateProduct,
+    exact: false,
+  },
+  {
+    path: "edit/:productSlug",
+    rule: rules.EDIT_PRODUCT,
+    component: EditProduct,
     exact: false,
   },
 ];

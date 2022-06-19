@@ -37,7 +37,7 @@ const FormUpper = styled.div`
   flex-direction: column;
 `;
 
-const ShopForm = ({ data, onSubmit, formSubmitting }) => {
+const ShopForm = ({ data, onSubmit, isSubmitting }) => {
   const { name, slug, price, discount, image, content } = data;
   const [form, setForm] = useState({
     name,
@@ -115,7 +115,7 @@ const ShopForm = ({ data, onSubmit, formSubmitting }) => {
         onChange={handleInputChange}
       />
       <div style={{ textAlign: "right" }}>
-        <Button type="submit" text="Save changes" isLoading={formSubmitting} />
+        <Button type="submit" text="Save changes" isLoading={isSubmitting} />
       </div>
     </form>
   );
@@ -130,7 +130,7 @@ ShopForm.propTypes = {
     image: PropTypes.string,
     content: PropTypes.string,
   }).isRequired,
-  formSubmitting: PropTypes.bool.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

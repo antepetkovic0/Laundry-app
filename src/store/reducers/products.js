@@ -1,6 +1,7 @@
 import {
   FETCH_SHOP_PRODUCTS,
   CREATE_PRODUCT,
+  EDIT_PRODUCT,
   DELETE_PRODUCT,
 } from "../actions/products";
 
@@ -32,6 +33,21 @@ const products = (state = INITIAL_STATE, action) => {
           count: state[action.payload.data.shopId]
             ? state[action.payload.data.shopId].count + 1
             : 1,
+        },
+      };
+    case EDIT_PRODUCT:
+      return {
+        ...state,
+        [action.payload.data.shopId]: {
+          ...state[action.payload.data.shopId],
+          list: state[action.payload.data.shopId].list.map((product) =>
+            product.id !== action.payload.productId
+              ? product
+              : {
+                  ...product,
+                  ...action.payload.data,
+                }
+          ),
         },
       };
     case DELETE_PRODUCT:
