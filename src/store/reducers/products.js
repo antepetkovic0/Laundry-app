@@ -1,4 +1,4 @@
-import { FETCH_SHOP_PRODUCTS } from "../actions/products";
+import { FETCH_SHOP_PRODUCTS, CREATE_PRODUCT } from "../actions/products";
 
 const INITIAL_STATE = {};
 
@@ -14,6 +14,20 @@ const products = (state = INITIAL_STATE, action) => {
           ],
           count: action.payload.data.count,
           lastFetched: action.payload.fetchTime,
+        },
+      };
+    case CREATE_PRODUCT:
+      return {
+        ...state,
+        [action.payload.data.shopId]: {
+          ...state[action.payload.data.shopId],
+          list: [
+            ...(state?.[action.payload.data.shopId]?.list ?? []),
+            action.payload.data,
+          ],
+          count: state[action.payload.data.shopId]
+            ? state[action.payload.data.shopId].count + 1
+            : 1,
         },
       };
     default:

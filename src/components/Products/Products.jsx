@@ -6,7 +6,7 @@ import { fetchProducts } from "../../api/product";
 
 const Products = ({ shopId }) => {
   const { list, count, lastFetched } = useSelector(
-    (state) => state.products[shopId]
+    (state) => state.products?.[shopId] ?? {}
   );
 
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Products = ({ shopId }) => {
     dispatch(fetchProducts(FETCH_SHOP_PRODUCTS, shopId));
   }, []);
 
-  if (!list.length) return <p>There is no created products.</p>;
+  if (!list || !list.length) return <p>There is no created products.</p>;
 
   return <>products</>;
 };

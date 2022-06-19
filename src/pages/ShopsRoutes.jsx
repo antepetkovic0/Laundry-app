@@ -7,6 +7,7 @@ import Shops from "../components/Shops/Shops";
 import CreateShop from "../components/Shops/CreateShop";
 import SpecificShop from "../components/Shops/SpecificShop";
 import EditShop from "../components/Shops/EditShop";
+import ProductRoutes from "./ProductRoutes";
 
 export const shopRoutes = [
   {
@@ -30,7 +31,7 @@ export const shopRoutes = [
   {
     path: ":slug",
     rule: rules.READ_SHOP,
-    component: SpecificShop,
+    component: ProductRoutes,
     exact: false,
   },
 ];
