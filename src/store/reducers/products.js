@@ -1,4 +1,8 @@
-import { FETCH_SHOP_PRODUCTS, CREATE_PRODUCT } from "../actions/products";
+import {
+  FETCH_SHOP_PRODUCTS,
+  CREATE_PRODUCT,
+  DELETE_PRODUCT,
+} from "../actions/products";
 
 const INITIAL_STATE = {};
 
@@ -28,6 +32,17 @@ const products = (state = INITIAL_STATE, action) => {
           count: state[action.payload.data.shopId]
             ? state[action.payload.data.shopId].count + 1
             : 1,
+        },
+      };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        [action.payload.shopId]: {
+          ...state[action.payload.shopId],
+          list: state[action.payload.shopId].list.filter(
+            (product) => product.id !== action.payload.productId
+          ),
+          count: state[action.payload.shopId].count - 1,
         },
       };
     default:

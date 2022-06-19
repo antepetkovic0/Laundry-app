@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { theme } from "../../../../styled/theme";
-import { DIALOG_TYPE, Roles } from "../../../../utils/constants";
-import { TableAction, TableActionsGroup } from "../../style";
-import Icon from "../../../../components/Icon/Icon";
-import DeleteDialog from "./DeleteDialog";
-import { showDialog } from "../../../../store/actions/dialog";
-import { ProductFormContext } from "./ProductFormContext";
-import QuantityPicker from "./QuantityPicker";
+import { theme } from "../../styled/theme";
+import { DIALOG_TYPE, Roles } from "../../utils/constants";
+import { TableAction, TableActionsGroup } from "../../pages/Dashboard/style";
+import Icon from "../Icon/Icon";
+import { showDialog } from "../../store/actions/dialog";
+import QuantityPicker from "../../pages/Dashboard/components/Product/QuantityPicker";
 
 const Box = styled.div`
   height: 20rem;
@@ -88,26 +86,10 @@ const Actions = styled.div`
   justify-content: flex-end;
 `;
 
-const Product = ({ product }) => {
-  const { profile } = useSelector((state) => state);
-  const { setProductCreateOrEdit, setProductEditMode, setProductForm } =
-    useContext(ProductFormContext);
+const ProductItem = ({ product }) => {
+  const { title } = useSelector((state) => state.profile.role);
 
   const dispatch = useDispatch();
-
-  const handleEditProduct = () => {
-    setProductCreateOrEdit(true);
-    setProductEditMode(true);
-    setProductForm({
-      id: product.id,
-      name: product.name,
-      slug: product.slug,
-      price: product.price,
-      discount: product.discount,
-      image: product.image,
-      content: product.content,
-    });
-  };
 
   const handleDeleteProduct = () => {
     dispatch(
@@ -141,27 +123,26 @@ const Product = ({ product }) => {
         </NumbersWrapper>
       </ProductInfo>
       <Actions>
-        {profile.Role.title === Roles.SERVICE && (
+        {title === Roles.SERVICE && (
           <>
             <TableActionsGroup>
-              <TableAction onClick={handleEditProduct}>
+              <TableAction onClick={() => null}>
                 <Icon name="edit" />
               </TableAction>
               <TableAction onClick={handleDeleteProduct}>
                 <Icon name="delete" />
               </TableAction>
             </TableActionsGroup>
-            <DeleteDialog />
           </>
         )}
-        {profile.Role.title === Roles.USER && <QuantityPicker />}
+        {title === Roles.USER && <QuantityPicker />}
       </Actions>
     </Box>
   );
 };
 
-Product.propTypes = {
+ProductItem.propTypes = {
   product: PropTypes.shape.isRequired,
 };
 
-export default Product;
+export default ProductItem;

@@ -38,10 +38,10 @@ export const createProduct =
     }
   };
 
-export const deleteProduct = (id, shopId) => async (dispatch) => {
+export const deleteProduct = (productId, shopId) => async (dispatch) => {
   try {
-    await axios.delete(`${URL}/${id}`);
-    dispatch(deleteShopProduct(id, shopId));
+    await httpClient.delete(`products/${productId}`);
+    dispatch(productActions.deleteProduct(productId, shopId));
     dispatch(hideDialog());
     toastMessage("Product has been successfully deleted", TOAST_TYPE.SUCCESS);
   } catch (err) {
