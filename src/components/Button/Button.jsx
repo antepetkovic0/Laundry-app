@@ -52,7 +52,7 @@ const ButtonLink = styled.button`
   }
 `;
 
-const Button = ({ text, type, onClick, isLoading }) => {
+const Button = ({ text, type, onClick, isLoading, isDisabled }) => {
   if (type === ButtonType.LINK) {
     return <ButtonLink onClick={onClick}>{text}</ButtonLink>;
   }
@@ -75,6 +75,7 @@ const Button = ({ text, type, onClick, isLoading }) => {
 Button.defaultProps = {
   type: ButtonType.DEFAULT,
   isLoading: false,
+  isDisabled: false,
   onClick: () => null,
 };
 
@@ -82,6 +83,7 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string,
   isLoading: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
 };
 

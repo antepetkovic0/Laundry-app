@@ -11,23 +11,23 @@ const Anchor = styled(Link)`
   justify-content: center;
   width: fit-content;
   fill: ${theme.text.alt};
-  background-color: ${theme.neutral.one};
+  /* background-color: ${theme.neutral.one}; */
   padding: 0.8rem;
-  border-radius: 100%;
-  transition: all 0.2s;
+  /* border-radius: 0.8rem; */
+  /* transition: all 0.2s;
 
   &:hover svg {
     transform: translateX(1.2rem);
-  }
+  } */
 `;
 
-const iconStyle = () => `
-  transition: all 0.2s;
-`;
+// const iconStyle = () => `
+//   transition: all 0.2s;
+// `;
 
 const CaretLink = ({ linkTo, iconName }) => (
   <Anchor to={linkTo}>
-    <Icon name={iconName} additionalStyle={iconStyle} />
+    <Icon name={iconName} />
   </Anchor>
 );
 

@@ -90,7 +90,7 @@ const Actions = styled.div`
 
 const ProductItem = ({ product }) => {
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const { title } = useSelector((state) => state.profile.role);
 
   const dispatch = useDispatch();
@@ -133,6 +133,10 @@ const ProductItem = ({ product }) => {
               <TableAction onClick={() => null}>
                 <CaretLink
                   linkTo={`/dashboard/shops/${params.slug}/edit/${product.slug}`}
+                  iconName="edit"
+                />
+                <CaretLink
+                  linkTo={`/dashboard/shops/${params.slug}/${product.slug}`}
                   iconName="edit"
                 />
               </TableAction>

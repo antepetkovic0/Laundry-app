@@ -1,20 +1,25 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { FETCH_SHOP_PRODUCTS } from "../../store/actions/products";
+
 import { fetchProducts } from "../../api/product";
+import { FETCH_SHOP_PRODUCTS } from "../../store/actions/products";
+import { isRequestOutdated } from "../../utils/date";
+
 import ProductItem from "./ProductItem";
 import DeleteProductDialog from "./DeleteProductDialog";
 
 const Products = ({ shopId }) => {
-  const { list, count, lastFetched } = useSelector(
+  const { list, lastFetched } = useSelector(
     (state) => state.products?.[shopId] ?? {}
   );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts(FETCH_SHOP_PRODUCTS, shopId));
+    if (isRequestOutdated(lastFetched)) {
+      dispatch(fetchProducts(FETCH_SHOP_PRODUCTS, shopId));
+    }
   }, []);
 
   if (!list || !list.length)

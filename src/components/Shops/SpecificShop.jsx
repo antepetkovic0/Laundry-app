@@ -20,7 +20,7 @@ const SpecificShop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!targetShop && !searchedBySlug) {
+    if (!targetShop) {
       dispatch(fetchShopBySlugName(FETCH_SPECIFIC_SHOP, slug));
     }
   }, [slug]);

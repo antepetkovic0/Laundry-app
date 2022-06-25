@@ -6,6 +6,7 @@ import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import CreateProduct from "../components/Products/CreateProduct";
 import SpecificShop from "../components/Shops/SpecificShop";
 import EditProduct from "../components/Products/EditProduct";
+import SpecificProduct from "../components/Products/SpecificProduct";
 
 export const productRoutes = [
   {
@@ -26,10 +27,16 @@ export const productRoutes = [
     component: EditProduct,
     exact: false,
   },
+  // {
+  //   path: ":productSlug",
+  //   rule: rules.READ_PRODUCT,
+  //   component: SpecificProduct,
+  //   exact: false,
+  // },
 ];
 
 const ProductRoutes = ({ match }) => {
-  console.log(match);
+  console.log("d");
   return (
     <Switch>
       {productRoutes.map((route) => {

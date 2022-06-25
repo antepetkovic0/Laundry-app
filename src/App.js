@@ -11,6 +11,10 @@ import DashboardRoutes from "./pages/DashboardRoutes";
 
 import "./scss/main.scss";
 import "react-toastify/dist/ReactToastify.css";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import SpecificShop from "./components/Shops/SpecificShop";
+import { rules } from "./utils/permissions";
+import SpecificProduct from "./components/Products/SpecificProduct";
 
 const App = () => (
   <Router>
@@ -20,6 +24,14 @@ const App = () => (
       <Route
         path="/auth"
         render={({ match }) => <AuthRoutes basePath={match.path} />}
+      />
+
+      <PrivateRoute
+        // key={route.path}
+        path="/dashboard/shops/:slug/:productSlug"
+        component={SpecificProduct}
+        exact
+        rule={rules.READ_PRODUCT}
       />
       <Route
         path="/dashboard"
