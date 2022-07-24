@@ -26,12 +26,12 @@ const Products = ({ shopId }) => {
     return <p>Shop did not listed any of products yet!</p>;
 
   return (
-    <>
+    <div className="product-list">
       {list.map((p) => (
         <ProductItem key={p.id} product={p} />
       ))}
       <DeleteProductDialog />
-    </>
+    </div>
   );
 };
 

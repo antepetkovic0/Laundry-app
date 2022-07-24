@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 
 import NotAuthorized from "./pages/Error/NotAuthorized";
 import NotFound from "./pages/Error/NotFound";
-import Home from "./pages/Home";
 import AuthRoutes from "./pages/AuthRoutes";
 
 import DashboardRoutes from "./pages/DashboardRoutes";
@@ -15,6 +14,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import SpecificShop from "./components/Shops/SpecificShop";
 import { rules } from "./utils/permissions";
 import SpecificProduct from "./components/Products/SpecificProduct";
+import Home from "./pages/home/Home";
 
 const App = () => (
   <Router>
@@ -25,7 +25,17 @@ const App = () => (
         path="/auth"
         render={({ match }) => <AuthRoutes basePath={match.path} />}
       />
-
+      <Route
+        path="/dashboard"
+        render={({ match }) => <DashboardRoutes basePath={match.path} />}
+      />
+      <PrivateRoute
+        // key={route.path}
+        path="/dashboard/shops/:slug"
+        component={SpecificShop}
+        exact
+        rule={rules.READ_SHOP}
+      />
       <PrivateRoute
         // key={route.path}
         path="/dashboard/shops/:slug/:productSlug"
@@ -33,10 +43,7 @@ const App = () => (
         exact
         rule={rules.READ_PRODUCT}
       />
-      <Route
-        path="/dashboard"
-        render={({ match }) => <DashboardRoutes basePath={match.path} />}
-      />
+
       <Route path="/unauthorized" component={NotAuthorized} />
       <Route component={NotFound} />
     </Switch>

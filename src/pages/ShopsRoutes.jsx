@@ -28,12 +28,12 @@ export const shopRoutes = [
     component: EditShop,
     exact: false,
   },
-  {
-    path: ":slug",
-    rule: rules.READ_SHOP,
-    component: ProductRoutes,
-    exact: false,
-  },
+  // {
+  //   path: ":slug",
+  //   rule: rules.READ_SHOP,
+  //   component: ProductRoutes,
+  //   exact: false,
+  // },
 ];
 
 const ShopsRoutes = ({ match }) => (

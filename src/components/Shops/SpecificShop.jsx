@@ -13,6 +13,7 @@ import CaretLink from "../CaretLink/CaretLink";
 
 const SpecificShop = () => {
   const { slug } = useParams();
+  console.log("we here", slug);
   const { list, searchedBySlug } = useSelector((state) => state.shops);
 
   const targetShop = list?.find((item) => item.slug === slug);
@@ -28,13 +29,14 @@ const SpecificShop = () => {
   if (!targetShop) return <div>No shop!</div>;
 
   return (
-    <>
+    <div className="shop">
       <HeaderBackLink to="/dashboard/shops" title={targetShop.name} />
       <ShopItem shop={targetShop} />
       <CaretLink linkTo={`/dashboard/shops/${slug}/create`} iconName="done" />
       <Products shopId={targetShop.id} />
-    </>
+    </div>
   );
 };
 
-export default WithLoading(SpecificShop, FETCH_SPECIFIC_SHOP);
+export default SpecificShop;
+// export default WithLoading(SpecificShop, FETCH_SPECIFIC_SHOP);

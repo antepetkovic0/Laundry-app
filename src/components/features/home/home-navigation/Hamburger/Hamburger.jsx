@@ -1,8 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import { theme } from "../../../styled/theme";
-import { openDrawer } from "../../../store/actions/drawer";
+import { theme } from "../../../../../styled/theme";
 
 const Line = styled.span`
   &,
@@ -62,20 +61,15 @@ const Button = styled.button`
   `}
 `;
 
-const Hamburger = () => {
-  const isDrawerOpen = useSelector((state) => state.drawerHome);
+const Hamburger = ({ isDrawerOpened, onHamburgerClick }) => (
+  <Button onClick={onHamburgerClick} isOpened={isDrawerOpened}>
+    <Line />
+  </Button>
+);
 
-  const dispatch = useDispatch();
-
-  const handleToggleClick = () => {
-    dispatch(openDrawer("HOME"));
-  };
-
-  return (
-    <Button onClick={handleToggleClick} isOpened={isDrawerOpen}>
-      <Line />
-    </Button>
-  );
+Hamburger.propTypes = {
+  isDrawerOpened: PropTypes.bool.isRequired,
+  onHamburgerClick: PropTypes.func.isRequired,
 };
 
 export default Hamburger;

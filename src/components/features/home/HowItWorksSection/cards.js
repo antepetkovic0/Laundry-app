@@ -1,20 +1,21 @@
-import RegisterS from "../../../assets/images/register_feature_small.jpg";
-import RegisterL from "../../../assets/images/register_feature_large.jpg";
-import OrderS from "../../../assets/images/order_feature_small.jpg";
-import OrderL from "../../../assets/images/order_feature_large.jpg";
-import ManageServiceS from "../../../assets/images/manage_service_feature_small.jpg";
-import ManageServiceL from "../../../assets/images/manage_service_feature_large.jpg";
-import DeliveryS from "../../../assets/images/delivery_feature_small.jpg";
-import DeliveryL from "../../../assets/images/delivery_feature_large.jpg";
+import RegisterS from "../../../../assets/images/register_feature_small.jpg";
+import RegisterL from "../../../../assets/images/register_feature_large.jpg";
+import OrderS from "../../../../assets/images/order_feature_small.jpg";
+import OrderL from "../../../../assets/images/order_feature_large.jpg";
+import ManageServiceS from "../../../../assets/images/manage_service_feature_small.jpg";
+import ManageServiceL from "../../../../assets/images/manage_service_feature_large.jpg";
+import DeliveryS from "../../../../assets/images/delivery_feature_small.jpg";
+import DeliveryL from "../../../../assets/images/delivery_feature_large.jpg";
+import { ROLES } from "../../../../constants/roles";
 
-export const HOW_IT_WORKS_DATA = (role) => [
+export const CARDS = (role) => [
   {
     key: "step_one",
     imageS: RegisterS,
     imageL: RegisterL,
     title: "Step one",
     description: `Sign as a ${
-      role !== "USER" ? "shop owner" : "user"
+      role !== ROLES.USER ? "shop owner" : "user"
     } and use all the opportunities provided by the certain role`,
   },
   {
@@ -23,7 +24,7 @@ export const HOW_IT_WORKS_DATA = (role) => [
     imageL: role !== "USER" ? ManageServiceL : OrderL,
     title: "Step two",
     description:
-      role !== "USER"
+      role !== ROLES.USER
         ? "Manage your laundry shop by adding the price list and services you provide"
         : "Choose between registered laundry services and order specific laundry clean you need",
   },
@@ -33,7 +34,7 @@ export const HOW_IT_WORKS_DATA = (role) => [
     imageL: DeliveryL,
     title: "Step three",
     description:
-      role !== "USER"
+      role !== ROLES.USER
         ? "Deliver an order to the requested location and charge your services"
         : "Pickup a delivery at the requested location and pay up for the clean services",
   },

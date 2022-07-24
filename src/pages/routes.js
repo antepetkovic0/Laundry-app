@@ -12,6 +12,7 @@ import {
   FETCH_DASHBOARD_USERS,
 } from "../store/actions/dashboard";
 import DashboardView from "../components/DashboardView/DashboardView";
+import Shops from "../components/Shops/Shops";
 
 const DashboardWithLoading = WithLoading(
   DashboardView,
@@ -40,7 +41,7 @@ export const dashboardRoutes = [
     path: dashboardRoutePath.SHOPS,
     name: "Shops",
     iconName: "business",
-    component: ShopsRoutes,
+    component: Shops,
     rule: permissionRules.READ_SHOP,
     exact: false,
   },

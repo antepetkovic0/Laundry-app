@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { theme } from "../../../styled/theme";
-import { useImageOnLoad } from "../../../hooks/useImageOnLoad";
+import { theme } from "../../../../../../styled/theme";
+import { useImageOnLoad } from "../../../../../../hooks/useImageOnLoad";
 
 const Wrapper = styled.div`
   width: 25rem;

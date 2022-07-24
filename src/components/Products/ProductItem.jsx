@@ -105,28 +105,13 @@ const ProductItem = ({ product }) => {
   };
 
   return (
-    <Box>
-      <ProductInfo>
-        <InfoWrapepr>
-          <Image>
-            <img src={product.image} alt="shop" />
-          </Image>
-          <Info>
-            <p>{product.name}</p>
-            <p>{product.content}</p>
-          </Info>
-        </InfoWrapepr>
-        <NumbersWrapper>
-          <NumBox>
-            <Num>{product.price}</Num>
-            kn
-          </NumBox>
-          <NumBox>
-            <Num>{product.discount}</Num>%
-          </NumBox>
-        </NumbersWrapper>
-      </ProductInfo>
-      <Actions>
+    <div className="product-item">
+      <div className="product-item__image">
+        <img src={product.image} alt="shop" />
+      </div>
+      <div className="product-item__title">{product.name}</div>
+      <div className="product-item__price">{product.price} HRK</div>
+      {/* <Actions>
         {title === Roles.SERVICE && (
           <>
             <TableActionsGroup>
@@ -147,8 +132,8 @@ const ProductItem = ({ product }) => {
           </>
         )}
         {title === Roles.USER && <QuantityPicker />}
-      </Actions>
-    </Box>
+      </Actions> */}
+    </div>
   );
 };
 
