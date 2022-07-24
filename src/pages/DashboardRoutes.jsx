@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
-import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import PrivateRoute from "../components/shared/utilities/PrivateRoute/PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 
 import Cart from "./Dashboard/components/Cart/Cart";

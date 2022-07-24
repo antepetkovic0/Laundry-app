@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import { rules } from "../utils/permissions";
-import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import PrivateRoute from "../components/shared/utilities/PrivateRoute/PrivateRoute";
 import CreateProduct from "../components/Products/CreateProduct";
 import SpecificShop from "../components/Shops/SpecificShop";
 import EditProduct from "../components/Products/EditProduct";

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { theme } from "../../../../../styled/theme";
 import Button from "../../../../Button/Button";
-import Logo from "../../../../Logo/Logo";
+import LogoIcon from "../../../../shared/icons/LogoIcon/LogoIcon";
 
 const DrawerContainer = styled.div`
   display: flex;
@@ -44,7 +44,7 @@ const Li = styled.li`
 
 const SideDrawer = ({ isDrawerOpened, onLinkClick }) => (
   <DrawerContainer isOpened={isDrawerOpened}>
-    <Logo />
+    <LogoIcon />
     <nav style={{ marginTop: "1.5rem" }}>
       <ul>
         <Li onClick={onLinkClick}>

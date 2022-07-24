@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
-import { checkPermission } from "../../utils/permissions";
+import { checkPermission } from "../../../../utils/permissions";
 
 const PrivateRoute = ({ component: Component, rule, ...props }) => {
   const isAuth = useSelector((state) => state.profile.isAuth);

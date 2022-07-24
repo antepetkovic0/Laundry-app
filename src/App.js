@@ -10,7 +10,7 @@ import DashboardRoutes from "./pages/DashboardRoutes";
 
 import "./scss/main.scss";
 import "react-toastify/dist/ReactToastify.css";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import PrivateRoute from "./components/shared/utilities/PrivateRoute/PrivateRoute";
 import SpecificShop from "./components/Shops/SpecificShop";
 import { rules } from "./utils/permissions";
 import SpecificProduct from "./components/Products/SpecificProduct";

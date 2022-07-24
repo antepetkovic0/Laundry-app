@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Icons from "../../assets/sprite.svg";
+
+import Icons from "../../../assets/sprite.svg";
 
 const Svg = styled.svg`
   width: ${(props) => `${props.size}px`};
