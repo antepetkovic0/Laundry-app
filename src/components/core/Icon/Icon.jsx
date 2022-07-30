@@ -11,6 +11,8 @@ const Svg = styled.svg`
   cursor: pointer;
 `;
 
+// How to handle react icons article
+// https://benadam.me/thoughts/react-svg-sprites/
 const Icon = ({ name, size }) => (
   <Svg size={size}>
     <use href={`${Icons}#icon-${name}`} />

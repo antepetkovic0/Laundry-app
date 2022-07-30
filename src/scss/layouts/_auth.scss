@@ -1,0 +1,11 @@
+.auth {
+  padding: 2rem 4rem;
+
+  &__banner {
+    min-height: 20rem;
+    background-image: url("../../assets/images/register_feature_small.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
