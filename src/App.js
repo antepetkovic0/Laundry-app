@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 
 import NotAuthorized from "./pages/Error/NotAuthorized";
 import NotFound from "./pages/Error/NotFound";
-import AuthRoutes from "./pages/AuthRoutes";
 
 import DashboardRoutes from "./pages/DashboardRoutes";
 
@@ -15,6 +14,7 @@ import SpecificShop from "./components/Shops/SpecificShop";
 import { rules } from "./utils/permissions";
 import SpecificProduct from "./components/Products/SpecificProduct";
 import Home from "./pages/home/Home";
+import Auth from "./pages/auth/Auth";
 
 const App = () => (
   <Router>
@@ -23,7 +23,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route
         path="/auth"
-        render={({ match }) => <AuthRoutes basePath={match.path} />}
+        render={({ match }) => <Auth basePath={match.path} />}
       />
       <Route
         path="/dashboard"

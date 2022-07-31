@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { theme } from "../../../styled/theme";
-import Icon from "../../Icon/Icon";
+import { theme } from "../../../../../../styled/theme";
+import Icon from "../../../../../core/Icon/Icon";
 
 const Container = styled.div`
   display: flex;

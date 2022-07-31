@@ -3,8 +3,8 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { theme } from "../../styled/theme";
-import { loginUser } from "../../api/auth";
+import { theme } from "../../../../styled/theme";
+import { loginUser } from "../../../../api/auth";
 import SignInForm from "./SignInForm/SignInForm";
 
 const AuthSwap = styled.div`
