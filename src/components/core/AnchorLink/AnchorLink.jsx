@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const Anchor = styled(Link)`
   display: inline-flex;
-  padding: 1rem;
 `;
 
 const AnchorLink = ({ href, children }) => (

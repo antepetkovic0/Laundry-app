@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 
+import { TOAST_TYPE } from "../../../../../utils/constants";
+import { toastMessage } from "../../../../../utils/toast";
 import { useInput } from "../../../../../hooks/useInput";
 import InputField from "../../../../shared/fields/InputField/InputField";
 import RoleSelect from "../RoleSelect/RoleSelect";
@@ -23,16 +25,16 @@ const SignUpForm = ({ onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (form.password !== confirmPassword) {
-    //   alert("Passwords dont match");
-    //   return;
-    // }
+    if (password !== confirmedPassword) {
+      toastMessage("Passwords don't match!", TOAST_TYPE.ERROR);
+      return;
+    }
 
-    // onSubmit(form);
+    onSubmit({ roleId, firstName, lastName, phone, email, password });
   };
 
   const handleSelectChange = useCallback((e) => {
-    setRoleId(e);
+    setRoleId(e.roleId);
   }, []);
 
   const handleShowPasswordToggle = useCallback((isConfirmedPassword) => {

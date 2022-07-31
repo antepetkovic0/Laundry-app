@@ -10,13 +10,13 @@ const AuthLayout = ({ children }) => {
   const href = pathname === "/auth/password-reset" ? "/auth/sign-in" : "/";
 
   return (
-    <>
+    <div className="auth">
       <CaretBackLink href={href} />
-      <div className="auth">
+      <div className="auth__content">
         <div className="auth__banner" />
         <>{children}</>
       </div>
-    </>
+    </div>
   );
 };
 

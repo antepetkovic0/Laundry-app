@@ -1,5 +1,9 @@
 .auth {
-  padding: 2rem 4rem;
+  padding: 1rem;
+
+  &__content {
+    padding: 2rem;
+  }
 
   &__banner {
     min-height: 20rem;
@@ -19,9 +23,30 @@
     font-size: 1.2rem;
     text-transform: uppercase;
     margin-top: 2rem;
+  }
+}
 
-    &:hover {
-      opacity: 0.9;
-    }
+.auth-swap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+
+  &__message {
+    margin-right: 0.5rem;
+  }
+}
+
+.forgot-password {
+  text-align: right;
+}
+
+.select-option {
+  display: flex;
+  align-items: center;
+
+  &__label {
+    margin-left: 5px;
+    text-transform: capitalize;
   }
 }

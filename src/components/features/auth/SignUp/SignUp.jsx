@@ -1,22 +1,11 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+
 import { auth } from "../../../../api/auth";
-import { theme } from "../../../../styled/theme";
 import { TOAST_TYPE } from "../../../../utils/constants";
 import { toastMessage } from "../../../../utils/toast";
+import AnchorLink from "../../../core/AnchorLink/AnchorLink";
 import SignUpForm from "./SignUpForm/SignUpForm";
-
-const AuthSwap = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
-  font-size: 1.2rem;
-
-  button {
-    color: ${theme.gray.dark};
-  }
-`;
 
 const SignUp = () => {
   const history = useHistory();
@@ -38,10 +27,10 @@ const SignUp = () => {
   return (
     <>
       <SignUpForm onSubmit={handleSubmit} />
-      <AuthSwap>
-        <span style={{ marginRight: "5px" }}>Joined us before?</span>
-        <Link to="/auth/sign-in">Sign in</Link>
-      </AuthSwap>
+      <div className="auth-swap">
+        <span className="auth-swap__message">Joined us before?</span>
+        <AnchorLink href="/auth/sign-in">Sign in</AnchorLink>
+      </div>
     </>
   );
 };

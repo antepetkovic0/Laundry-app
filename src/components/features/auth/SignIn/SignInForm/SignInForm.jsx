@@ -1,18 +1,9 @@
 import React, { useState, useCallback } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
-import { theme } from "../../../../../styled/theme";
 import { useInput } from "../../../../../hooks/useInput";
+import AnchorLink from "../../../../core/AnchorLink/AnchorLink";
 import InputField from "../../../../shared/fields/InputField/InputField";
-
-const ForgotPass = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  font-size: 1.2rem;
-  color: ${theme.gray.dark};
-`;
 
 const SignInForm = ({ onSubmit }) => {
   const [email, { handleInputChange: handleEmailChange }] = useInput();
@@ -48,12 +39,9 @@ const SignInForm = ({ onSubmit }) => {
         iconName={!showPassword ? "visibility" : "visibility_off"}
         onIconClick={handleTogglePasswordVisibility}
       />
-      <Link to="/auth/password-reset">
-        <ForgotPass>
-          Forgot password?
-          {/* <Button text="Forgot password?" type="link" /> */}
-        </ForgotPass>
-      </Link>
+      <div className="forgot-password">
+        <AnchorLink href="/auth/password-reset">Forgot password?</AnchorLink>
+      </div>
       <button type="submit" className="auth__submit">
         Login
       </button>

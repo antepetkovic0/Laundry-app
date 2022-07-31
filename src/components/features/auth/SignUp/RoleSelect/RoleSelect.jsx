@@ -2,13 +2,22 @@ import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 
+import { ROLES, ROLE_ID } from "../../../../../constants/roles";
 import OptionLabel from "./OptionLabel/OptionLabel";
 
 const RoleSelect = ({ value, onChange }) => {
   const options = useMemo(
     () => [
-      { value: 2, label: <OptionLabel name="bussines service" /> },
-      { value: 3, label: <OptionLabel name="user" /> },
+      {
+        value: ROLES.USER,
+        roleId: ROLE_ID.USER,
+        label: <OptionLabel name={ROLES.USER} />,
+      },
+      {
+        value: ROLES.SERVICE,
+        roleId: ROLE_ID.SERVICE,
+        label: <OptionLabel name={ROLES.SERVICE} />,
+      },
     ],
     []
   );
