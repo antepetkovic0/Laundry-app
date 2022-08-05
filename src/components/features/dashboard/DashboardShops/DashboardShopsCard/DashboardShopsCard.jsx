@@ -1,60 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
-import { isoToLocaleDate } from "../../utils/date";
-import CaretLink from "../../pages/Dashboard/components/CaretLink";
-import { Card, Content, Header, SubTitle } from "./styled";
-import EmptyState from "../EmptyState/EmptyState";
-
-const ShopAvatar = styled.div`
-  position: absolute;
-  right: 1rem;
-  top: 3rem;
-  width: 5rem;
-  height: 5rem;
-
-  img {
-    width: 100%;
-    height: 100%;
-    border-radius: 0.8rem;
-  }
-`;
+import { isoToLocaleDate } from "../../../../../utils/date";
+import EmptyState from "../../../../EmptyState/EmptyState";
+import AnchorLink from "../../../../core/AnchorLink/AnchorLink";
 
 const DashboardShopsCard = ({ count, shop }) => {
   const { name, image, createdAt, user } = shop ?? {};
 
   return (
-    <Card gridArea="service">
-      <Header>Shops</Header>
-      <Content>
+    <div className="dashboard-card dashboard-card--shops">
+      <div className="dashboard-card__title">Shops</div>
+      <div className="dashboard-card__content">
         <div>
-          <SubTitle>Total</SubTitle>
+          <div className="dashboard-card__subtitle">Total</div>
           {count}
         </div>
         {count ? (
           <>
             <div>
-              <SubTitle>Last created</SubTitle>
+              <div className="dashboard-card__subtitle">Last created</div>
               {`${name}`}, {isoToLocaleDate(createdAt)}
             </div>
             <div>
-              <SubTitle>Owner</SubTitle>
+              <div className="dashboard-card__subtitle">Owner</div>
               {`${user.firstName} ${user.lastName}`}
             </div>
-            <ShopAvatar>
+            <div className="shop-avatar">
               <img src={image} alt="Shop" />
-            </ShopAvatar>
+            </div>
           </>
         ) : (
           <EmptyState
-            message="Currently there are no created shops"
+            message="Currently there are no active users"
             imgCss={{ maxHeight: "150px" }}
           />
         )}
-      </Content>
-      <CaretLink linkTo="/dashboard/shops" />
-    </Card>
+      </div>
+    </div>
   );
 };
 

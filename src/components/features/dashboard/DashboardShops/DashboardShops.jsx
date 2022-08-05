@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { fetchDashboardData } from "../../api/dashboard";
-import DashboardShopsCard from "../../components/DashboardCards/DashboardShopsCard";
-import { FETCH_DASHBOARD_SHOPS } from "../../store/actions/dashboard";
+
+import { fetchDashboardData } from "../../../../api/dashboard";
+import { FETCH_DASHBOARD_SHOPS } from "../../../../store/actions/dashboard";
+import DashboardShopsCard from "./DashboardShopsCard/DashboardShopsCard";
 
 const DashboardShops = () => {
   const { count, shop } = useSelector((state) => state.dashboard.shops);

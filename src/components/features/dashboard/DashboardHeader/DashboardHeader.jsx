@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { theme } from "../../styled/theme";
+import { theme } from "../../../../styled/theme";
 
-import Icon from "../../components/Icon/Icon";
-import Avatar from "./components/Avatar";
+import Icon from "../../../Icon/Icon";
+import Avatar from "../../../../pages/Dashboard/components/Avatar";
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,8 +40,9 @@ const Notification = styled.div`
   }
 `;
 
-const DashHead = () => {
-  const { profile } = useSelector((state) => state);
+const DashboardHeader = () => {
+  const profile = useSelector((state) => state.profile);
+
   return (
     <Wrapper>
       <Welcome>
@@ -60,4 +61,4 @@ const DashHead = () => {
   );
 };
 
-export default DashHead;
+export default DashboardHeader;

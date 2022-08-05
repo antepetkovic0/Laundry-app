@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDashboardData } from "../../api/dashboard";
-import DashboardUsersCard from "../../components/DashboardCards/DashboardUsersCard";
-import { FETCH_DASHBOARD_USERS } from "../../store/actions/dashboard";
+
+import { fetchDashboardData } from "../../../../api/dashboard";
+import { FETCH_DASHBOARD_USERS } from "../../../../store/actions/dashboard";
+import DashboardUsersCard from "./DashboardUsersCard/DashboardUsersCard";
 
 const DashboardUsers = () => {
   const { count, user } = useSelector((state) => state.dashboard.users);

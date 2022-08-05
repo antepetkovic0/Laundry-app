@@ -1,30 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { isoToLocaleDate } from "../../utils/date";
-import CaretLink from "../../pages/Dashboard/components/CaretLink";
-import { Card, Content, Header, SubTitle } from "./styled";
-import EmptyState from "../EmptyState/EmptyState";
+import { isoToLocaleDate } from "../../../../../utils/date";
+import EmptyState from "../../../../EmptyState/EmptyState";
+import AnchorLink from "../../../../core/AnchorLink/AnchorLink";
 
 const DashboardUsersCard = ({ count, user }) => {
   const { firstName, lastName, status, createdAt } = user ?? {};
 
   return (
-    <Card gridArea="user">
-      <Header>Users</Header>
-      <Content>
+    <div className="dashboard-card dashboard-card--users">
+      <div className="dashboard-card__title">Users</div>
+      <div className="dashboard-card__content">
         <div>
-          <SubTitle>Total</SubTitle>
+          <div className="dashboard-card__subtitle">Total</div>
           {count}
         </div>
         {count ? (
           <>
             <div>
-              <SubTitle>Last signed</SubTitle>
+              <div className="dashboard-card__subtitle">Last signed</div>
               {`${firstName} ${lastName}`}, {isoToLocaleDate(createdAt)}
             </div>
             <div>
-              <SubTitle>Status</SubTitle>
+              <div className="dashboard-card__subtitle">Status</div>
               {`${status.toLowerCase()}`}
             </div>
           </>
@@ -34,9 +33,8 @@ const DashboardUsersCard = ({ count, user }) => {
             imgCss={{ maxHeight: "150px" }}
           />
         )}
-      </Content>
-      <CaretLink linkTo="/dashboard/users" />
-    </Card>
+      </div>
+    </div>
   );
 };
 

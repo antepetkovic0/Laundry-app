@@ -15,6 +15,7 @@ import { rules } from "./utils/permissions";
 import SpecificProduct from "./components/Products/SpecificProduct";
 import Home from "./pages/home/Home";
 import Auth from "./pages/auth/Auth";
+import Dashboard from "./pages/dashboardd/Dashboard";
 
 const App = () => (
   <Router>
@@ -24,6 +25,17 @@ const App = () => (
       <Route
         path="/auth"
         render={({ match }) => <Auth basePath={match.path} />}
+      />
+      <PrivateRoute
+        path="/dashboard"
+        component={Dashboard}
+        rule={rules.MANAGE_DASHBOARD}
+      />
+      {/* <PrivateRoute
+        path="/dashboard"
+        component={SpecificShop}
+        exact
+        rule={rules.READ_SHOP}
       />
       <Route
         path="/dashboard"
@@ -42,7 +54,7 @@ const App = () => (
         component={SpecificProduct}
         exact
         rule={rules.READ_PRODUCT}
-      />
+      /> */}
 
       <Route path="/unauthorized" component={NotAuthorized} />
       <Route component={NotFound} />

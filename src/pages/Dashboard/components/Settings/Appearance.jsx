@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Divider from "../../../../components/Divider/Divider";
 import Radio from "../../../../components/Radio/Radio";
 
 import useDeviceDetect from "../../../../hooks/useDeviceDetect";
@@ -37,7 +36,6 @@ const Appearance = () => {
         <GroupLabel>Theme</GroupLabel>
         <Radio id="light" name="mode" label="Light mode" />
         <Radio id="dark" name="mode" label="Dark mode" />
-        <Divider color={theme.neutral.two} weight={2} />
         <GroupLabel>Font size</GroupLabel>
         <Radio id="small" name="font_size" label="Small" />
         <Radio id="medium" name="font_size" label="Medium" />
