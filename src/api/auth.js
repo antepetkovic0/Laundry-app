@@ -11,7 +11,7 @@ export const loginUser = (userCredentials, history) => async (dispatch) => {
     localStorage.setItem("user", JSON.stringify(user));
 
     dispatch(setUserData(user));
-    history.push("/dashboard");
+    history.push("/app");
   } catch (err) {
     console.log("we are in err");
     // if (err.response.data.authenticationErr) {

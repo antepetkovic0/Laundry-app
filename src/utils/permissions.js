@@ -13,11 +13,12 @@ export const rules = {
   MANAGE_CART: "MANAGE_CART",
 };
 
-export const checkPermission = (rule, userPermissions) => {
+export const checkUserHavePermission = (rule, userPermission) => {
   if (!rule) {
     return false;
   }
 
-  const permissions = userPermissions.map((p) => p.title);
+  const permissions = userPermission.map((p) => p.title);
+
   return permissions.includes(rule);
 };

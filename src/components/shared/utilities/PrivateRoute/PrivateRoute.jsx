@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
-import { checkPermission } from "../../../../utils/permissions";
+import { checkUserHavePermission } from "../../../../utils/permissions";
 
 const PrivateRoute = ({ component: Component, rule, ...props }) => {
   const isAuth = useSelector((state) => state.profile.isAuth);
@@ -14,9 +14,9 @@ const PrivateRoute = ({ component: Component, rule, ...props }) => {
   }
 
   const { permissions } = role;
-  const access = checkPermission(rule, permissions);
+  const haveAccess = checkUserHavePermission(rule, permissions);
 
-  if (isAuth && !access) {
+  if (isAuth && !haveAccess) {
     return <Redirect to="/unauthorized" />;
   }
 

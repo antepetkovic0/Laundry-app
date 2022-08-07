@@ -5,17 +5,11 @@ import { ToastContainer } from "react-toastify";
 import NotAuthorized from "./pages/Error/NotAuthorized";
 import NotFound from "./pages/Error/NotFound";
 
-import DashboardRoutes from "./pages/DashboardRoutes";
-
 import "./scss/main.scss";
 import "react-toastify/dist/ReactToastify.css";
-import PrivateRoute from "./components/shared/utilities/PrivateRoute/PrivateRoute";
-import SpecificShop from "./components/Shops/SpecificShop";
-import { rules } from "./utils/permissions";
-import SpecificProduct from "./components/Products/SpecificProduct";
 import Home from "./pages/home/Home";
 import Auth from "./pages/auth/Auth";
-import Dashboard from "./pages/dashboardd/Dashboard";
+import AppRoutes from "./pages/app/AppRoutes";
 
 const App = () => (
   <Router>
@@ -26,10 +20,9 @@ const App = () => (
         path="/auth"
         render={({ match }) => <Auth basePath={match.path} />}
       />
-      <PrivateRoute
-        path="/dashboard"
-        component={Dashboard}
-        rule={rules.MANAGE_DASHBOARD}
+      <Route
+        path="/app"
+        render={({ match }) => <AppRoutes basePath={match.path} />}
       />
       {/* <PrivateRoute
         path="/dashboard"
