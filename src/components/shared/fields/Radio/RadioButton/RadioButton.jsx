@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { theme } from "../../styled/theme";
+import { theme } from "../../../../../styled/theme";
 
 const Input = styled.input`
   display: none;
@@ -47,32 +47,44 @@ const Group = styled.div`
   }
 `;
 
-const Radio = ({ id, name, label, isChecked, onChange }) => {
-  console.log("blaba");
+const RadioButton = ({
+  id,
+  name,
+  label,
+  value,
+  onChange,
+  isChecked,
+  isDisabled,
+}) => (
+  <Group>
+    <Input
+      type="radio"
+      id={id}
+      name={name}
+      value={value}
+      onChange={onChange}
+      checked={isChecked}
+      disabled={isDisabled}
+    />
+    <Label htmlFor={id}>
+      <Button />
+      {label}
+    </Label>
+  </Group>
+);
 
-  return (
-    <Group>
-      <Input
-        type="radio"
-        id={id}
-        name={name}
-        onChange={onChange}
-        checked={isChecked}
-      />
-      <Label htmlFor={id}>
-        <Button />
-        {label}
-      </Label>
-    </Group>
-  );
+RadioButton.defaultProps = {
+  isDisabled: false,
 };
 
-Radio.propTypes = {
+RadioButton.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  isChecked: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  isChecked: PropTypes.bool.isRequired,
+  isDisabled: PropTypes.bool,
 };
 
-export default Radio;
+export default RadioButton;

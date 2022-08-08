@@ -1,0 +1,29 @@
+.settings {
+  &__img {
+    display: block;
+    height: 250px;
+    margin: 0 auto;
+  }
+
+  .navigation {
+    &__item {
+      padding: 1rem;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 0.4rem;
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    }
+
+    &__icon {
+      display: flex;
+      margin-right: 1rem;
+      padding: 0.6rem;
+    }
+
+    &__text {
+      color: black;
+    }
+  }
+}

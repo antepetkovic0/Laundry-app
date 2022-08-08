@@ -1,36 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
-import { rules } from "../utils/permissions";
+
+import { RULES } from "../constants/rules";
 import PrivateRoute from "../components/shared/utilities/PrivateRoute/PrivateRoute";
 import Shops from "../components/Shops/Shops";
 import CreateShop from "../components/Shops/CreateShop";
-import SpecificShop from "../components/Shops/SpecificShop";
-import EditShop from "../components/Shops/EditShop";
-import ProductRoutes from "./ProductRoutes";
 
-export const shopRoutes = [
+const SHOP_ROUTES = [
   {
     path: "",
-    rule: rules.READ_SHOP,
+    rule: RULES.READ_SHOPS,
     component: Shops,
     exact: true,
   },
   {
-    path: "create",
-    rule: rules.CREATE_SHOP,
+    path: "/create",
+    rule: RULES.CREATE_SHOPS,
     component: CreateShop,
     exact: false,
   },
-  {
-    path: "edit",
-    rule: rules.EDIT_SHOP,
-    component: EditShop,
-    exact: false,
-  },
   // {
-  //   path: ":slug",
-  //   rule: rules.READ_SHOP,
+  //   path: "/edit",
+  //   rule: RULES.EDIT_SHOPS,
+  //   component:,
+  //   exact: false,
+  // },
+  // {
+  //   path: "/:slug",
+  //   rule: RULES.READ_SHOPS,
   //   component: ProductRoutes,
   //   exact: false,
   // },
@@ -38,19 +36,15 @@ export const shopRoutes = [
 
 const ShopsRoutes = ({ match }) => (
   <Switch>
-    {shopRoutes.map((route) => {
-      const routePath = route.path ? `${match.path}/${route.path}` : match.path;
-
-      return (
-        <PrivateRoute
-          key={route.path}
-          path={routePath}
-          component={route.component}
-          rule={route.rule}
-          exact={route.exact}
-        />
-      );
-    })}
+    {SHOP_ROUTES.map((route) => (
+      <PrivateRoute
+        key={route.path}
+        path={`${match.path}${route.path}`}
+        component={route.component}
+        rule={route.rule}
+        exact={route.exact}
+      />
+    ))}
   </Switch>
 );
 

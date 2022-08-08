@@ -1,5 +1,6 @@
-import { APP_ROUTES } from "../../../../constants/routes";
 import { checkUserHavePermission } from "../../../../utils/permissions";
+// eslint-disable-next-line import/no-cycle
+import { APP_ROUTES } from "../../../../pages/app/AppRoutes";
 
 export const filterRoutesWithPermission = (permissions) => {
   const routesWithPermissionCheck = APP_ROUTES.map((route) => ({

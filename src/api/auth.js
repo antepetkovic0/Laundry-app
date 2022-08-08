@@ -13,7 +13,7 @@ export const loginUser = (userCredentials, history) => async (dispatch) => {
     dispatch(setUserData(user));
     history.push("/app");
   } catch (err) {
-    console.log("we are in err");
+    console.log("we are in err", err);
     // if (err.response.data.authenticationErr) {
     //   dispatch(logoutUser());
     // }
