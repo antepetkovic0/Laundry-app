@@ -27,3 +27,13 @@
     }
   }
 }
+
+.language {
+  &__item {
+    padding: 0.5rem 0;
+
+    &:not(:last-child) {
+      border-bottom: 2px solid rgb(235, 235, 235);
+    }
+  }
+}

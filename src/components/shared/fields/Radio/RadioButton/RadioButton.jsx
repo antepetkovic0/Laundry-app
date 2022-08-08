@@ -13,7 +13,8 @@ const Label = styled.label`
   align-items: center;
   cursor: pointer;
   position: relative;
-  padding: 0.7rem 0;
+  padding: 1rem 0;
+  ${(props) => props.isDisabled && "opacity: 0.25"}
 `;
 
 const Button = styled.span`
@@ -66,7 +67,7 @@ const RadioButton = ({
       checked={isChecked}
       disabled={isDisabled}
     />
-    <Label htmlFor={id}>
+    <Label htmlFor={id} isDisabled={isDisabled}>
       <Button />
       {label}
     </Label>
