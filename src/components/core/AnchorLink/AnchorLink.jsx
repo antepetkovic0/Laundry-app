@@ -5,6 +5,11 @@ import styled from "styled-components";
 
 const Anchor = styled(Link)`
   display: inline-flex;
+  color: unset;
+
+  & > *:not(:last-child) {
+    margin-right: 0.8rem;
+  }
 `;
 
 const AnchorLink = ({ href, children }) => (

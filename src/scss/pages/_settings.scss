@@ -29,6 +29,12 @@
 }
 
 .language {
+  padding: 1.6rem 0;
+
+  &__message {
+    margin-bottom: 1.6rem;
+  }
+
   &__item {
     padding: 0.5rem 0;
 
