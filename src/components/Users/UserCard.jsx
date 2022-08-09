@@ -40,15 +40,16 @@ function generateAvatar(text, foregroundColor, backgroundColor) {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
 
-  canvas.width = 60;
-  canvas.height = 60;
+  canvas.width = 250;
+  canvas.height = 250;
 
-  // Draw background
+  // draw background
   context.fillStyle = backgroundColor;
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Draw text
-  context.font = "bold 20px system-ui";
+  // draw text
+  context.font =
+    "bold 8em apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif";
   context.fillStyle = foregroundColor;
   context.textAlign = "center";
   context.textBaseline = "middle";

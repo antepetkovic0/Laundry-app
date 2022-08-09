@@ -1,26 +1,43 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { theme } from "../../../styled/theme";
+
 import Icon from "../../core/Icon/Icon";
-import { NAVIGATION_LINKS } from "./navigationLinks";
-
-const Li = styled(Link)`
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: ${theme.bg.def};
-  border-radius: 0.4rem;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.05);
-
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
-`;
 
 const Settings = () => {
-  console.log("b");
+  const links = useMemo(
+    () => [
+      {
+        to: "settings/account",
+        icon: "account",
+        title: "Account",
+        description: "Change personal information",
+      },
+      {
+        to: "settings/security",
+        icon: "lock",
+        title: "Security",
+        description: "Change password",
+      },
+      {
+        to: "settings/notifications",
+        icon: "notifications_outlined",
+        title: "Notifications",
+        description: "Enable or disable notifications",
+      },
+      {
+        to: "settings/language",
+        icon: "language",
+        title: "Language",
+        description: "Choose default language",
+      },
+      {
+        to: "settings/logout",
+        icon: "logout",
+        title: "Logout",
+      },
+    ],
+    []
+  );
 
   return (
     <div className="settings">
@@ -32,7 +49,7 @@ const Settings = () => {
         alt="Settings"
       />
       <nav className="navigation">
-        {NAVIGATION_LINKS.map((link) => (
+        {links.map((link) => (
           <Link className="navigation__item" to={link.to}>
             <div className="navigation__icon">
               <Icon name={link.icon} />

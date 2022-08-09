@@ -7,6 +7,7 @@ import PrivateRoute from "../components/shared/utilities/PrivateRoute/PrivateRou
 import Settings from "../components/features/settings/Settings";
 import SettingsLanguage from "../components/features/settings/SettingsLanguage/SettingsLanguage";
 import SettingsNotification from "../components/features/settings/SettingsNotifications/SettingsNotifications";
+import SettingsAccount from "../components/features/settings/SettingsAccount/SettingsAccount";
 
 const SETTINGS_ROUTES = [
   {
@@ -15,12 +16,12 @@ const SETTINGS_ROUTES = [
     component: Settings,
     exact: true,
   },
-  // {
-  //   path: "/account",
-  //   rule: RULES.MANAGE_APP,
-  //   component: CreateProduct,
-  //   exact: false,
-  // },
+  {
+    path: "/account",
+    rule: RULES.MANAGE_APP,
+    component: SettingsAccount,
+    exact: false,
+  },
   // {
   // {
   //   path: "/security",

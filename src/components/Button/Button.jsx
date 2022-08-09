@@ -13,6 +13,12 @@ const ButtonBase = styled.button`
   transition: all 0.2s;
   font-weight: 600;
 
+  ${({ fullWidth }) =>
+    fullWidth &&
+    `
+      width: -webkit-fill-available;
+  `}
+
   &:hover,
   &:focus {
     opacity: 0.85;
@@ -52,7 +58,7 @@ const ButtonLink = styled.button`
   }
 `;
 
-const Button = ({ text, type, onClick, isLoading, isDisabled }) => {
+const Button = ({ text, type, onClick, isLoading, isDisabled, fullWidth }) => {
   if (type === ButtonType.LINK) {
     return <ButtonLink onClick={onClick}>{text}</ButtonLink>;
   }
@@ -69,13 +75,18 @@ const Button = ({ text, type, onClick, isLoading, isDisabled }) => {
     );
   }
 
-  return <ButtonBase onClick={onClick}>{text}</ButtonBase>;
+  return (
+    <ButtonBase fullWidth={fullWidth} onClick={onClick}>
+      {text}
+    </ButtonBase>
+  );
 };
 
 Button.defaultProps = {
   type: ButtonType.DEFAULT,
   isLoading: false,
   isDisabled: false,
+  fullWidth: false,
   onClick: () => null,
 };
 
@@ -84,6 +95,7 @@ Button.propTypes = {
   type: PropTypes.string,
   isLoading: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  fullWidth: PropTypes.bool,
   onClick: PropTypes.func,
 };
 

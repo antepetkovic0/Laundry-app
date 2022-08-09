@@ -43,3 +43,22 @@
     }
   }
 }
+
+.account {
+  &__avatar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  &__edit {
+    position: absolute;
+    right: 10rem;
+    top: 0;
+    padding: 0.8rem;
+    border-radius: 100%;
+    background: #fff;
+    border: 2px solid #cccccc;
+  }
+}
