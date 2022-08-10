@@ -1,9 +1,21 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+import { clearUserData } from "../../../../store/actions/profile";
+import { setCookie } from "../../../../utils/cookie";
+import localStorage from "../../../../utils/localStorage";
 import Button from "../../../Button/Button";
 import CaretBackLink from "../../../shared/navigations/CaretBackLink/CaretBackLink";
 
 const SettingsLogout = () => {
-  const handleLogout = () => {};
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    localStorage.clear("user");
+    localStorage.clear("access-token");
+    setCookie("refresh-token", "", 0);
+    dispatch(clearUserData());
+  };
 
   return (
     <>

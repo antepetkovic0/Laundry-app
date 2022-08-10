@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { Link, useLocation, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 
-import { dashboardRoutePath } from "../../../../constants/routePaths";
 import { theme } from "../../../../styled/theme";
 import Icon from "../../../core/Icon/Icon";
 
+// eslint-disable-next-line import/no-cycle
 import { filterRoutesWithPermission } from "./filterRoutesWithPermission";
 
 const Li = styled(Link)`
@@ -67,14 +67,14 @@ const Signal = styled.div`
 `;
 
 const AppNavigation = () => {
+  // navigation renders before route PrivateRoute
   const location = useLocation();
   const match = useRouteMatch();
   const { path } = match;
   const { pathname } = location;
-  console.log(path, pathname);
 
-  const { permissions } = useSelector((state) => state.profile.role);
-
+  const profile = useSelector((state) => state.profile);
+  const permissions = profile?.role?.permissions ?? [];
   const users = useSelector((state) => state.users.list);
   const someUserPending = users?.some((user) => user.status === "PENDING");
 

@@ -6,8 +6,8 @@ import { Route, Redirect } from "react-router-dom";
 import { checkUserHavePermission } from "../../../../utils/permissions";
 
 const PrivateRoute = ({ component: Component, rule, ...props }) => {
-  const isAuth = useSelector((state) => state.profile.isAuth);
-  const role = useSelector((state) => state.profile.role);
+  const profile = useSelector((state) => state.profile);
+  const { isAuth, role } = profile;
 
   if (!isAuth) {
     return <Redirect to="/auth/sign-in" />;
