@@ -8,6 +8,8 @@ import Settings from "../components/features/settings/Settings";
 import SettingsLanguage from "../components/features/settings/SettingsLanguage/SettingsLanguage";
 import SettingsNotification from "../components/features/settings/SettingsNotifications/SettingsNotifications";
 import SettingsAccount from "../components/features/settings/SettingsAccount/SettingsAccount";
+import SettingsSecurity from "../components/features/settings/SettingsSecurity/SettingsSecurity";
+import SettingsLogout from "../components/features/settings/SettingsLogout/SettingsLogout";
 
 const SETTINGS_ROUTES = [
   {
@@ -22,13 +24,12 @@ const SETTINGS_ROUTES = [
     component: SettingsAccount,
     exact: false,
   },
-  // {
-  // {
-  //   path: "/security",
-  //   rule: RULES.MANAGE_APP,
-  //   component: SpecificProduct,
-  //   exact: false,
-  // },
+  {
+    path: "/security",
+    rule: RULES.MANAGE_APP,
+    component: SettingsSecurity,
+    exact: false,
+  },
   {
     path: "/notifications",
     rule: RULES.MANAGE_APP,
@@ -41,12 +42,12 @@ const SETTINGS_ROUTES = [
     component: SettingsLanguage,
     exact: false,
   },
-  // {
-  //   path: "/logout",
-  //   rule: RULES.MANAGE_APP,
-  //   component: SpecificProduct,
-  //   exact: false,
-  // },
+  {
+    path: "/logout",
+    rule: RULES.MANAGE_APP,
+    component: SettingsLogout,
+    exact: false,
+  },
 ];
 
 const SettingsRoutes = ({ match }) => (
