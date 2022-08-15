@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
@@ -67,7 +67,7 @@ const Signal = styled.div`
 `;
 
 const AppNavigation = () => {
-  // navigation renders before route PrivateRoute
+  // SIDE NOTE: component AppNavigation renders before PrivateRoute
   const location = useLocation();
   const match = useRouteMatch();
   const { path } = match;
@@ -80,13 +80,24 @@ const AppNavigation = () => {
 
   const navigationLinks = filterRoutesWithPermission(permissions);
 
+  const isRouteActive = useCallback(
+    (itemPath) => {
+      if (!itemPath && pathname === "/app") return true;
+
+      if (!itemPath && pathname !== "/app") return false;
+
+      return pathname.includes(itemPath);
+    },
+    [pathname]
+  );
+
   return (
     <>
       {navigationLinks.map((item) => (
         <Li
           key={item.path}
           to={`${path}${item.path}`}
-          activeRoute={pathname === item.path}
+          activeRoute={isRouteActive(item.path)}
         >
           <Icon name={item.iconName} />
           {item.path === "/users" && someUserPending ? <Signal /> : null}

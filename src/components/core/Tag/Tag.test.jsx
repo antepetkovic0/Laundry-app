@@ -1,7 +1,7 @@
 /* globals describe, it, expect */
 import React from "react";
 import { render } from "@testing-library/react";
-import appearances from "../../constants/appearances";
+import appearances from "../../../constants/appearances";
 import Tag from "./Tag";
 
 const color = (element) => window.getComputedStyle(element).color;

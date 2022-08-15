@@ -7,7 +7,7 @@ import AppLayout from "../../layouts/AppLayout";
 import { RULES } from "../../constants/rules";
 import PrivateRoute from "../../components/shared/utilities/PrivateRoute/PrivateRoute";
 import Dashboard from "../../components/features/dashboard/Dashboard";
-import Users from "../../components/Users/Users";
+import Users from "../../components/features/users/Users";
 import ShopsRoutes from "../ShopsRoutes";
 import Orders from "../../components/features/orders/Orders";
 import Cart from "../../components/features/cart/Cart";

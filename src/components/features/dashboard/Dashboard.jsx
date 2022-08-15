@@ -15,7 +15,7 @@ import DashboardHeader from "./DashboardHeader/DashboardHeader";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 2rem;
   grid-template-areas: ${(props) => {
     if (props.role === ROLES.ADMIN) {
       return `

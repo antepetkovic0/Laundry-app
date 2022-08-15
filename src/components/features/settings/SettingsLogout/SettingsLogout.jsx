@@ -21,10 +21,10 @@ const SettingsLogout = () => {
     <>
       <CaretBackLink href="/app/settings" title="Logout" />
       <div className="logout">
+        <img src="/img/empty_small.jpg" alt="Logout" />
         <h3>You will be missed</h3>
         <p>Are you sure you want to logout?</p>
-        <img src="/img/empty_small.jpg" alt="Logout" />
-        <Button onClick={handleLogout} text="Logout" fullWidth />
+        <Button onClick={handleLogout} text="Logout" />
       </div>
     </>
   );

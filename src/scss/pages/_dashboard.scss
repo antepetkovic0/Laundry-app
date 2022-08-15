@@ -1,3 +1,27 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+
+  .welcome {
+    display: flex;
+    align-items: center;
+
+    &__text {
+      margin-left: 1rem;
+    }
+  }
+
+  .notifications {
+    display: flex;
+    padding: 0.5rem;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    fill: #58667e;
+  }
+}
+
 .dashboard-card {
   display: flex;
   flex-direction: column;

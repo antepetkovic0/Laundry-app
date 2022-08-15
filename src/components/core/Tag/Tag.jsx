@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import appearances from "../../constants/appearances";
-import { theme } from "../../styled/theme";
 
-const Container = styled.div`
+import appearances from "../../../constants/appearances";
+import { theme } from "../../../styled/theme";
+
+const TagContainer = styled.div`
   display: inline-block;
   padding: 0.4rem;
   border-radius: 0.4rem;
@@ -42,7 +43,7 @@ const Container = styled.div`
 `;
 
 const Tag = ({ text, appearance }) => (
-  <Container appearance={appearance}>{text}</Container>
+  <TagContainer appearance={appearance}>{text}</TagContainer>
 );
 
 Tag.propTypes = {

@@ -26,10 +26,10 @@
     align-items: center;
     background-image: linear-gradient(
         to right bottom,
-        rgba(251, 252, 255, 0.8),
-        rgba(251, 252, 255, 0.8)
+        rgba(251, 252, 255, 0.9),
+        rgba(251, 252, 255, 0.9)
       ),
-      url("../../assets/images/banner.jpg");
+      url("../../../public/img/banner_small.png");
     background-size: cover;
     background-position: top;
   }

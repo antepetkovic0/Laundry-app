@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../api/user";
-import { FETCH_USERS } from "../../store/actions/users";
-import WithLoading from "../../hocs/WithLoading";
-import Input from "../Input/Input";
-import UserList from "./UserList";
-import { isRequestOutdated } from "../../utils/date";
-import { useDebounce } from "../../hooks/useDebounce";
+import { fetchUsers } from "../../../api/user";
+import { FETCH_USERS } from "../../../store/actions/users";
+import WithLoading from "../../../hocs/WithLoading";
+import Input from "../../Input/Input";
+import UserList from "./UserList/UserList";
+import { isRequestOutdated } from "../../../utils/date";
+import { useDebounce } from "../../../hooks/useDebounce";
 
 const Users = () => {
   const { list, lastFetched } = useSelector((state) => state.users);
-
   const [query, setQuery] = useState("");
-  // todo: filter by roles
-  const [filterByRole, setFilterByRole] = useState("ALL");
-
   const debouncedQuery = useDebounce(query, 750);
 
   const filteredUsers = list.filter(
     (user) =>
-      user.firstName.includes(debouncedQuery) ||
-      user.lastName.includes(debouncedQuery)
+      user.firstName.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(debouncedQuery.toLowerCase())
   );
 
   const dispatch = useDispatch();
@@ -30,17 +26,14 @@ const Users = () => {
       dispatch(fetchUsers(FETCH_USERS));
     }
   }, []);
-  useEffect(() => {
-    console.log("lgg");
-  }, [debouncedQuery]);
-
-  console.log("rrr");
 
   return (
-    <>
-      <h2>Users</h2>
-      <p>Intro message to users page. Feel free to search all users.</p>
-      <div style={{ display: "flex" }}>
+    <div className="users">
+      <h2 className="users__title">Users</h2>
+      <p className="users__description">
+        Intro message to users page. Feel free to search all users.
+      </p>
+      <div className="users__search">
         <Input
           value={query}
           onChange={(e) => {
@@ -49,10 +42,9 @@ const Users = () => {
           placeholder="Search shops by name"
           iconName="search"
         />
-        <div>filter</div>
       </div>
       <UserList users={filteredUsers} />
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AppNavigation from "../components/shared/navigations/MainNavigation/AppNavigation";
+// eslint-disable-next-line import/no-cycle
+import AppNavigation from "../components/shared/navigations/AppNavigation/AppNavigation";
 
 const AppLayout = ({ children }) => (
   <div className="app">

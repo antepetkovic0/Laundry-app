@@ -6,7 +6,7 @@ import Button from "../../../Button/Button";
 
 const GetStartedSection = () => {
   const isAuth = useSelector((state) => state.profile.isAuth);
-  const linkTo = isAuth ? "/dashboard" : "/auth/sign-in";
+  const linkTo = isAuth ? "/app" : "/auth/sign-in";
 
   return (
     <section id="get-started" className="section section--get-started">
