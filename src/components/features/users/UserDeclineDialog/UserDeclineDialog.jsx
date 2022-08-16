@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 import { hideDialog } from "../../../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../../../utils/constants";
-import Button from "../../../Button/Button";
+import Button from "../../../core/Button/Button";
 
 const UserDeclineDialog = () => {
   const {

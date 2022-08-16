@@ -1,14 +1,9 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 
-import { SWITCH_TYPE } from "../../../../utils/constants";
-import { roleOptions } from "../../../Switcher/switcherOptions";
-import Switcher from "../../../Switcher/Switcher";
-
+import Switcher from "../../../core/Switcher/Switcher";
 import { CARDS } from "./cards";
 import Card from "./components/Card/Card";
-import { ROLES } from "../../../../constants/roles";
 
 const CardsWrapper = styled.div`
   margin-top: 3rem;
@@ -20,12 +15,12 @@ const CardsWrapper = styled.div`
 `;
 
 const HowItWorks = () => {
-  const switchRoleFeatures = useSelector((state) => state.switchRoleFeatures);
+  const [role, setRole] = useState("Service");
+  console.log(role);
 
-  const cards = useMemo(() => {
-    const role = switchRoleFeatures ? ROLES.USER : ROLES.SERVICE;
-    return CARDS(role);
-  }, [switchRoleFeatures]);
+  const cards = useMemo(() => CARDS(role), [role]);
+
+  const handleRoleChange = (newRole) => setRole(newRole);
 
   return (
     <section id="how-it-works" className="section section--how-it-works">
@@ -37,9 +32,11 @@ const HowItWorks = () => {
           Sign up with desired role and start your journey!
         </div>
       </section>
-
-      <Switcher type={SWITCH_TYPE.ROLE_FEATURES} options={roleOptions} />
-
+      <Switcher
+        value={role}
+        options={["Service", "User"]}
+        onChange={handleRoleChange}
+      />
       <CardsWrapper>
         {cards.map((card) => (
           <Card key={card.key} data={card} />

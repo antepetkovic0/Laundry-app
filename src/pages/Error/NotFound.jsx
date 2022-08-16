@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Small from "../../assets/images/404_small.jpg";
 import Medium from "../../assets/images/404_medium.jpg";
 import Large from "../../assets/images/404_large.jpg";
-import Button from "../../components/Button/Button";
+import Button from "../../components/core/Button/Button";
 
 import { Wrapper, Image, MessageContainer, Message } from "./style";
 

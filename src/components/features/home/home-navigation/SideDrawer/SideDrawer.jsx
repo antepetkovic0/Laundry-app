@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { theme } from "../../../../../styled/theme";
-import Button from "../../../../Button/Button";
+import Button from "../../../../core/Button/Button";
 import LogoIcon from "../../../../shared/icons/LogoIcon/LogoIcon";
 
 const DrawerContainer = styled.div`
@@ -59,7 +59,7 @@ const SideDrawer = ({ isDrawerOpened, onLinkClick }) => (
         <Li onClick={onLinkClick}>Contact</Li>
         <Link to="/auth/sign-in">
           <Li onClick={onLinkClick}>
-            <Button text="Sign In" buttonType="primary" />
+            <Button text="Sign In" />
           </Li>
         </Link>
       </ul>

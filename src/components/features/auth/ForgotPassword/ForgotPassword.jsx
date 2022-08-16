@@ -2,7 +2,7 @@ import React from "react";
 
 import { toastMessage } from "../../../../utils/toast";
 import { useInput } from "../../../../hooks/useInput";
-import Button from "../../../Button/Button";
+import Button from "../../../core/Button/Button";
 import Input from "../../../Input/Input";
 
 const ForgotPassword = () => {

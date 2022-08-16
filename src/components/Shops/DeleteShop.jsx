@@ -5,7 +5,7 @@ import ReactModal from "react-modal";
 import { deleteShop } from "../../api/shop";
 import { hideDialog } from "../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../utils/constants";
-import Button from "../Button/Button";
+import Button from "../core/Button/Button";
 
 const DeleteShop = () => {
   const { dialogType, dialogProps } = useSelector((state) => state.dialog);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Input from "../Input/Input";
-import Button from "../Button/Button";
+import Button from "../core/Button/Button";
 import { Roles } from "../../utils/constants";
 import ShopList from "./ShopList";
 import { useDebounce } from "../../hooks/useDebounce";

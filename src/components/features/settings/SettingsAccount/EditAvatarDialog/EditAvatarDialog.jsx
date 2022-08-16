@@ -5,7 +5,7 @@ import ReactModal from "react-modal";
 import { DIALOG_TYPE } from "../../../../../utils/constants";
 import { hideDialog } from "../../../../../store/actions/dialog";
 import { useInput } from "../../../../../hooks/useInput";
-import Button from "../../../../Button/Button";
+import Button from "../../../../core/Button/Button";
 import InputField from "../../../../shared/fields/InputField/InputField";
 
 const EditAvatarDialog = () => {

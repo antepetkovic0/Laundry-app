@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Small from "../../assets/images/401_small.jpg";
 import Medium from "../../assets/images/401_medium.jpg";
 import Large from "../../assets/images/401_large.jpg";
-import Button from "../../components/Button/Button";
+import Button from "../../components/core/Button/Button";
 
 import { Wrapper, Image, MessageContainer, Message } from "./style";
 

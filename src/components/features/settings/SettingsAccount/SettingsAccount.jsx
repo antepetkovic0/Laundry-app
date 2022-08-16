@@ -4,7 +4,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { useInput } from "../../../../hooks/useInput";
-import Button from "../../../Button/Button";
+import Button from "../../../core/Button/Button";
 import CaretBackLink from "../../../shared/navigations/CaretBackLink/CaretBackLink";
 import InputField from "../../../shared/fields/InputField/InputField";
 import TextAreaField from "../../../shared/fields/TextAreaField/TextAreaField";

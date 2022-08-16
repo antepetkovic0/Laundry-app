@@ -6,7 +6,7 @@ import { hideDialog } from "../../store/actions/dialog";
 import { deleteProduct } from "../../api/product";
 import { DIALOG_TYPE } from "../../utils/constants";
 
-import Button from "../Button/Button";
+import Button from "../core/Button/Button";
 
 const DeleteProductDialog = () => {
   const { dialogType, dialogProps } = useSelector((state) => state.dialog);

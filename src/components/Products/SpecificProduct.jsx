@@ -9,7 +9,7 @@ import { FETCH_SPECIFIC_SHOP } from "../../store/actions/shops";
 
 import HeaderBackLink from "../CaretLink/HeaderBackLink";
 import CaretLink from "../CaretLink/CaretLink";
-import Button from "../Button/Button";
+import Button from "../core/Button/Button";
 import Icon from "../Icon/Icon";
 import { addProductToCart } from "../../store/actions/cart";
 

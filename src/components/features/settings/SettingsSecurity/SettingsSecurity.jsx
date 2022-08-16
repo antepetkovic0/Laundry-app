@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useInput } from "../../../../hooks/useInput";
-import Button from "../../../Button/Button";
+import Button from "../../../core/Button/Button";
 import InputField from "../../../shared/fields/InputField/InputField";
 import CaretBackLink from "../../../shared/navigations/CaretBackLink/CaretBackLink";
 

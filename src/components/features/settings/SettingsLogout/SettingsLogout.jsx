@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { clearUserData } from "../../../../store/actions/profile";
 import { setCookie } from "../../../../utils/cookie";
 import localStorage from "../../../../utils/localStorage";
-import Button from "../../../Button/Button";
+import Button from "../../../core/Button/Button";
 import CaretBackLink from "../../../shared/navigations/CaretBackLink/CaretBackLink";
 
 const SettingsLogout = () => {

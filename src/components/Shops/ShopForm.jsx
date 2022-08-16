@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Button from "../Button/Button";
+import Button from "../core/Button/Button";
 import Input from "../Input/Input";
 
 const Textarea = styled.textarea`
