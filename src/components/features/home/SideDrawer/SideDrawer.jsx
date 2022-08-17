@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { theme } from "../../../../../styled/theme";
-import Button from "../../../../core/Button/Button";
-import LogoIcon from "../../../../shared/icons/LogoIcon/LogoIcon";
+import { theme } from "../../../../styled/theme";
+import Button from "../../../core/Button/Button";
+import LogoIcon from "../../../shared/icons/LogoIcon/LogoIcon";
 
 const DrawerContainer = styled.div`
   display: flex;
@@ -28,6 +28,7 @@ const DrawerContainer = styled.div`
   transition: transform 0.3s ease-out;
 `;
 
+// TODO change Li from styled components to scss
 const Li = styled.li`
   margin: 1rem 0;
   color: ${theme.text.alt};
@@ -35,17 +36,12 @@ const Li = styled.li`
   a {
     color: inherit;
   }
-
-  &:active,
-  &:hover {
-    color: ${theme.primary.def};
-  }
 `;
 
 const SideDrawer = ({ isDrawerOpened, onLinkClick }) => (
   <DrawerContainer isOpened={isDrawerOpened}>
     <LogoIcon />
-    <nav style={{ marginTop: "1.5rem" }}>
+    <nav className="navigation">
       <ul>
         <Li onClick={onLinkClick}>
           <a href="#get-started">Get Started</a>

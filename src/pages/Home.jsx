@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import Hamburger from "../../components/features/home/home-navigation/Hamburger/Hamburger";
-import SideDrawer from "../../components/features/home/home-navigation/SideDrawer/SideDrawer";
-import BackDrop from "../../components/features/home/home-navigation/BackDrop/BackDrop";
-import GetStartedSection from "../../components/features/home/GetStartedSection/GetStartedSection";
-import HowItWorksSection from "../../components/features/home/HowItWorksSection/HowItWorksSection";
-import FeaturesSection from "../../components/features/home/FeaturesSection/FeaturesSection";
-import LogoIcon from "../../components/shared/icons/LogoIcon/LogoIcon";
+import Hamburger from "../components/features/home/Hamburger/Hamburger";
+import SideDrawer from "../components/features/home/SideDrawer/SideDrawer";
+import BackDrop from "../components/features/home/BackDrop/BackDrop";
+import GetStartedSection from "../components/features/home/GetStartedSection/GetStartedSection";
+import HowItWorksSection from "../components/features/home/HowItWorksSection/HowItWorksSection";
+import FeaturesSection from "../components/features/home/FeaturesSection/FeaturesSection";
+import LogoIcon from "../components/shared/icons/LogoIcon/LogoIcon";
 
 const Home = () => {
   const [isDrawerOpened, setIsDrawerOpened] = useState(false);
@@ -20,14 +20,14 @@ const Home = () => {
   };
 
   return (
-    <>
-      <nav className="home-navigation-bar">
+    <div className="home">
+      <div className="header">
         <LogoIcon hideLogoText />
         <Hamburger
           onHamburgerClick={handleOpenDrawer}
           isDrawerOpened={isDrawerOpened}
         />
-      </nav>
+      </div>
       <SideDrawer
         onLinkClick={handleCloseDrawer}
         isDrawerOpened={isDrawerOpened}
@@ -36,7 +36,7 @@ const Home = () => {
       <GetStartedSection />
       <HowItWorksSection />
       <FeaturesSection />
-    </>
+    </div>
   );
 };
 

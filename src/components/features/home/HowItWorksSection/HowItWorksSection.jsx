@@ -2,8 +2,8 @@ import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 
 import Switcher from "../../../core/Switcher/Switcher";
+import Card from "./Card/Card";
 import { CARDS } from "./cards";
-import Card from "./components/Card/Card";
 
 const CardsWrapper = styled.div`
   margin-top: 3rem;
@@ -16,7 +16,6 @@ const CardsWrapper = styled.div`
 
 const HowItWorks = () => {
   const [role, setRole] = useState("Service");
-  console.log(role);
 
   const cards = useMemo(() => CARDS(role), [role]);
 

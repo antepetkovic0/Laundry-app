@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { theme } from "../../../../../styled/theme";
+import { theme } from "../../../../styled/theme";
 
 const Line = styled.span`
   &,

@@ -1,11 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import axios from "axios";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { createBrowserHistory } from "history";
-import { store } from "../store";
-import { clearUserData, LOGOUT_USER } from "../store/actions/profile";
-import { startUILoader } from "../store/actions/ui";
+import axios from "axios";
 import { getCookie } from "../utils/cookie";
+import { toastMessage } from "../utils/toast";
 
 const instance = axios.create({
   withCredentials: true,
@@ -38,8 +35,9 @@ instance.interceptors.response.use(
         });
         localStorage.setItem("access-token", data.accessToken);
         return instance(initialRequest);
-      } catch (err) {
-        return Promise.reject(err);
+      } catch (_err) {
+        window.location.href = "http://localhost:3000/auth/sign-in";
+        toastMessage("Session has expired. Please login again.", "error");
       }
     }
     return Promise.reject(error);

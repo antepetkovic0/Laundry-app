@@ -19,6 +19,12 @@
     flex: 1;
   }
 
+  &__labels {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.6rem;
+  }
+
   &__action-group {
     display: flex;
     justify-content: space-between;

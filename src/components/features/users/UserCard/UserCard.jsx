@@ -24,6 +24,13 @@ const UserCard = ({ user }) => {
     return appearances.WARNING;
   }, [status]);
 
+  const roleText = useMemo(() => {
+    if (roleId === 1) return "Admin";
+    if (roleId === 2) return "Service";
+    if (roleId === 3) return "User";
+    return "";
+  }, [roleId]);
+
   const handleUserDelete = () => {
     dispatch(showDialog(DIALOG_TYPE.ADMIN_USER_DELETE, { userId: id }));
   };
@@ -44,8 +51,10 @@ const UserCard = ({ user }) => {
           {firstName} {lastName}
         </h4>
         <p>{email}</p>
-        <p>{roleId}</p>
-        <Tag text={status} appearance={tagAppearance} />
+        <div className="user-card__labels">
+          <Tag text={roleText} />
+          <Tag text={status} appearance={tagAppearance} />
+        </div>
       </div>
       <div className="user-card__action-group">
         {status === "ACTIVE" ? (

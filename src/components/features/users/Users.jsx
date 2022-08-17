@@ -10,8 +10,10 @@ import { useDebounce } from "../../../hooks/useDebounce";
 
 const Users = () => {
   const { list, lastFetched } = useSelector((state) => state.users);
+
   const [query, setQuery] = useState("");
-  const debouncedQuery = useDebounce(query, 750);
+
+  const debouncedQuery = useDebounce(query, 500);
 
   const filteredUsers = list.filter(
     (user) =>

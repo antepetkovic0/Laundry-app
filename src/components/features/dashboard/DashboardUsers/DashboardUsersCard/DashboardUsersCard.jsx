@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { isoToLocaleDate } from "../../../../../utils/date";
-import EmptyState from "../../../../EmptyState/EmptyState";
-import AnchorLink from "../../../../core/AnchorLink/AnchorLink";
+import EmptyMessage from "../../../../shared/messages/EmptyMessage/EmptyMessage";
 
 const DashboardUsersCard = ({ count, user }) => {
   const { firstName, lastName, status, createdAt } = user ?? {};
@@ -28,10 +27,7 @@ const DashboardUsersCard = ({ count, user }) => {
             </div>
           </>
         ) : (
-          <EmptyState
-            message="Currently there are no active users"
-            imgCss={{ maxHeight: "150px" }}
-          />
+          <EmptyMessage />
         )}
       </div>
     </div>
