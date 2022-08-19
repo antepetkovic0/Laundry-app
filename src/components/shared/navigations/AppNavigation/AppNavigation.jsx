@@ -75,8 +75,7 @@ const AppNavigation = () => {
 
   const profile = useSelector((state) => state.profile);
   const permissions = profile?.role?.permissions ?? [];
-  const users = useSelector((state) => state.users.list);
-  const someUserPending = users?.some((user) => user.status === "PENDING");
+  const pendingUsers = useSelector((state) => state.dashboard.users.pending);
 
   const navigationLinks = filterRoutesWithPermission(permissions);
 
@@ -100,7 +99,7 @@ const AppNavigation = () => {
           activeRoute={isRouteActive(item.path)}
         >
           <Icon name={item.iconName} />
-          {item.path === "/users" && someUserPending ? <Signal /> : null}
+          {item.path === "/users" && pendingUsers ? <Signal /> : null}
         </Li>
       ))}
     </>

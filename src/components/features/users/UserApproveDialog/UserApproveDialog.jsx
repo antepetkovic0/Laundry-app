@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
 import Button from "../../../core/Button/Button";
+import { approveUser } from "../../../../api/users";
 import { hideDialog } from "../../../../store/actions/dialog";
 import { DIALOG_TYPE } from "../../../../utils/constants";
 
@@ -22,7 +23,7 @@ const UserApproveDialog = () => {
   };
 
   const handleUserApprove = () => {
-    close();
+    dispatch(approveUser(userId));
   };
 
   if (!targetUser) return null;

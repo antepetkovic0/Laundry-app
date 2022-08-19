@@ -1,26 +1,24 @@
 import {
-  DELETE_DATA,
-  DELETE_SHOP_PRODUCT,
-  UPDATE_SHOP_PRODUCT,
   FETCH_DASHBOARD_SHOPS,
   FETCH_DASHBOARD_USERS,
+  DECLINE_USER,
 } from "../actions/dashboard";
+import { APPROVE_USER, DELETE_USER } from "../actions/users";
 
 const INITIAL_STATE = {
   users: {
-    count: null,
-    user: null,
-  },
-  pending: {
-    count: null,
-    user: null,
+    lastFetched: null,
+    active: 0,
+    pending: 0,
+    disabled: 0,
   },
   shops: {
-    count: null,
-    shop: null,
+    lastFetched: null,
+    count: 0,
   },
   orders: {
-    count: null,
+    lastFetched: null,
+    count: 0,
     list: [],
   },
 };
@@ -28,67 +26,45 @@ const INITIAL_STATE = {
 const dashboard = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_DASHBOARD_USERS:
+      return {
+        ...state,
+        users: {
+          ...action.payload.data,
+          lastFetched: action.payload.fetchTime,
+        },
+      };
     case FETCH_DASHBOARD_SHOPS:
       return {
         ...state,
-        ...action.payload.data,
+        shops: {
+          count: action.payload.data,
+          lastFetched: action.payload.fetchTime,
+        },
       };
-    // case SET_DATA:
-    //   return {
-    //     ...state,
-    //     [action.payload.type]: [
-    //       ...action.payload.data,
-    //       ...state[action.payload.type],
-    //     ],
-    //   };
-    // case TOGGLE_TODO:
-    //   return {
-    //     ...state,
-    //     users: state.users.map((todo) =>
-    //       todo.id !== action.payload
-    //         ? todo
-    //         : { ...todo, completed: !todo.completed }
-    //     ),
-    //   };
-    case DELETE_DATA:
+    case APPROVE_USER:
       return {
         ...state,
-        [action.payload.type]: state[action.payload.type].filter(
-          (item) => item.id !== action.payload.id
-        ),
+        users: {
+          ...state.users,
+          active: state.users.active + 1,
+          pending: state.users.pending - 1,
+        },
       };
-    case DELETE_SHOP_PRODUCT:
+    case DELETE_USER:
       return {
         ...state,
-        shops: state.shops.map((shop) =>
-          shop.id !== action.payload.shopId
-            ? shop
-            : {
-                ...shop,
-                products: shop.products.filter(
-                  (product) => product.id !== action.payload.id
-                ),
-              }
-        ),
+        users: {
+          ...state.users,
+          active: state.users.active - 1,
+        },
       };
-    case UPDATE_SHOP_PRODUCT:
+    case DECLINE_USER:
       return {
         ...state,
-        shops: state.shops.map((shop) =>
-          shop.id !== action.payload.shopId
-            ? shop
-            : {
-                ...shop,
-                products: shop.products.map((product) =>
-                  product.id !== action.payload.id
-                    ? product
-                    : {
-                        ...product,
-                        ...action.payload.product,
-                      }
-                ),
-              }
-        ),
+        users: {
+          ...state.users,
+          pending: state.users.pending - 1,
+        },
       };
     default:
       return state;

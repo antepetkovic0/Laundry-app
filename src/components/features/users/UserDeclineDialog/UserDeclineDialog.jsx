@@ -1,9 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
-import { hideDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+
 import Button from "../../../core/Button/Button";
+import { deleteUser } from "../../../../api/users";
+import { hideDialog } from "../../../../store/actions/dialog";
+import { DECLINE_USER } from "../../../../store/actions/dashboard";
+import { DIALOG_TYPE } from "../../../../utils/constants";
 
 const UserDeclineDialog = () => {
   const {
@@ -21,7 +24,7 @@ const UserDeclineDialog = () => {
   };
 
   const handleUserDecline = () => {
-    close();
+    dispatch(deleteUser(DECLINE_USER, userId));
   };
 
   if (!targetUser) return null;
@@ -36,11 +39,11 @@ const UserDeclineDialog = () => {
         <h3 className="modal-dialog__header">Decline user request</h3>
         <div className="modal-dialog__body">
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-            Are you sure you want to delete{" "}
+            Are you sure you want to decline{" "}
             <b>
               {targetUser.firstName} {targetUser.lastName}
-            </b>
-            ?
+            </b>{" "}
+            request?
           </div>
         </div>
         <div className="modal-dialog__footer">

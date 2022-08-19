@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
 import Button from "../../../core/Button/Button";
+import { deleteUser } from "../../../../api/users";
 import { hideDialog } from "../../../../store/actions/dialog";
+import { DELETE_USER } from "../../../../store/actions/users";
 import { DIALOG_TYPE } from "../../../../utils/constants";
 
 const DeleteDialog = () => {
@@ -11,6 +13,7 @@ const DeleteDialog = () => {
     dialog,
     users: { list },
   } = useSelector((state) => state);
+
   const { userId } = dialog.dialogProps;
   const targetUser = list.find((user) => user.id === userId);
 
@@ -21,8 +24,7 @@ const DeleteDialog = () => {
   };
 
   const handleDelete = () => {
-    // dispatch(deleteUser(userId));
-    close();
+    dispatch(deleteUser(DELETE_USER, userId));
   };
 
   if (!targetUser) return null;

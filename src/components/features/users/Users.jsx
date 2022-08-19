@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../../api/user";
+import { fetchUsers } from "../../../api/users";
 import { FETCH_USERS } from "../../../store/actions/users";
 import WithLoading from "../../../hocs/WithLoading";
 import Input from "../../Input/Input";
@@ -41,7 +41,7 @@ const Users = () => {
           onChange={(e) => {
             setQuery(e.target.value);
           }}
-          placeholder="Search shops by name"
+          placeholder="Search users by name"
           iconName="search"
         />
       </div>
