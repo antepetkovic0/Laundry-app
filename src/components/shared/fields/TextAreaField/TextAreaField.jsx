@@ -22,7 +22,6 @@ const Textarea = styled.textarea`
 `;
 
 const Label = styled.label`
-  text-transform: uppercase;
   font-weight: 700;
   font-size: 12px;
   color: ${theme.text.alt};

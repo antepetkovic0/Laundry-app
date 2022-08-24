@@ -4,8 +4,10 @@ import { Switch } from "react-router-dom";
 
 import { RULES } from "../constants/rules";
 import PrivateRoute from "../components/shared/utilities/PrivateRoute/PrivateRoute";
-import Shops from "../components/Shops/Shops";
-import CreateShop from "../components/Shops/CreateShop";
+import Shops from "../components/features/shops/Shops";
+import CreateShop from "../components/features/shops/CreateShop";
+import EditShop from "../components/features/shops/EditShop";
+import ProductRoutes from "./ProductRoutes";
 
 const SHOP_ROUTES = [
   {
@@ -20,18 +22,18 @@ const SHOP_ROUTES = [
     component: CreateShop,
     exact: false,
   },
-  // {
-  //   path: "/edit",
-  //   rule: RULES.EDIT_SHOPS,
-  //   component:,
-  //   exact: false,
-  // },
-  // {
-  //   path: "/:slug",
-  //   rule: RULES.READ_SHOPS,
-  //   component: ProductRoutes,
-  //   exact: false,
-  // },
+  {
+    path: "/edit",
+    rule: RULES.EDIT_SHOPS,
+    component: EditShop,
+    exact: false,
+  },
+  {
+    path: "/:slug",
+    rule: RULES.READ_SHOPS,
+    component: ProductRoutes,
+    exact: false,
+  },
 ];
 
 const ShopsRoutes = ({ match }) => (

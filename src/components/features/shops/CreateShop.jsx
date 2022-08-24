@@ -2,11 +2,11 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createShop } from "../../api/shop";
-import { CREATE_SHOP } from "../../store/actions/shops";
+import { createShop } from "../../../api/shops";
+import { CREATE_SHOP } from "../../../store/actions/shops";
 
-import HeaderBackLink from "../CaretLink/HeaderBackLink";
-import ShopForm from "./ShopForm";
+import ShopForm from "./ShopForm/ShopForm";
+import CaretBackLink from "../../shared/navigations/CaretBackLink/CaretBackLink";
 
 const CreateShop = () => {
   const { firstName, lastName } = useSelector((state) => state.profile);
@@ -25,14 +25,14 @@ const CreateShop = () => {
   };
 
   return (
-    <>
-      <HeaderBackLink to="/dashboard/shops" title="Create shop" />
+    <div className="create-shop">
+      <CaretBackLink href="/app/shops" title="Create shop" />
       <ShopForm
         data={{ name: "", slug: "", address: "", image: "", about: "" }}
         onSubmit={handleSubmit}
         formSubmitting={isFormSubmitting}
       />
-    </>
+    </div>
   );
 };
 

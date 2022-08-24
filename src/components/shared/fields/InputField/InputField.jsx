@@ -40,7 +40,7 @@ const Label = styled.label`
 const IconBox = styled.div`
   position: absolute;
   right: 10px;
-  top: 50%;
+  bottom: 7px;
   height: 24px;
   fill: ${theme.gray.medium};
 

@@ -9,13 +9,11 @@ import { DECLINE_USER } from "../../../../store/actions/dashboard";
 import { DIALOG_TYPE } from "../../../../utils/constants";
 
 const UserDeclineDialog = () => {
-  const {
-    dialog,
-    users: { list },
-  } = useSelector((state) => state);
+  const dialog = useSelector((state) => state.dialog);
+  const users = useSelector((state) => state.users.list);
 
   const { userId } = dialog.dialogProps;
-  const targetUser = list.find((user) => user.id === userId);
+  const targetUser = users.find((user) => user.id === userId);
 
   const dispatch = useDispatch();
 

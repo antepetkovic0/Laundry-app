@@ -3,27 +3,28 @@ import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import { rules } from "../utils/permissions";
 import PrivateRoute from "../components/shared/utilities/PrivateRoute/PrivateRoute";
+import SpecificShop from "../components/features/shops/SpecificShop";
 import CreateProduct from "../components/Products/CreateProduct";
-import SpecificShop from "../components/Shops/SpecificShop";
 import EditProduct from "../components/Products/EditProduct";
-import SpecificProduct from "../components/Products/SpecificProduct";
+import { RULES } from "../constants/rules";
+// import SpecificProduct from "../components/Products/SpecificProduct";
 
-export const productRoutes = [
+export const PRODUCT_ROUTES = [
   {
     path: "",
-    rule: rules.READ_SHOP,
+    rule: RULES.READ_SHOPS,
     component: SpecificShop,
     exact: true,
   },
   {
     path: "create",
-    rule: rules.CREATE_PRODUCT,
+    rule: RULES.CREATE_PRODUCTS,
     component: CreateProduct,
     exact: false,
   },
   {
-    path: "edit/:productSlug",
-    rule: rules.EDIT_PRODUCT,
+    path: "edit/:slug",
+    rule: RULES.EDIT_PRODUCTS,
     component: EditProduct,
     exact: false,
   },
@@ -35,28 +36,19 @@ export const productRoutes = [
   // },
 ];
 
-const ProductRoutes = ({ match }) => {
-  console.log("d");
-  return (
-    <Switch>
-      {productRoutes.map((route) => {
-        const routePath = route.path
-          ? `${match.path}/${route.path}`
-          : match.path;
-
-        return (
-          <PrivateRoute
-            key={route.path}
-            path={routePath}
-            component={route.component}
-            rule={route.rule}
-            exact={route.exact}
-          />
-        );
-      })}
-    </Switch>
-  );
-};
+const ProductRoutes = ({ match }) => (
+  <Switch>
+    {PRODUCT_ROUTES.map((route) => (
+      <PrivateRoute
+        key={route.path}
+        path={`${match.path}${route.path}`}
+        component={route.component}
+        rule={route.rule}
+        exact={route.exact}
+      />
+    ))}
+  </Switch>
+);
 
 ProductRoutes.propTypes = {
   match: PropTypes.shape({

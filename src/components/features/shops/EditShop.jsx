@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useLocationQuery } from "../../hooks/useLocationQuery";
-import { editShop, fetchShopBySlugName } from "../../api/shop";
-import { EDIT_SHOP, FETCH_SPECIFIC_SHOP } from "../../store/actions/shops";
-
-import HeaderBackLink from "../CaretLink/HeaderBackLink";
-import ShopForm from "./ShopForm";
+import { useLocationQuery } from "../../../hooks/useLocationQuery";
+import { editShop, fetchShopBySlugName } from "../../../api/shops";
+import { EDIT_SHOP, FETCH_SPECIFIC_SHOP } from "../../../store/actions/shops";
+import CaretBackLink from "../../shared/navigations/CaretBackLink/CaretBackLink";
+import ShopForm from "./ShopForm/ShopForm";
 
 const EditShop = () => {
   const query = useLocationQuery();
@@ -32,11 +31,11 @@ const EditShop = () => {
     dispatch(editShop(EDIT_SHOP, { id: targetShop.id, ...formData }, history));
   };
 
-  if (!targetShop) return <div>Nothing to find here</div>;
+  if (!targetShop) return null;
 
   return (
     <>
-      <HeaderBackLink to="/dashboard/shops" title="Edit shop" />
+      <CaretBackLink href="/app/shops" title="Edit shop" />
       <ShopForm
         data={targetShop}
         onSubmit={handleSubmit}

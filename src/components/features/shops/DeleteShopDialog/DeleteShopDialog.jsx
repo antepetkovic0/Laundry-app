@@ -2,12 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
-import { deleteShop } from "../../api/shop";
-import { hideDialog } from "../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../utils/constants";
-import Button from "../core/Button/Button";
+import { deleteShop } from "../../../../api/shops";
+import { hideDialog } from "../../../../store/actions/dialog";
+import { DIALOG_TYPE } from "../../../../utils/constants";
+import Button from "../../../core/Button/Button";
 
-const DeleteShop = () => {
+const DeleteShopDialog = () => {
   const { dialogType, dialogProps } = useSelector((state) => state.dialog);
   const { list } = useSelector((state) => state.shops);
 
@@ -35,17 +35,9 @@ const DeleteShop = () => {
       ariaHideApp={false}
     >
       <div className="modal-dialog">
-        <div className="modal-dialog__header">Delete shop</div>
+        <h3 className="modal-dialog__header">Delete shop</h3>
         <div className="modal-dialog__body">
-          <div>
-            <div>
-              Are you sure you want to delete{" "}
-              <b>
-                <span>{shop.name}</span>
-              </b>{" "}
-              shop?
-            </div>
-          </div>
+          Are you sure you want to delete <b>{shop.name}</b> shop?
         </div>
         <div className="modal-dialog__footer">
           <Button text="Cancel" type="subtle" onClick={handleClose} />
@@ -56,4 +48,4 @@ const DeleteShop = () => {
   );
 };
 
-export default DeleteShop;
+export default DeleteShopDialog;

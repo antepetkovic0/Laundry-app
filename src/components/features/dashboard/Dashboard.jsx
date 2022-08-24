@@ -47,6 +47,8 @@ Dashboard.propTypes = {
   roleTitle: PropTypes.string.isRequired,
 };
 
+// export default Dashboard;
+
 export default WithLoading(
   Dashboard,
   FETCH_DASHBOARD_USERS,
