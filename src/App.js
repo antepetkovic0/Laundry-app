@@ -8,7 +8,7 @@ import NotFound from "./pages/Error/NotFound";
 import "./scss/main.scss";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
-import AppRoutes from "./pages/app/AppRoutes";
+import AppRoutes from "./pages/AppRoutes";
 import AuthRoutes from "./pages/AuthRoutes";
 
 const App = () => (

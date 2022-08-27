@@ -3,7 +3,7 @@ import React from "react";
 import { toastMessage } from "../../../../utils/toast";
 import { useInput } from "../../../../hooks/useInput";
 import Button from "../../../core/Button/Button";
-import Input from "../../../Input/Input";
+import InputField from "../../../shared/fields/InputField/InputField";
 
 const ForgotPassword = () => {
   const [email, { handleInputChange }] = useInput();
@@ -14,10 +14,10 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <Input
+      <InputField
+        name="email"
         type="email"
         label="Email"
-        name="email"
         value={email}
         onChange={handleInputChange}
       />

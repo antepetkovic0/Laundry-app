@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 
 // eslint-disable-next-line import/no-cycle
-import AppLayout from "../../layouts/AppLayout";
-import { RULES } from "../../constants/rules";
-import PrivateRoute from "../../components/shared/utilities/PrivateRoute/PrivateRoute";
-import Dashboard from "../../components/features/dashboard/Dashboard";
-import Users from "../../components/features/users/Users";
-import ShopsRoutes from "../ShopsRoutes";
-import Orders from "../../components/features/orders/Orders";
-import Cart from "../../components/features/cart/Cart";
-import SettingsRoutes from "../SettingsRoutes";
+import AppLayout from "../layouts/AppLayout";
+import { RULES } from "../constants/rules";
+import PrivateRoute from "../components/shared/utilities/PrivateRoute/PrivateRoute";
+import Dashboard from "../components/features/dashboard/Dashboard";
+import Users from "../components/features/users/Users";
+import ShopsRoutes from "./ShopsRoutes";
+import Orders from "../components/features/orders/Orders";
+import Cart from "../components/features/cart/Cart";
+import SettingsRoutes from "./SettingsRoutes";
 
 export const APP_ROUTES = [
   {
