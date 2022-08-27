@@ -2,33 +2,36 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { useInput } from "../../../../hooks/useInput";
-import Button from "../../../core/Button/Button";
 import InputField from "../../../shared/fields/InputField/InputField";
 import TextAreaField from "../../../shared/fields/TextAreaField/TextAreaField";
+import Button from "../../../core/Button/Button";
 
-const ShopForm = ({ data, onSubmit, formSubmitting }) => {
+const ProductForm = ({ data, onSubmit, formSubmitting }) => {
   const [name, { handleInputChange: handleNameChange }] = useInput(data.name);
-  const [slug, { handleInputChange: handleSlugChange }] = useInput(data.slug);
-  const [address, { handleInputChange: handleAddressChange }] = useInput(
-    data.address
+  const [slug, { handleInputChange: handleSlugChange }] = useInput(data.price);
+  const [price, { handleInputChange: handlePriceChange }] = useInput(
+    data.price
+  );
+  const [discount, { handleInputChange: handleDiscountChange }] = useInput(
+    data.discount
   );
   const [image, { handleInputChange: handleImageChange }] = useInput(
     data.image
   );
-  const [about, { handleInputChange: handleAboutChange }] = useInput(
-    data.about
+  const [content, { handleInputChange: handleContentChange }] = useInput(
+    data.content
   );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, slug, address, image, about });
+    onSubmit({ name, slug, price, discount, image, content });
   };
 
   return (
-    <form className="shop-form" onSubmit={handleSubmit}>
+    <form className="product-form" onSubmit={handleSubmit}>
       <InputField
         name="name"
-        type="text"
+        type="number"
         label="Name"
         value={name}
         onChange={handleNameChange}
@@ -42,11 +45,18 @@ const ShopForm = ({ data, onSubmit, formSubmitting }) => {
       />
 
       <InputField
-        name="address"
-        type="text"
-        label="Address"
-        value={address}
-        onChange={handleAddressChange}
+        name="price"
+        type="number"
+        label="Price"
+        value={price}
+        onChange={handlePriceChange}
+      />
+      <InputField
+        name="discount"
+        type="number"
+        label="Discount"
+        value={discount}
+        onChange={handleDiscountChange}
       />
       <InputField
         name="image"
@@ -55,9 +65,9 @@ const ShopForm = ({ data, onSubmit, formSubmitting }) => {
         value={image}
         onChange={handleImageChange}
       />
-      <div className="shop-form__upload-box">
+      <div className="product-form__upload-box">
         <img
-          className="shop-form__upload-image"
+          className="product-form__upload-image"
           src={image}
           alt="Upload"
           onError={(e) => {
@@ -68,24 +78,25 @@ const ShopForm = ({ data, onSubmit, formSubmitting }) => {
       <TextAreaField
         name="about"
         label="About"
-        value={about}
-        onChange={handleAboutChange}
+        value={content}
+        onChange={handleContentChange}
       />
       <Button text="Save changes" isLoading={formSubmitting} fullWidth />
     </form>
   );
 };
 
-ShopForm.propTypes = {
+ProductForm.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string,
     slug: PropTypes.string,
-    address: PropTypes.string,
+    price: PropTypes.string,
+    discount: PropTypes.string,
     image: PropTypes.string,
-    about: PropTypes.string,
+    content: PropTypes.string,
   }).isRequired,
   formSubmitting: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default ShopForm;
+export default ProductForm;

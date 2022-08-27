@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { editProduct } from "../../api/product";
+import { editProduct } from "../../api/products";
 import HeaderBackLink from "../CaretLink/HeaderBackLink";
-import ProductForm from "./ProductForm";
+// import ProductForm from "../features/products/ProductForm/ProductForm";
 
 const EditProduct = () => {
   const params = useParams();
@@ -37,11 +37,11 @@ const EditProduct = () => {
   return (
     <>
       <HeaderBackLink to="/dashboard/shops" title="Edit product" />
-      <ProductForm
+      {/* <ProductForm
         data={product}
         onSubmit={handleSubmit}
         isSubmitting={false}
-      />
+      /> */}
     </>
   );
 };

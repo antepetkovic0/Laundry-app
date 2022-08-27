@@ -34,13 +34,13 @@ const ShopCard = ({ shop }) => {
       <div className="shop-card__actions">
         {title === Roles.SERVICE && (
           <>
-            <div className="shop-card__action-item">
+            <div className="action-icon-item">
               <AnchorLink href={`/app/shops/edit?slug=${slug}`}>
                 <Icon name="edit" />
               </AnchorLink>
             </div>
             <div
-              className="shop-card__action-item"
+              className="action-icon-item"
               role="button"
               tabIndex="0"
               onClick={() => handleOpenDeleteDialog()}
@@ -54,7 +54,7 @@ const ShopCard = ({ shop }) => {
             </div>
           </>
         )}
-        <div className="shop-card__action-item">
+        <div className="action-icon-item">
           <AnchorLink href={`/app/shops/${slug}`}>
             <Icon name="next" />
           </AnchorLink>

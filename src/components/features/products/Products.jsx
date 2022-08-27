@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import { fetchProducts } from "../../api/product";
-import { FETCH_SHOP_PRODUCTS } from "../../store/actions/products";
-import { isRequestOutdated } from "../../utils/date";
+import { fetchProducts } from "../../../api/products";
+import { FETCH_SHOP_PRODUCTS } from "../../../store/actions/products";
+import { isRequestOutdated } from "../../../utils/date";
 
-import ProductItem from "./ProductItem";
-import DeleteProductDialog from "./DeleteProductDialog";
+import ProductList from "./ProductList/ProductList";
 
 const Products = ({ shopId }) => {
   const { list, lastFetched } = useSelector(
@@ -22,17 +21,7 @@ const Products = ({ shopId }) => {
     }
   }, []);
 
-  if (!list || !list.length)
-    return <p>Shop did not listed any of products yet!</p>;
-
-  return (
-    <div className="product-list">
-      {list.map((p) => (
-        <ProductItem key={p.id} product={p} />
-      ))}
-      <DeleteProductDialog />
-    </div>
-  );
+  return <ProductList products={list} />;
 };
 
 Products.propTypes = {

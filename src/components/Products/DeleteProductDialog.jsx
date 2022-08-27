@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
 import { hideDialog } from "../../store/actions/dialog";
-import { deleteProduct } from "../../api/product";
+import { deleteProduct } from "../../api/products";
 import { DIALOG_TYPE } from "../../utils/constants";
 
 import Button from "../core/Button/Button";
