@@ -1,71 +1,46 @@
 .product {
-  padding: 2rem;
-  background-color: rgba(211, 211, 211, 0.141);
+  margin-top: 2rem;
 
-  & > div:not(:last-child) {
+  & > *:not(:last-child) {
     margin-bottom: 2rem;
   }
 
   &__image {
-    height: 40vh;
+    display: block;
+    width: stretch;
+    height: 25rem;
+    border-radius: 0.8rem;
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
+  &__name {
+    font-size: 3rem;
+    margin-bottom: 1rem !important;
+  }
+
+  &__actions {
+    float: right;
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__information {
+    h3 {
+      font-weight: 500;
     }
   }
 
-  .general {
-    &__name {
-      font-size: 3rem;
-      font-weight: 500;
-    }
-
-    &__discount {
-      background-color: red;
-      color: #fff;
-      border-radius: 0.2rem;
-      padding: 0.4rem;
-      font-weight: 500;
-      width: max-content;
-      height: fit-content;
-    }
-  }
-
-  .details {
-    &__title {
-      font-weight: 500;
-      font-size: 1.6rem;
-    }
-
-    &__content {
-    }
-  }
-
-  &__footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    padding: 2rem;
+  &__footer-box {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid lightgray;
-    background-color: #fff;
+    align-items: center;
   }
 
-  .price {
-    display: flex;
-    align-items: baseline;
+  &__price {
+    font-size: 4.6rem;
+  }
 
-    &__currency {
-      margin-right: 0.4rem;
-      font-size: 1.2rem;
-    }
-
-    &__amount {
-      font-size: 3rem;
-      font-weight: 500;
-    }
+  &__dollar {
+    font-size: 2rem;
+    font-weight: 500;
   }
 }

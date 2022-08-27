@@ -8,7 +8,7 @@ import Button from "../../../core/Button/Button";
 
 const ProductForm = ({ data, onSubmit, formSubmitting }) => {
   const [name, { handleInputChange: handleNameChange }] = useInput(data.name);
-  const [slug, { handleInputChange: handleSlugChange }] = useInput(data.price);
+  const [slug, { handleInputChange: handleSlugChange }] = useInput(data.slug);
   const [price, { handleInputChange: handlePriceChange }] = useInput(
     data.price
   );
@@ -31,7 +31,7 @@ const ProductForm = ({ data, onSubmit, formSubmitting }) => {
     <form className="product-form" onSubmit={handleSubmit}>
       <InputField
         name="name"
-        type="number"
+        type="text"
         label="Name"
         value={name}
         onChange={handleNameChange}

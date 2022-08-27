@@ -6,7 +6,8 @@ import { RULES } from "../constants/rules";
 import PrivateRoute from "../components/shared/utilities/PrivateRoute/PrivateRoute";
 import SpecificShop from "../components/features/shops/SpecificShop";
 import CreateProduct from "../components/features/products/CreateProduct";
-// import SpecificProduct from "../components/Products/SpecificProduct";
+import EditProduct from "../components/features/products/EditProduct";
+import SpecificProduct from "../components/features/products/SpecificProduct";
 
 export const PRODUCT_ROUTES = [
   {
@@ -21,18 +22,18 @@ export const PRODUCT_ROUTES = [
     component: CreateProduct,
     exact: false,
   },
-  // {
-  //   path: "edit/:slug",
-  //   rule: RULES.EDIT_PRODUCTS,
-  //   component: EditProduct,
-  //   exact: false,
-  // },
-  // {
-  //   path: ":productSlug",
-  //   rule: rules.READ_PRODUCT,
-  //   component: SpecificProduct,
-  //   exact: false,
-  // },
+  {
+    path: "/edit",
+    rule: RULES.EDIT_PRODUCTS,
+    component: EditProduct,
+    exact: false,
+  },
+  {
+    path: "/:productSlug",
+    rule: RULES.READ_PRODUCTS,
+    component: SpecificProduct,
+    exact: false,
+  },
 ];
 
 const ProductRoutes = ({ match }) => (
