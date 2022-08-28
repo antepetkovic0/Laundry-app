@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
-import { hideDialog } from "../../../../store/actions/dialog";
 import { deleteProduct } from "../../../../api/products";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+import { hideDialog } from "../../../../store/actions/dialog";
+import { DIALOG_TYPE } from "../../../../constants/dialogType";
 
 import Button from "../../../core/Button/Button";
 

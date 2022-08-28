@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import appearances from "../../../constants/appearances";
 import { theme } from "../../../styled/theme";
+import { TAG_APPEARANCE } from "../../../constants/tagAppearance";
 
 const TagContainer = styled.div`
   display: inline-block;
@@ -14,10 +14,10 @@ const TagContainer = styled.div`
   text-transform: uppercase;
 
   color: ${({ appearance }) => {
-    if (appearance === appearances.DEFAULT) {
+    if (appearance === TAG_APPEARANCE.DEFAULT) {
       return `${theme.text.alt}`;
     }
-    if (appearance === appearances.DANGER) {
+    if (appearance === TAG_APPEARANCE.DANGER) {
       return `${theme.text.alt}`;
     }
     // primary, danger and success
@@ -25,16 +25,16 @@ const TagContainer = styled.div`
   }};
 
   background-color: ${({ appearance }) => {
-    if (appearance === appearances.DEFAULT) {
+    if (appearance === TAG_APPEARANCE.DEFAULT) {
       return `${theme.neutral.three}`;
     }
-    if (appearance === appearances.PRIMARY) {
+    if (appearance === TAG_APPEARANCE.PRIMARY) {
       return `${theme.primary.def}`;
     }
-    if (appearance === appearances.DANGER) {
+    if (appearance === TAG_APPEARANCE.DANGER) {
       return `${theme.error}`;
     }
-    if (appearance === appearances.WARNING) {
+    if (appearance === TAG_APPEARANCE.WARNING) {
       return `${theme.warning}`;
     }
     // success
@@ -52,7 +52,7 @@ Tag.propTypes = {
 };
 
 Tag.defaultProps = {
-  appearance: appearances.DEFAULT,
+  appearance: TAG_APPEARANCE.DEFAULT,
 };
 
 export default React.memo(Tag);

@@ -11,7 +11,7 @@ import TextAreaField from "../../../shared/fields/TextAreaField/TextAreaField";
 import Avatar from "../../../shared/icons/Avatar/Avatar";
 import Icon from "../../../core/Icon/Icon";
 import { showDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+import { DIALOG_TYPE } from "../../../../constants/dialogType";
 import EditAvatarDialog from "./EditAvatarDialog/EditAvatarDialog";
 
 const SettingsAccount = () => {

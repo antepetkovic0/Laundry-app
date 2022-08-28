@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import { Roles } from "../../../../utils/constants";
+import { ROLES } from "../../../../constants/roles";
 import AnchorLink from "../../../core/AnchorLink/AnchorLink";
 import Icon from "../../../core/Icon/Icon";
 import ProductCard from "../ProductCard/ProductCard";
@@ -21,7 +21,7 @@ const ProductList = ({ products }) => {
         {products?.map((product) => (
           <ProductCard product={product} />
         ))}
-        {title === Roles.SERVICE && (
+        {title === ROLES.SERVICE && (
           <AnchorLink href={`/app/shops/${shopSlug}/create`}>
             <div className="product-card product-card--create-new">
               <Icon name="done" />

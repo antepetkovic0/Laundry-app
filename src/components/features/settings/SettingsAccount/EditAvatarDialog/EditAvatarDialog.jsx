@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 
-import { DIALOG_TYPE } from "../../../../../utils/constants";
+import { DIALOG_TYPE } from "../../../../../constants/dialogType";
 import { hideDialog } from "../../../../../store/actions/dialog";
 import { useInput } from "../../../../../hooks/useInput";
 import Button from "../../../../core/Button/Button";

@@ -1,7 +1,7 @@
 import * as uiActions from "../store/actions/ui";
 import * as userActions from "../store/actions/users";
 import * as dialogActions from "../store/actions/dialog";
-import { TOAST_TYPE } from "../utils/constants";
+import { TOAST_TYPE } from "../constants/toastType";
 import { toastMessage } from "../utils/toast";
 import { httpClient } from "./client";
 

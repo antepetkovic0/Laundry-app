@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 import { showDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE, Roles } from "../../../../utils/constants";
+import { DIALOG_TYPE } from "../../../../constants/dialogType";
+import { ROLES } from "../../../../constants/roles";
 import Icon from "../../../core/Icon/Icon";
 import AnchorLink from "../../../core/AnchorLink/AnchorLink";
 
@@ -32,7 +33,7 @@ const ShopCard = ({ shop }) => {
         </div>
       </div>
       <div className="shop-card__actions">
-        {title === Roles.SERVICE && (
+        {title === ROLES.SERVICE && (
           <>
             <div className="action-icon-item">
               <AnchorLink href={`/app/shops/edit?slug=${slug}`}>

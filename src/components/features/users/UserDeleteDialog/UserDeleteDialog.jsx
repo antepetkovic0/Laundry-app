@@ -6,7 +6,7 @@ import Button from "../../../core/Button/Button";
 import { deleteUser } from "../../../../api/users";
 import { hideDialog } from "../../../../store/actions/dialog";
 import { DELETE_USER } from "../../../../store/actions/users";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+import { DIALOG_TYPE } from "../../../../constants/dialogType";
 
 const DeleteDialog = () => {
   const {

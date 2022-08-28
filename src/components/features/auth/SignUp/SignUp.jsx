@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import { auth } from "../../../../api/auth";
-import { TOAST_TYPE } from "../../../../utils/constants";
+import { TOAST_TYPE } from "../../../../constants/toastType";
 import { toastMessage } from "../../../../utils/toast";
 import AnchorLink from "../../../core/AnchorLink/AnchorLink";
 import SignUpForm from "./SignUpForm/SignUpForm";

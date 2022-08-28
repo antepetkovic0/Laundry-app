@@ -4,12 +4,12 @@ import React, { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
+import { TAG_APPEARANCE } from "../../../../constants/tagAppearance";
 import Icon from "../../../core/Icon/Icon";
 import Tag from "../../../core/Tag/Tag";
-import appearances from "../../../../constants/appearances";
 import Avatar from "../../../shared/icons/Avatar/Avatar";
 import { showDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+import { DIALOG_TYPE } from "../../../../constants/dialogType";
 
 const UserCard = ({ user }) => {
   const { id, firstName, lastName, email, status, roleId } = user;
@@ -18,10 +18,10 @@ const UserCard = ({ user }) => {
 
   const tagAppearance = useMemo(() => {
     if (status === "ACTIVE") {
-      return appearances.SUCCESS;
+      return TAG_APPEARANCE.SUCCESS;
     }
 
-    return appearances.WARNING;
+    return TAG_APPEARANCE.WARNING;
   }, [status]);
 
   const roleText = useMemo(() => {

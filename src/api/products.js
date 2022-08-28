@@ -1,7 +1,7 @@
 import * as productActions from "../store/actions/products";
 import { hideDialog } from "../store/actions/dialog";
 import { setUIError, startUILoader, stopUILoader } from "../store/actions/ui";
-import { TOAST_TYPE } from "../utils/constants";
+import { TOAST_TYPE } from "../constants/toastType";
 import { toastMessage } from "../utils/toast";
 import { httpClient } from "./client";
 

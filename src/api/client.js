@@ -5,14 +5,14 @@ import { getCookie } from "../utils/cookie";
 import { toastMessage } from "../utils/toast";
 
 const instance = axios.create({
-  withCredentials: true,
-  baseURL: "http://localhost:8080/api",
+  // withCredentials: true,
+  baseURL: "http://192.168.1.11:8080/api",
 });
 
 instance.interceptors.request.use(
   (config) => {
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer ${localStorage.getItem(
+    config.headers.Authorization = `Bearer ${window.localStorage.getItem(
       "access-token"
     )}`;
 
@@ -37,7 +37,6 @@ instance.interceptors.response.use(
         return instance(initialRequest);
       } catch (_err) {
         window.location.href = "http://localhost:3000/auth/sign-in";
-        toastMessage("Session has expired. Please login again.", "error");
       }
     }
     return Promise.reject(error);

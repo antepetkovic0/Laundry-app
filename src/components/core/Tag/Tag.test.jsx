@@ -1,7 +1,8 @@
 /* globals describe, it, expect */
 import React from "react";
 import { render } from "@testing-library/react";
-import appearances from "../../../constants/appearances";
+
+import { TAG_APPEARANCE } from "../../../constants/tagAppearance";
 import Tag from "./Tag";
 
 const color = (element) => window.getComputedStyle(element).color;
@@ -15,7 +16,7 @@ describe("Tag component", () => {
 
   it("shoud render correct correct styles", () => {
     const screen = render(
-      <Tag text="dummy text" appearance={appearances.SUCCESS} />
+      <Tag text="dummy text" appearance={TAG_APPEARANCE.SUCCESS} />
     );
     screen.debug();
 

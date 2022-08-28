@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { ROLES } from "../../../constants/roles";
 import { showDialog } from "../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../utils/constants";
+import { DIALOG_TYPE } from "../../../constants/dialogType";
 import Button from "../../core/Button/Button";
 import Icon from "../../core/Icon/Icon";
 import Tag from "../../core/Tag/Tag";
 
 import CaretBackLink from "../../shared/navigations/CaretBackLink/CaretBackLink";
 import DeleteProductDialog from "./DeleteProductDialog/DeleteProductDialog";
+import { TAG_APPEARANCE } from "../../../constants/tagAppearance";
 
 const SpecificProduct = () => {
   // TODO change slug to shopSlug
@@ -79,7 +80,10 @@ const SpecificProduct = () => {
           )}
         </div>
         <div className="product__discount">
-          <Tag text={`Save ${product.discount}%`} appearance="DANGER" />
+          <Tag
+            text={`Save ${product.discount}%`}
+            appearance={TAG_APPEARANCE.DANGER}
+          />
         </div>
         <div className="product__information">
           <h3>Information</h3>

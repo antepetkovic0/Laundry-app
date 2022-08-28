@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
-import { TOAST_TYPE } from "./constants";
+import { TOAST_TYPE } from "../constants/toastType";
 
 const toastOptions = {
   position: "top-right",

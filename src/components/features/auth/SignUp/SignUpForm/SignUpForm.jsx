@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 
-import { TOAST_TYPE } from "../../../../../utils/constants";
+import { TOAST_TYPE } from "../../../../../constants/toastType";
 import { toastMessage } from "../../../../../utils/toast";
 import { useInput } from "../../../../../hooks/useInput";
 import InputField from "../../../../shared/fields/InputField/InputField";

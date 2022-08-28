@@ -5,7 +5,7 @@ import ReactModal from "react-modal";
 import Button from "../../../core/Button/Button";
 import { approveUser } from "../../../../api/users";
 import { hideDialog } from "../../../../store/actions/dialog";
-import { DIALOG_TYPE } from "../../../../utils/constants";
+import { DIALOG_TYPE } from "../../../../constants/dialogType";
 
 const UserApproveDialog = () => {
   const {

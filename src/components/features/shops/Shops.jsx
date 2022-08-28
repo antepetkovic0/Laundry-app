@@ -8,7 +8,7 @@ import { FETCH_SHOPS } from "../../../store/actions/shops";
 import { useInput } from "../../../hooks/useInput";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { isRequestOutdated } from "../../../utils/date";
-import { Roles } from "../../../utils/constants";
+import { ROLES } from "../../../constants/roles";
 import Button from "../../core/Button/Button";
 import InputField from "../../shared/fields/InputField/InputField";
 import ShopList from "./ShopList/ShopList";
@@ -46,7 +46,7 @@ const Shops = () => {
           placeholder="Search shops by name"
           iconName="search"
         />
-        {title === Roles.SERVICE && (
+        {title === ROLES.SERVICE && (
           <Button
             text="Create shop"
             onClick={() => history.push("/app/shops/create")}

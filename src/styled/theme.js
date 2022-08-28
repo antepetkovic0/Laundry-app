@@ -1,18 +1,3 @@
-export const colors = {
-  // bgPrimary: "#ffffff",
-  // bgSecondary: "#fbfcff",
-  // textPrimary: "#1A1D3C",
-  // textSecondary: "#E9E9F2",
-  // bluePrimary: "#7684D8",
-  // goldPrimary: "#f7b936",
-  bgPrimary: "#ffffff",
-  bgSecondary: "#fbfcff",
-  textPrimary: "#b6c2d4",
-  textSecondary: "#26273e",
-  bluePrimary: "#3147c1",
-  yellowPrimary: "#dea731",
-};
-
 export const theme = {
   bg: {
     def: "#fff",

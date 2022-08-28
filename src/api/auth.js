@@ -1,6 +1,8 @@
 import axios from "axios";
 import { httpClient } from "./client";
 import { setUserData } from "../store/actions/profile";
+import { toastMessage } from "../utils/toast";
+import { TOAST_TYPE } from "../constants/toastType";
 
 export const loginUser = (userCredentials, history) => async (dispatch) => {
   try {
@@ -13,6 +15,7 @@ export const loginUser = (userCredentials, history) => async (dispatch) => {
     dispatch(setUserData(user));
     history.push("/app");
   } catch (err) {
+    toastMessage("err", TOAST_TYPE.ERROR);
     console.log("we are in err", err);
     // if (err.response.data.authenticationErr) {
     //   dispatch(logoutUser());
