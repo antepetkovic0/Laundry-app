@@ -25,10 +25,8 @@ export const loginUser = (userCredentials, history) => async (dispatch) => {
   }
 };
 
-export const auth = async (data) => {
-  const query = data.roleId ? "register" : "login";
-  return httpClient.post(`/auth/${query}`, data);
-};
+export const registerUser = async (user) =>
+  httpClient.post(`/auth/register`, user);
 
 export const refreshTokens = async (refreshToken) =>
   httpClient.post(`${URL}/api/auth/refresh`, refreshToken);

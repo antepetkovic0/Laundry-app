@@ -11,6 +11,7 @@ import Tag from "../../core/Tag/Tag";
 import CaretBackLink from "../../shared/navigations/CaretBackLink/CaretBackLink";
 import DeleteProductDialog from "./DeleteProductDialog/DeleteProductDialog";
 import { TAG_APPEARANCE } from "../../../constants/tagAppearance";
+import { addProductToCart } from "../../../store/actions/cart";
 
 const SpecificProduct = () => {
   // TODO change slug to shopSlug
@@ -26,7 +27,9 @@ const SpecificProduct = () => {
   const products = useSelector((state) => state.products?.[shop.id]?.list);
   const product = products.find((p) => p.slug === productSlug);
 
-  const productAlreadyInCart = useSelector((state) => state.cart?.[product.id]);
+  const productAlreadyInCart = useSelector((state) => state.cart).find(
+    (item) => item.id === product.id
+  );
 
   const handleOpenDeleteDialog = () => {
     dispatch(
@@ -39,6 +42,10 @@ const SpecificProduct = () => {
 
   const handleEditNavigate = () => {
     history.push(`/app/shops/${shopSlug}/edit?productSlug=${productSlug}`);
+  };
+
+  const handleAddProductToCart = () => {
+    dispatch(addProductToCart(product));
   };
 
   return (
@@ -98,6 +105,7 @@ const SpecificProduct = () => {
             <div className="product__cart">
               <Button
                 text={productAlreadyInCart ? "Already in cart" : "Add to cart"}
+                onClick={handleAddProductToCart}
               />
             </div>
           )}

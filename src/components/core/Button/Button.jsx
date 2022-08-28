@@ -73,12 +73,7 @@ const Button = ({ text, type, onClick, isLoading, fullWidth }) => {
   }
 
   return (
-    <ButtonBase
-      type="submit"
-      onClick={onClick}
-      isLoading={isLoading}
-      fullWidth={fullWidth}
-    >
+    <ButtonBase onClick={onClick} isLoading={isLoading} fullWidth={fullWidth}>
       {text}
     </ButtonBase>
   );

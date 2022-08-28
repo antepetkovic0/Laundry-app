@@ -2,10 +2,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
 import { getCookie } from "../utils/cookie";
-import { toastMessage } from "../utils/toast";
 
 const instance = axios.create({
-  // withCredentials: true,
+  withCredentials: true,
   baseURL: "http://192.168.1.11:8080/api",
 });
 

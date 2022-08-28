@@ -30,11 +30,18 @@ const SignUpForm = ({ onSubmit }) => {
       return;
     }
 
-    onSubmit({ roleId, firstName, lastName, phone, email, password });
+    onSubmit({
+      roleId: roleId.roleId,
+      firstName,
+      lastName,
+      phone,
+      email,
+      password,
+    });
   };
 
   const handleSelectChange = useCallback((e) => {
-    setRoleId(e.roleId);
+    setRoleId(e);
   }, []);
 
   const handleShowPasswordToggle = useCallback((isConfirmedPassword) => {

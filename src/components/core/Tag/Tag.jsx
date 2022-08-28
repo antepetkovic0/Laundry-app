@@ -18,7 +18,7 @@ const TagContainer = styled.div`
       return `${theme.text.alt}`;
     }
     if (appearance === TAG_APPEARANCE.DANGER) {
-      return `${theme.text.alt}`;
+      return `${theme.white}`;
     }
     // primary, danger and success
     return `${theme.white}`;

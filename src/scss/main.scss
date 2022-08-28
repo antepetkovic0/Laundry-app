@@ -2,10 +2,12 @@
 @import "./components/logo";
 @import "./components/message";
 @import "./components/modal-dialog";
+@import "./components/quantity-picker";
 @import "./components/shop-product-form";
 @import "./components/switcher";
 
 @import "./pages/auth";
+@import "./pages/cart";
 @import "./pages/dashboard";
 @import "./pages/home";
 @import "./pages/product";

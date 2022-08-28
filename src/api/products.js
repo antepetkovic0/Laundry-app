@@ -23,7 +23,7 @@ export const createProduct =
       const { data } = await httpClient.post("/products", product);
       dispatch(productActions.createProduct(data));
       toastMessage("Product has been successfully created", TOAST_TYPE.SUCCESS);
-      history.push(`/dashboard/shops/${shopSlug}`);
+      history.push(`/app/shops/${shopSlug}`);
     } catch (err) {
       toastMessage(err.response.data.error.message, TOAST_TYPE.ERROR);
     }

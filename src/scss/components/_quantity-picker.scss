@@ -1,0 +1,16 @@
+.quantity-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__icon {
+    display: flex;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    border: 1px solid;
+  }
+
+  &__number {
+    font-size: 2rem;
+  }
+}

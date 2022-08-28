@@ -76,6 +76,7 @@ const AppNavigation = () => {
   const profile = useSelector((state) => state.profile);
   const permissions = profile?.role?.permissions ?? [];
   const pendingUsers = useSelector((state) => state.dashboard.users.pending);
+  const cart = useSelector((state) => state.cart);
 
   const navigationLinks = filterRoutesWithPermission(permissions);
 
@@ -100,6 +101,7 @@ const AppNavigation = () => {
         >
           <Icon name={item.iconName} />
           {item.path === "/users" && pendingUsers ? <Signal /> : null}
+          {item.path === "/cart" && cart.length ? <Signal /> : null}
         </Li>
       ))}
     </>
