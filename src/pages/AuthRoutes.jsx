@@ -6,6 +6,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import SignIn from "../components/features/auth/SignIn/SignIn";
 import SignUp from "../components/features/auth/SignUp/SignUp";
 import ForgotPassword from "../components/features/auth/ForgotPassword/ForgotPassword";
+import PasswordReset from "../components/features/auth/PasswordReset/PasswordReset";
 
 // !!! LAYOUTS TECHNIQUES !!!
 // https://medium.com/swlh/creating-effective-layouts-with-react-router-6847f6eaffc
@@ -17,8 +18,13 @@ const AuthRoutes = ({ basePath }) => (
       <Route path={`${basePath}/sign-in`} component={SignIn} exact />
       <Route path={`${basePath}/sign-up`} component={SignUp} exact />
       <Route
-        path={`${basePath}/password-reset`}
+        path={`${basePath}/forgot-password`}
         component={ForgotPassword}
+        exact
+      />
+      <Route
+        path={`${basePath}/password-reset`}
+        component={PasswordReset}
         exact
       />
     </Switch>

@@ -30,3 +30,9 @@ export const registerUser = async (user) =>
 
 export const refreshTokens = async (refreshToken) =>
   httpClient.post(`${URL}/api/auth/refresh`, refreshToken);
+
+export const requestResetPassword = async (email) =>
+  httpClient.post("/auth/request-reset-password", { email });
+
+export const resetPassword = async (data) =>
+  httpClient.post("/auth/reset-password", data);

@@ -4,12 +4,18 @@ import { toastMessage } from "../../../../utils/toast";
 import { useInput } from "../../../../hooks/useInput";
 import Button from "../../../core/Button/Button";
 import InputField from "../../../shared/fields/InputField/InputField";
+import { requestResetPassword } from "../../../../api/auth";
 
 const ForgotPassword = () => {
   const [email, { handleInputChange }] = useInput();
 
   const handleSendResetLink = async () => {
-    toastMessage("TODO: send email");
+    try {
+      await requestResetPassword(email);
+      toastMessage("Email has been sent to email address.");
+    } catch (err) {
+      toastMessage("Failed to send email.");
+    }
   };
 
   return (

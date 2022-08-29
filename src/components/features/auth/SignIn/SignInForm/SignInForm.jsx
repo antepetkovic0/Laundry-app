@@ -40,7 +40,7 @@ const SignInForm = ({ onSubmit }) => {
         onIconClick={handleTogglePasswordVisibility}
       />
       <div className="forgot-password">
-        <AnchorLink href="/auth/password-reset">Forgot password?</AnchorLink>
+        <AnchorLink href="/auth/forgot-password">Forgot password?</AnchorLink>
       </div>
       <button type="submit" className="auth__submit">
         Login
