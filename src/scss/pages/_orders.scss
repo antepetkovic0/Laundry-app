@@ -1,0 +1,56 @@
+.orders {
+  &__list {
+    margin: 2rem 0 1rem;
+  }
+
+  .order-card {
+    display: flex;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    border-radius: 0.8rem;
+    gap: 1.6rem;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+    &__shop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding-right: 1.6rem;
+      border-right: 1px solid #eee;
+    }
+
+    &__shop-image {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    &__quantity-price,
+    &__status-date {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__price {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    &__dollar {
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+  }
+}

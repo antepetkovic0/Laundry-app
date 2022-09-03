@@ -6,6 +6,7 @@ import dashboard from "./dashboard";
 import users from "./users";
 import shops from "./shops";
 import products from "./products";
+import orders from "./orders";
 import cart from "./cart";
 import dialog from "./dialog";
 import ui from "./ui";
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   users,
   shops,
   products,
+  orders,
   cart,
   dialog,
   ui,

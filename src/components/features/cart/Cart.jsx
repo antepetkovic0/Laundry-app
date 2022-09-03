@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { createOrder } from "../../../api/orders";
+import { CREATE_ORDER } from "../../../store/actions/orders";
 import { calculateDiscountedPrice } from "../../../utils/calculateDiscountedPrice";
 import Button from "../../core/Button/Button";
 import EmptyMessage from "../../shared/messages/EmptyMessage/EmptyMessage";
@@ -7,7 +9,8 @@ import CartItem from "./CartItem/CartItem";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  console.log("rendered");
+
+  const dispatch = useDispatch();
 
   const subTotal = useMemo(() => {
     if (!cart.length) return 0;
@@ -22,6 +25,12 @@ const Cart = () => {
 
     return sumTotal.toFixed(2);
   }, [cart]);
+
+  const handleMakeOrder = () => {
+    if (!cart.length) return;
+
+    dispatch(createOrder(CREATE_ORDER, cart));
+  };
 
   return (
     <>
@@ -70,7 +79,7 @@ const Cart = () => {
                 </div>
               </div>
             </div>
-            <Button text="Make order" fullWidth />
+            <Button text="Make order" onClick={handleMakeOrder} fullWidth />
           </>
         ) : (
           <EmptyMessage />
