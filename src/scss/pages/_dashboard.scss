@@ -58,6 +58,56 @@
 
   &--orders {
     grid-area: "orders";
+
+    .order-list {
+      margin-top: 1rem;
+    }
+
+    .order {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid;
+      }
+
+      &__price {
+        width: 6rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+
+      &__dollar {
+        font-size: 1.4rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &--revenue {
+    grid-area: "revenue";
+
+    .revenue-title {
+      display: flex;
+      justify-content: space-between;
+
+      &__period {
+        font-style: italic;
+        color: #cfd6e4;
+      }
+    }
+
+    .revenue-total {
+      margin-top: 1rem;
+      font-size: 3rem;
+
+      &__dollar {
+        font-size: 2rem;
+        margin-right: 0.2rem;
+      }
+    }
   }
 
   &__title {

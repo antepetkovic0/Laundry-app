@@ -10,7 +10,10 @@ import {
   FETCH_DASHBOARD_SHOPS,
   FETCH_DASHBOARD_USERS,
 } from "../../../store/actions/dashboard";
+import { FETCH_ORDERS } from "../../../store/actions/orders";
 import DashboardHeader from "./DashboardHeader/DashboardHeader";
+import DashboardRevenue from "./DashboardRevenue/DashboardRevenue";
+import DashboardOrders from "./DashboardOrders/DashboardOrders";
 
 const Wrapper = styled.div`
   display: grid;
@@ -22,6 +25,14 @@ const Wrapper = styled.div`
       "users"
       "shops"
       "orders"
+      `;
+    }
+
+    if (props.role === ROLES.SERVICE) {
+      return `
+        "revenue",
+        "shops",
+        "orders"
       `;
     }
 
@@ -37,8 +48,9 @@ const Dashboard = ({ roleTitle }) => (
     <DashboardHeader />
     <Wrapper role={roleTitle}>
       {roleTitle === ROLES.ADMIN && <DashboardUsers />}
+      {roleTitle === ROLES.SERVICE && <DashboardRevenue />}
       <DashboardShops />
-      {/* <Orders /> */}
+      <DashboardOrders />
     </Wrapper>
   </>
 );
@@ -52,5 +64,6 @@ Dashboard.propTypes = {
 export default WithLoading(
   Dashboard,
   FETCH_DASHBOARD_USERS,
-  FETCH_DASHBOARD_SHOPS
+  FETCH_DASHBOARD_SHOPS,
+  FETCH_ORDERS
 );
