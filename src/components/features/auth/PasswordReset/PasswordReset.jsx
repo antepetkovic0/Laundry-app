@@ -1,10 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 import { resetPassword } from "../../../../api/auth";
-import { TOAST_TYPE } from "../../../../constants/toastType";
 import { useInput } from "../../../../hooks/useInput";
 import { useLocationQuery } from "../../../../hooks/useLocationQuery";
-import { toastMessage } from "../../../../utils/toast";
 import InputField from "../../../shared/fields/InputField/InputField";
 
 const PasswordReset = () => {
@@ -16,15 +15,7 @@ const PasswordReset = () => {
   const [password, { handleInputChange }] = useInput();
 
   const handleResetPassword = async () => {
-    try {
-      await resetPassword({ password, token, userId });
-      toastMessage(
-        "Password was succesfully reseted. Feel free to login with new credentials."
-      );
-      history.push("/auth/sign-in");
-    } catch (err) {
-      toastMessage("Failed to reset password", TOAST_TYPE.ERROR);
-    }
+    resetPassword({ password, token, userId }, history);
   };
 
   return (

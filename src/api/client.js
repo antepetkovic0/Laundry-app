@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
 import { getCookie } from "../utils/cookie";
 
@@ -35,9 +34,10 @@ instance.interceptors.response.use(
         localStorage.setItem("access-token", data.accessToken);
         return instance(initialRequest);
       } catch (_err) {
-        window.location.href = "http://localhost:3000/auth/sign-in";
+        window.location.href = "http://192.168.1.11:3000/auth/sign-in";
       }
     }
+
     return Promise.reject(error);
   }
 );
