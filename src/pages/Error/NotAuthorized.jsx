@@ -23,7 +23,7 @@ const NotAuthorized = () => (
       <Message>
         Access denied! You are not authorized to view this page.
       </Message>
-      <Link to="/dashboard">
+      <Link to="/app">
         <Button text="Go back" />
       </Link>
     </MessageContainer>

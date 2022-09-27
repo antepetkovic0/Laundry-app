@@ -4,7 +4,7 @@ import { getCookie } from "../utils/cookie";
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: "http://192.168.1.11:8080/api",
+  baseURL: "http://localhost:8080/api",
 });
 
 instance.interceptors.request.use(
@@ -28,7 +28,7 @@ instance.interceptors.response.use(
       initialRequest._retry = true;
 
       try {
-        const { data } = await instance.post("/auth/refresh", {
+        const { data } = await instance.post("/auth/refresh-tokens", {
           token: getCookie("refresh-token"),
         });
         localStorage.setItem("access-token", data.accessToken);

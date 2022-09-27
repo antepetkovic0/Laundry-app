@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   lastFetched: null,
 };
 
-const shops = (state = INITIAL_STATE, action) => {
+const orders = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_ORDERS:
       return {
@@ -40,4 +40,4 @@ const shops = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default shops;
+export default orders;
